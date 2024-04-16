@@ -1,7 +1,7 @@
 <template>
-  <n-card class="cursor-pointer" hoverable size="small" @click="$router.push('/issues/1')">
+  <n-card class="cursor-pointer" hoverable size="small" @click="$router.push('/projects/1')">
     <template #header>
-      <n-thing title="Issue title" description="3 days ago">
+      <n-thing title="Issue title" description="Project name">
         <template #avatar>
           <n-avatar color="green">
             <naive-icon name="ph:target" />
