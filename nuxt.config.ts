@@ -7,12 +7,12 @@ export default defineNuxtConfig({
 
   app: {
     head: {
-      title: 'Prisma Cloudflare',
+      title: 'WIP',
       htmlAttrs: {
         lang: 'en'
       },
       meta: [
-        { name: 'description', content: 'Nuxt starter on Cloudflare with auth, prisma & Naive UI' },
+        { name: 'description', content: 'A platform to share work progress and more' },
         { name: 'theme-color', content: '#18181B' }
       ]
     }
