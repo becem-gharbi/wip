@@ -1,51 +1,21 @@
-# Prisma Cloudflare
+# WIP
 
-This project is a Nuxt starter app with auth and Naive UI using Prisma with D1 database deployed on Cloudflare pages.
+WIP or Work In Progress is an open-source web platform for project management.
 
-Cloudflare offers a worlwide network to serve static content and run serverless code with native object storage and database binding.
-Nuxt is a fullstack framework for building server-rendered Vue apps and runtime agnostic web services.
-To get started building Nuxt apps on Cloudflare it's recommended to use [Nuxt Hub](https://hub.nuxt.com) platform.
+## Features
 
-Prisma is an ORM that supports edge deployment either via a proxy runnig on Prisma accelerate or via driver adapters. This project uses Cloudflare D1 driver which is introduced on version 5.12.0. The limitations are:
+The platform can be self-hosted for data privacy supporting serverless deployment on Cloudflare. It offers the following features:
 
-- This feature is in currently in preview.
+- Kanban board to visual project progress.
+- Share project's progress between a team of users.
+- Realtime messaging between team members.
 
-- The query engine is bundled with currently 782kB which limits the app size for the free tier where the server bundle size cannot exceed 1mB.
+## Requirements
 
-- The database migration should be made with Wrangler instead of Prisma migrate command. This project handles the migration [workflows](https://www.prisma.io/docs/orm/overview/databases/cloudflare-d1#migration-workflows) via `migrate` scripts.
-
-## Setup
-
-To get started you will need to have a Cloudflare account.
-
-- Install dependencies.
-
-```bash
-pnpm install
-```
-
-- Rename `.example.env` to `.env` and set env variables, check [@bg-dev/nuxt-auth](https://nuxt-auth.bg.tn).
-
-- Deploy the project on Cloudflare Pages and add the env variables.
-
-- Create a new D1 database and [bind](https://developers.cloudflare.com/pages/functions/bindings/#d1-databases) it to the Page project.
-
-- Rename `ex.wrangler.toml` to `wrangler.toml` and set `database_name` and `database_id`. This will be used by Wrangler.
-
-- Apply migration on local database.
-
-```bash
-pnpm migrate:apply
-```
-
-- Apply migration on remote database.
-
-```bash
-pnpm migrate:apply --remote
-```
-
-- Generate new migration file after updating Prisma schema.
-
-```bash
-pnpm migrate:generate
-```
+- A project has a team with one owner and zero-to-many viewers.
+- A project has a Kanban board with tasks, a list of team members and a chat interface.
+- An owner can create projects add/edit/move tasks on a Kanban board.
+- An owner can invite viewers per-project and share the board with read-only access.
+- An owner can reject viewers per-project and revoke board sharing.
+- User can chat with other users per-project in realtime on the project messaging channel with one-to-many messages.
+- The chat channel supports only text messaging.
