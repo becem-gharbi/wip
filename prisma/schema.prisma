@@ -9,29 +9,82 @@ datasource db {
 }
 
 model User {
-  id                     String         @id @default(uuid())
+  id                     String   @id @default(uuid())
   name                   String
-  email                  String         @unique
+  email                  String   @unique
   picture                String
-  role                   String         @default("user")
-  provider               String         @default("default")
+  role                   String   @default("user")
+  provider               String   @default("default")
   password               String?
-  verified               Boolean        @default(false)
-  suspended              Boolean        @default(false)
-  requestedPasswordReset Boolean        @default(false)
-  refreshTokens          RefreshToken[]
-  createdAt              DateTime       @default(now())
-  updatedAt              DateTime       @updatedAt
+  verified               Boolean  @default(false)
+  suspended              Boolean  @default(false)
+  requestedPasswordReset Boolean  @default(false)
+  createdAt              DateTime @default(now())
+  updatedAt              DateTime @updatedAt
+
+  refreshTokens RefreshToken[]
+  projects      Project[]
+  teams         Team[]
+  messages      Message[]
 }
 
 model RefreshToken {
-  id        String   @id @default(uuid())
+  id        Int      @id @default(autoincrement())
   uid       String
   userId    String
-  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
   userAgent String?
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
   @@index([userId])
+}
+
+model Project {
+  id          String   @id @default(uuid())
+  name        String
+  description String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt()
+  ownerId     String
+
+  owner  User    @relation(fields: [ownerId], references: [id])
+  team   Team?
+  issues Issue[]
+
+  @@unique([ownerId, name])
+}
+
+model Team {
+  id        Int    @id @default(autoincrement())
+  channel   String @unique @default(uuid())
+  projectId String @unique
+
+  project  Project   @relation(fields: [projectId], references: [id])
+  users    User[]
+  messages Message[]
+}
+
+model Issue {
+  id          String   @id @default(uuid())
+  status      String   @default("backlog")
+  summary     String
+  description String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt()
+  projectId   String
+
+  project Project @relation(fields: [projectId], references: [id])
+}
+
+model Message {
+  id        Int      @id @default(autoincrement())
+  content   String
+  createdAt DateTime @default(now())
+  teamId    Int
+  authorId  String
+
+  author User @relation(fields: [authorId], references: [id])
+  team   Team @relation(fields: [teamId], references: [id])
 }
