@@ -1,6 +1,6 @@
 <template>
-  <n-form ref="formRef" class="flex-1" @submit.prevent="onSubmit(updateAccount)">
-    <n-form-item label="Name">
+  <n-form ref="formRef" :model="model" :rules="rules" @submit.prevent="onSubmit(updateAccount)">
+    <n-form-item label="Name" path="name">
       <n-input v-model:value="model.name" />
     </n-form-item>
 
@@ -29,7 +29,14 @@ const model = ref({
   picture: user.value!.picture
 })
 
-const { edited, pending, onSubmit, reset, formRef } = useNaiveForm(model)
+const { edited, pending, onSubmit, reset, formRef, rules } = useNaiveForm(model)
+
+rules.value = {
+  name: {
+    required: true,
+    trigger: 'input'
+  }
+}
 
 async function updateAccount () {
   await useNuxtApp().$auth.fetch('/api/user', {
