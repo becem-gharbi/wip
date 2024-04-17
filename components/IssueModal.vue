@@ -6,15 +6,6 @@
       role="dialog"
       aria-modal="true"
     >
-      <template #header-extra>
-        <n-button text @click="deleteIssue">
-          <template #icon>
-            <naive-icon name="ph:trash" />
-          </template>
-          Delete
-        </n-button>
-      </template>
-
       Content
     </n-card>
   </n-modal>
@@ -33,8 +24,4 @@ watch(show, (value) => {
     return navigateTo({ query: { selectedIssue: undefined } })
   }
 })
-
-function deleteIssue () {
-  show.value = false
-}
 </script>

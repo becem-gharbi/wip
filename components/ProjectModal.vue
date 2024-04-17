@@ -6,15 +6,6 @@
       role="dialog"
       aria-modal="true"
     >
-      <template #header-extra>
-        <n-button text @click="deleteProject">
-          <template #icon>
-            <naive-icon name="ph:trash" />
-          </template>
-          Delete
-        </n-button>
-      </template>
-
       Content
     </n-card>
   </n-modal>
@@ -23,8 +14,4 @@
 <script setup lang="ts">
 defineProps<{show: boolean}>()
 defineEmits(['update:show'])
-
-function deleteProject () {
-
-}
 </script>
