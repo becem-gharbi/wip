@@ -1,5 +1,5 @@
 <template>
-  <n-card class="cursor-pointer w-64" hoverable size="small" @click="$router.push('/projects/1')">
+  <n-card class="cursor-pointer min-w-72" hoverable size="small" @click="$router.push('/projects/1')">
     <template #header>
       <n-thing title="Project name" description="3 days ago">
         <template #avatar>

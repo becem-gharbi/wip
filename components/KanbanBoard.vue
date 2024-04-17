@@ -1,12 +1,10 @@
 <template>
-  <n-scrollbar x-scrollable>
-    <div class="flex gap-8 mb-4">
-      <kanban-column title="Backlog" icon="ph:lightbulb" :list="backlogList" />
-      <kanban-column title="Todo" icon="ph:fire" :list="todoList" />
-      <kanban-column title="In progress" icon="ph:activity" :list="inProgressList" />
-      <kanban-column title="Done" icon="ph:check" :list="doneList" />
-    </div>
-  </n-scrollbar>
+  <div class="flex gap-8 mb-4 overflow-auto">
+    <kanban-column title="Backlog" icon="ph:lightbulb" :list="backlogList" />
+    <kanban-column title="Todo" icon="ph:fire" :list="todoList" />
+    <kanban-column title="In progress" icon="ph:activity" :list="inProgressList" />
+    <kanban-column title="Done" icon="ph:check" :list="doneList" />
+  </div>
 </template>
 
 <script setup lang="ts">
