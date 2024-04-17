@@ -2,17 +2,20 @@
   <n-modal v-model:show="show">
     <n-card
       class="sm:max-w-lg max-w-md"
-      title="Modal"
+      title="Issue summary"
       role="dialog"
       aria-modal="true"
     >
       <template #header-extra>
-        Oops!
+        <n-button text @click="deleteIssue">
+          <template #icon>
+            <naive-icon name="ph:trash" />
+          </template>
+          Delete
+        </n-button>
       </template>
+
       Content
-      <template #footer>
-        Footer
-      </template>
     </n-card>
   </n-modal>
 </template>
@@ -30,4 +33,8 @@ watch(show, (value) => {
     return navigateTo({ query: { selectedIssue: undefined } })
   }
 })
+
+function deleteIssue () {
+  show.value = false
+}
 </script>
