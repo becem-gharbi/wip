@@ -14,6 +14,7 @@
     </template>
 
     <kanban-board />
+    <issue-modal />
   </n-page-header>
 </template>
 

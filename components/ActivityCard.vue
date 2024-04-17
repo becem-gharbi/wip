@@ -1,5 +1,10 @@
 <template>
-  <n-card class="cursor-pointer" hoverable size="small" @click="$router.push('/projects/1')">
+  <n-card
+    class="cursor-pointer"
+    hoverable
+    size="small"
+    @click="navigateTo({ query: { selectedIssue: '1' } })"
+  >
     <template #header>
       <n-thing title="Issue title" description="Project name">
         <template #avatar>
