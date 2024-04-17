@@ -11,7 +11,7 @@
 const backlogList = ref([
   {
     id: Math.random(),
-    summary: 'Issue title 1'
+    summary: 'Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit..'
   },
   {
     id: Math.random(),
