@@ -1,5 +1,9 @@
 <template>
-  <n-page-header title="Project name">
+  <n-page-header>
+    <template #title>
+      {{ project!.name }}
+    </template>
+
     <template #avatar>
       <naive-icon name="ph:stack" size="24" />
     </template>
@@ -24,7 +28,11 @@
 
     <kanban-board />
     <issue-modal />
-    <project-modal v-model:show="showProjectModal" />
+    <project-modal
+      :id="project!.id"
+      v-model:show="showProjectModal"
+      v-model:name="project!.name"
+    />
     <chat-modal v-model:show="showChatModal" />
   </n-page-header>
 </template>
@@ -32,4 +40,10 @@
 <script setup lang="ts">
 const showProjectModal = ref(false)
 const showChatModal = ref(false)
+
+const route = useRoute()
+const project = await useProject().findUnique(route.params.id as string)
+  .catch(async () => {
+    await navigateTo('/')
+  })
 </script>

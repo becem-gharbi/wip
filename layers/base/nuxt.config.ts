@@ -4,6 +4,8 @@ import { auth, naiveui, tailwindcss } from './config'
 export default defineNuxtConfig({
   ssr: false,
 
+  extends: ['../data'],
+
   nitro: {
     modules: [nitroCloudflareBindings],
     experimental: {

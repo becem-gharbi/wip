@@ -14,14 +14,24 @@
 
     <n-scrollbar x-scrollable>
       <div class="flex gap-4 pb-4">
-        <project-card v-for="i in 10" :key="i" />
+        <nuxt-link
+          v-for="project of projects"
+          :key="project.id"
+          :to="`/projects/${project.id}`"
+        >
+          <project-card :name="project.name" :updated-at="project.updatedAt" />
+        </nuxt-link>
       </div>
     </n-scrollbar>
   </n-page-header>
 </template>
 
 <script setup lang="ts">
-function createProject () {
-  return navigateTo('/projects/1')
+
+const projects = await useProject().findMany()
+
+async function createProject () {
+  const project = await useProject().create()
+  return navigateTo('/projects/' + project.id)
 }
 </script>

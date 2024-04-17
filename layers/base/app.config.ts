@@ -3,8 +3,7 @@ export default defineAppConfig({
     themeConfig: {
       shared: {
         common: {
-          borderRadius: '4px',
-          baseColor: 'white'
+          borderRadius: '4px'
         },
         Result: {
           titleFontSizeMedium: '22px'
