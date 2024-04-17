@@ -35,6 +35,7 @@
   "dependencies": {
     "@prisma/adapter-d1": "^5.12.1",
     "@prisma/client": "5.12.1",
-    "ua-parser-js": "^1.0.37"
+    "ua-parser-js": "^1.0.37",
+    "vuedraggable": "^4.1.0"
   }
 }

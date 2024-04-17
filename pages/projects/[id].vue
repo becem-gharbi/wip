@@ -12,5 +12,10 @@
         Delete
       </n-button>
     </template>
+
+    <kanban-board />
   </n-page-header>
 </template>
+
+<script setup lang="ts">
+</script>

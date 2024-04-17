@@ -3,7 +3,7 @@
     <template #header>
       <n-thing title="Project name" description="3 days ago">
         <template #avatar>
-          <n-avatar color="green">
+          <n-avatar>
             <naive-icon name="ph:stack" />
           </n-avatar>
         </template>

@@ -3,7 +3,7 @@
     <template #header>
       <n-thing title="Issue title" description="Project name">
         <template #avatar>
-          <n-avatar color="green">
+          <n-avatar>
             <naive-icon name="ph:target" />
           </n-avatar>
         </template>
