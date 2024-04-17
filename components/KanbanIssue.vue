@@ -1,6 +1,6 @@
 <template>
   <div @dblclick="navigateTo({ query: { selectedIssue: '1' } })">
-    <n-card hoverable class="cursor-pointer">
+    <n-card hoverable class="cursor-pointer" size="small">
       {{ summary }}
     </n-card>
   </div>
