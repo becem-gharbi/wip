@@ -7,13 +7,11 @@
       </div>
     </template>
 
-    <n-modal-provider>
-      <draggable group="kanban" item-key="id" :list="list" @change="() => {}">
-        <template #item="{ element }">
-          <kanban-issue class="mb-4" :summary="element.summary" />
-        </template>
-      </draggable>
-    </n-modal-provider>
+    <draggable group="kanban" item-key="id" :list="list" @change="() => {}">
+      <template #item="{ element }">
+        <kanban-issue class="mb-4" :summary="element.summary" />
+      </template>
+    </draggable>
   </n-card>
 </template>
 
