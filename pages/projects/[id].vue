@@ -5,31 +5,20 @@
     </template>
 
     <template #extra>
-      <n-button text @click="deleteProject">
+      <n-button text @click="showProjectModal = true">
         <template #icon>
-          <naive-icon name="ph:trash" />
+          <naive-icon name="ph:pen" />
         </template>
-        Delete
+        Edit
       </n-button>
     </template>
 
     <kanban-board />
     <issue-modal />
+    <project-modal v-model:show="showProjectModal" />
   </n-page-header>
 </template>
 
 <script setup lang="ts">
-const dialog = useDialog()
-
-function deleteProject () {
-  dialog.warning({
-    title: 'Delete project',
-    content: 'Do you want to permanently delete your project?',
-    negativeText: 'No',
-    positiveText: 'Yes',
-    onPositiveClick: () => {
-      return navigateTo('/')
-    }
-  })
-}
+const showProjectModal = ref(false)
 </script>
