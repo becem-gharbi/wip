@@ -12,9 +12,11 @@
       </n-button>
     </template>
 
-    <div class="flex gap-4 overflow-auto">
-      <project-card v-for="i in 10" :key="i" />
-    </div>
+    <n-scrollbar x-scrollable>
+      <div class="flex gap-4 pb-4">
+        <project-card v-for="i in 10" :key="i" />
+      </div>
+    </n-scrollbar>
   </n-page-header>
 </template>
 
