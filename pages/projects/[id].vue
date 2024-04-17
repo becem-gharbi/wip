@@ -5,7 +5,7 @@
     </template>
 
     <template #extra>
-      <n-button text>
+      <n-button text @click="deleteProject">
         <template #icon>
           <naive-icon name="ph:trash" />
         </template>
@@ -19,4 +19,17 @@
 </template>
 
 <script setup lang="ts">
+const dialog = useDialog()
+
+function deleteProject () {
+  dialog.warning({
+    title: 'Delete project',
+    content: 'Do you want to permanently delete your project?',
+    negativeText: 'No',
+    positiveText: 'Yes',
+    onPositiveClick: () => {
+      return navigateTo('/')
+    }
+  })
+}
 </script>

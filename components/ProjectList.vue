@@ -4,7 +4,7 @@
       <naive-icon name="ph:stack" size="24" />
     </template>
     <template #extra>
-      <n-button text>
+      <n-button text @click="createProject">
         <template #icon>
           <naive-icon name="ph:plus" />
         </template>
@@ -17,3 +17,9 @@
     </div>
   </n-page-header>
 </template>
+
+<script setup lang="ts">
+function createProject () {
+  return navigateTo('/projects/1')
+}
+</script>
