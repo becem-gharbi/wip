@@ -36,9 +36,11 @@
     </template>
 
     <div class="flex-1 container mx-auto mt-4 pb-12">
-      <n-dialog-provider>
-        <slot />
-      </n-dialog-provider>
+      <n-notification-provider>
+        <n-dialog-provider>
+          <slot />
+        </n-dialog-provider>
+      </n-notification-provider>
     </div>
   </naive-layout-navbar>
 </template>

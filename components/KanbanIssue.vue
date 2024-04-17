@@ -1,0 +1,11 @@
+<template>
+  <div @dblclick="navigateTo({ query: { selectedIssue: '1' } })">
+    <n-card hoverable class="cursor-pointer" size="small">
+      {{ summary }}
+    </n-card>
+  </div>
+</template>
+
+<script setup lang="ts">
+defineProps<{ summary: string }>()
+</script>

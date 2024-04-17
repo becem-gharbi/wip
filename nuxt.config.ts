@@ -1,5 +1,6 @@
 export default defineNuxtConfig({
   extends: ['./layers/base'],
+  css: ['~/assets/main.css'],
 
   devtools: {
     enabled: false
