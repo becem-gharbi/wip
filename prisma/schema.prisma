@@ -9,7 +9,7 @@ datasource db {
 }
 
 model User {
-  id                     String   @id @default(uuid())
+  id                     String   @id @default(cuid())
   name                   String
   email                  String   @unique
   picture                String
@@ -42,7 +42,7 @@ model RefreshToken {
 }
 
 model Project {
-  id          String   @id @default(uuid())
+  id          String   @id @default(cuid())
   name        String
   description String?
   createdAt   DateTime @default(now())
@@ -58,7 +58,7 @@ model Project {
 
 model Team {
   id        Int    @id @default(autoincrement())
-  channel   String @unique @default(uuid())
+  channel   String @unique @default(cuid())
   projectId String @unique
 
   project  Project   @relation(fields: [projectId], references: [id])
@@ -67,7 +67,7 @@ model Team {
 }
 
 model Issue {
-  id          String   @id @default(uuid())
+  id          String   @id @default(cuid())
   status      String   @default("backlog")
   summary     String
   description String?
