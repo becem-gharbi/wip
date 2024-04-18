@@ -1,9 +1,10 @@
 <template>
   <n-card class="h-96 min-w-72" segmented size="small" content-class="overflow-auto">
     <template #header>
-      <div class="flex gap-2 items-center">
+      <div class="flex gap-2 items-end">
         <naive-icon :name="issueStatus[column].icon" size="20" />
-        {{ issueStatus[column].title }}
+        <n-text>{{ issueStatus[column].title }}</n-text>
+        <n-text depth="3">{{ list.length }}</n-text>
       </div>
     </template>
 

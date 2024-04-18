@@ -9,11 +9,12 @@
         </template>
 
         <template #description>
-          <n-time
-            type="relative"
-            :time="new Date(updatedAt)"
-            class="opacity-70"
-          />
+          <n-text depth="3">
+            <n-time
+              type="relative"
+              :time="new Date(updatedAt)"
+            />
+          </n-text>
         </template>
       </n-thing>
     </template>
