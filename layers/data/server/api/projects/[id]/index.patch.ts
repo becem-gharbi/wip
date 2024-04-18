@@ -2,7 +2,7 @@ export default defineEventHandler(async (event) => {
   checkAuth(event)
   const projectId = event.context.params!.id
 
-  const body = await readBody<{ name?: string }>(event)
+  const body = await readBody<{ name?: string, icon?: string; }>(event)
 
   // TODO: only owner can perform
   return event.context.prisma.project.update({
@@ -10,7 +10,8 @@ export default defineEventHandler(async (event) => {
       id: projectId
     },
     data: {
-      name: body.name
+      name: body.name,
+      icon: body.icon
     }
   })
 })

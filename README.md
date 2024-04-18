@@ -32,6 +32,7 @@ The platform can be self-hosted for data privacy supporting serverless deploymen
 - Project
   - name
   - description
+  - icon
   - createdAt
   - updatedAt
   - owner (relation)

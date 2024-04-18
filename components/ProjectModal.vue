@@ -16,6 +16,10 @@
           <n-input v-model:value="model.name" />
         </n-form-item>
 
+        <n-form-item label="Icon" path="icon">
+          <n-input v-model:value="model.icon" />
+        </n-form-item>
+
         <div class="flex gap-2">
           <n-button
             attr-type="reset"
@@ -55,7 +59,8 @@ const emits = defineEmits(['update:show'])
 const project = await useProject().findUnique(props.projectId)
 
 const model = ref({
-  name: project.value.name
+  name: project.value.name,
+  icon: project.value.icon
 })
 
 const { edited, pending, onSubmit, reset, rules, formRef } =
@@ -65,6 +70,9 @@ rules.value = {
   name: {
     required: true,
     trigger: 'input'
+  },
+  icon: {
+    type: 'url'
   }
 }
 
@@ -74,7 +82,7 @@ async function deleteProject () {
 }
 
 async function updateProject () {
-  await useProject().update(props.projectId, { name: model.value.name })
+  await useProject().update(props.projectId, { name: model.value.name, icon: model.value.icon })
   emits('update:show', false)
 }
 </script>

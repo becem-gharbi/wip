@@ -19,7 +19,7 @@
           :key="project.id"
           :to="`/projects/${project.id}`"
         >
-          <project-card :name="project.name" :updated-at="project.updatedAt" />
+          <project-card :name="project.name" :updated-at="project.updatedAt" :icon="project.icon" />
         </nuxt-link>
       </div>
     </n-scrollbar>

@@ -5,7 +5,7 @@
     </template>
 
     <template #avatar>
-      <naive-icon name="ph:stack" size="24" />
+      <img :src="project!.icon ?? '/images/project-icon.svg'" width="24" alt="project_icon">
     </template>
 
     <template #extra>

@@ -3,9 +3,7 @@
     <template #header>
       <n-thing :title="name" description="3 days ago">
         <template #avatar>
-          <n-avatar>
-            <naive-icon name="ph:stack" />
-          </n-avatar>
+          <img :src="icon ?? '/images/project-icon.svg'" width="24" alt="project_icon">
         </template>
 
         <template #description>
@@ -29,5 +27,5 @@
 </template>
 
 <script setup lang="ts">
-defineProps<{ name: string; updatedAt: string | Date }>()
+defineProps<{ name: string; icon: string | null; updatedAt: string | Date }>()
 </script>
