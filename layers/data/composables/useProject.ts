@@ -1,7 +1,7 @@
+import type { Project } from '@prisma/client'
+
 export function useProject () {
   const _fetch = useNuxtApp().$auth.fetch
 
-  const { create, findMany, findUnique, remove, update } = useEntity('projects', _fetch)
-
-  return { create, findMany, findUnique, remove, update }
+  return useEntity<Project>('projects', _fetch)
 }

@@ -1,11 +1,9 @@
 <template>
-  <div @dblclick="navigateTo({ query: { selectedIssue: '1' } })">
-    <n-card hoverable class="cursor-pointer" size="small">
-      {{ summary }}
-    </n-card>
-  </div>
+  <n-card hoverable class="cursor-pointer" size="small">
+    {{ summary }}
+  </n-card>
 </template>
 
 <script setup lang="ts">
-defineProps<{ summary: string }>()
+defineProps<{ issueId: string; summary: string; }>()
 </script>

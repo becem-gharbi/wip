@@ -4,7 +4,7 @@ export default defineEventHandler(async (event) => {
 
   const body = await readBody<{ name?: string }>(event)
 
-  // TODO: only owner can update
+  // TODO: only owner can perform
   return event.context.prisma.project.update({
     where: {
       id: projectId

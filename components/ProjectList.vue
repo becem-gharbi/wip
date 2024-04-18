@@ -27,11 +27,10 @@
 </template>
 
 <script setup lang="ts">
-
 const projects = await useProject().findMany()
 
 async function createProject () {
   const project = await useProject().create()
-  return navigateTo('/projects/' + project.id)
+  return navigateTo(`/projects/${project.id}`)
 }
 </script>

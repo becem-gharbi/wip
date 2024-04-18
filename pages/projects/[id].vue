@@ -26,11 +26,11 @@
       </div>
     </template>
 
-    <kanban-board />
-    <issue-modal />
+    <kanban-board :project-id="project!.id" />
+
     <project-modal
-      :id="project!.id"
       v-model:show="showProjectModal"
+      :project-id="project!.id"
     />
     <chat-modal v-model:show="showChatModal" />
   </n-page-header>
@@ -40,8 +40,9 @@
 const showProjectModal = ref(false)
 const showChatModal = ref(false)
 
-const route = useRoute()
-const project = await useProject().findUnique(route.params.id as string)
+const projectId = useRoute().params.id as string
+
+const project = await useProject().findUnique(projectId)
   .catch(async () => {
     await navigateTo('/')
   })

@@ -2,8 +2,8 @@
   <n-card class="h-96 min-w-72" segmented size="small" content-class="overflow-auto">
     <template #header>
       <div class="flex gap-2 items-center">
-        <naive-icon :name="icon" size="20" />
-        {{ title }}
+        <naive-icon :name="issueStatus[column].icon" size="20" />
+        {{ issueStatus[column].title }}
       </div>
     </template>
 
@@ -17,18 +17,40 @@
 
     <draggable group="kanban" item-key="id" :list="list" @change="() => {}">
       <template #item="{ element }">
-        <kanban-issue class="mb-4" :summary="element.summary" />
+        <kanban-issue
+          class="mb-4"
+          :issue-id="element.id"
+          :summary="element.summary"
+          @dblclick="onSelectIssue(element.id)"
+        />
       </template>
     </draggable>
+
+    <issue-modal v-if="selectedIssueId" v-model:show="showIssueModal" v-model:issue-id="selectedIssueId" />
   </n-card>
 </template>
 
 <script setup lang="ts">
 import Draggable from 'vuedraggable'
 
-defineProps<{ title: string; icon: string; list:Array<any> }>()
+const props = defineProps<{ column: number; projectId: string }>()
 
-function createIssue () {
-  return navigateTo({ query: { selectedIssue: '1' } })
+const showIssueModal = ref(false)
+const selectedIssueId = ref()
+
+function onSelectIssue (id: string) {
+  selectedIssueId.value = id
+  showIssueModal.value = true
+}
+
+const { issueStatus } = useIssue()
+
+const issues = await useIssue().findMany({ projectId: props.projectId })
+
+const list = computed(() => issues.value.filter(i => i.column === props.column))
+
+async function createIssue () {
+  const issue = await useIssue().create({ projectId: props.projectId, column: props.column })
+  onSelectIssue(issue.id)
 }
 </script>

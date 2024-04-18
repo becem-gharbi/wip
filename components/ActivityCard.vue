@@ -1,10 +1,5 @@
 <template>
-  <n-card
-    class="cursor-pointer"
-    hoverable
-    size="small"
-    @click="navigateTo({ query: { selectedIssue: '1' } })"
-  >
+  <n-card class="cursor-pointer" hoverable size="small">
     <template #header>
       <n-thing title="Issue title" description="Project name">
         <template #avatar>

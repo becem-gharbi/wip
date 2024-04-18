@@ -6,9 +6,6 @@ export default defineEventHandler((event) => {
   return event.context.prisma.project.findUniqueOrThrow({
     where: {
       id: projectId
-    },
-    include: {
-      issues: true
     }
   })
 })

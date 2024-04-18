@@ -9,7 +9,11 @@
         </template>
 
         <template #description>
-          <n-time type="relative" :time="new Date(updatedAt)" class="opacity-70" />
+          <n-time
+            type="relative"
+            :time="new Date(updatedAt)"
+            class="opacity-70"
+          />
         </template>
       </n-thing>
     </template>
@@ -24,5 +28,5 @@
 </template>
 
 <script setup lang="ts">
-defineProps<{name: string; updatedAt: string}>()
+defineProps<{ name: string; updatedAt: string | Date }>()
 </script>

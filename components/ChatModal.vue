@@ -12,6 +12,6 @@
 </template>
 
 <script setup lang="ts">
-defineProps<{show: boolean}>()
+defineProps<{ show: boolean }>()
 defineEmits(['update:show'])
 </script>

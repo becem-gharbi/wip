@@ -3,7 +3,6 @@
     <project-list />
     <br>
     <activity-list />
-    <issue-modal />
   </div>
 </template>
 
