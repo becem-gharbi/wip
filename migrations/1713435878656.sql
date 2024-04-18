@@ -47,7 +47,8 @@ CREATE TABLE "Team" (
 -- CreateTable
 CREATE TABLE "Issue" (
     "id" TEXT NOT NULL PRIMARY KEY,
-    "status" TEXT NOT NULL DEFAULT 'backlog',
+    "column" INTEGER NOT NULL DEFAULT 0,
+    "order" INTEGER NOT NULL DEFAULT 0,
     "summary" TEXT NOT NULL,
     "description" TEXT,
     "createdAt" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,

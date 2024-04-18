@@ -49,7 +49,7 @@ model Project {
   updatedAt   DateTime @updatedAt()
   ownerId     String
 
-  owner  User    @relation(fields: [ownerId], references: [id])
+  owner  User    @relation(fields: [ownerId], references: [id], onDelete: Cascade)
   team   Team?
   issues Issue[]
 
@@ -61,21 +61,22 @@ model Team {
   channel   String @unique @default(cuid())
   projectId String @unique
 
-  project  Project   @relation(fields: [projectId], references: [id])
+  project  Project   @relation(fields: [projectId], references: [id], onDelete: Cascade)
   users    User[]
   messages Message[]
 }
 
 model Issue {
   id          String   @id @default(cuid())
-  status      String   @default("backlog")
+  column      Int      @default(0)
+  order       Int      @default(0)
   summary     String
   description String?
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt()
   projectId   String
 
-  project Project @relation(fields: [projectId], references: [id])
+  project Project @relation(fields: [projectId], references: [id], onDelete: Cascade)
 }
 
 model Message {
@@ -85,6 +86,6 @@ model Message {
   teamId    Int
   authorId  String
 
-  author User @relation(fields: [authorId], references: [id])
-  team   Team @relation(fields: [teamId], references: [id])
+  author User @relation(fields: [authorId], references: [id], onDelete: Cascade)
+  team   Team @relation(fields: [teamId], references: [id], onDelete: Cascade)
 }
