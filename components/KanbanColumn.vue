@@ -15,7 +15,7 @@
       </n-button>
     </template>
 
-    <draggable group="kanban" item-key="id" :list="list" @change="() => {}">
+    <draggable :list="list" group="kanban" item-key="id" @change="onReoder">
       <template #item="{ element }">
         <kanban-issue
           class="mb-4"
@@ -47,10 +47,17 @@ const { issueStatus } = useIssue()
 
 const issues = await useIssue().findMany({ projectId: props.projectId })
 
-const list = computed(() => issues.value.filter(i => i.column === props.column))
+const list = computed(() => issues.value.filter(i => i.column === props.column)
+  .sort((a, b) => new Date(b.updatedAt).getTime() - new Date(a.updatedAt).getTime()))
 
 async function createIssue () {
   const issue = await useIssue().create({ projectId: props.projectId, column: props.column })
   onSelectIssue(issue.id)
+}
+
+async function onReoder (c: any) {
+  if (c.added) {
+    await useIssue().update(c.added.element.id, { column: props.column })
+  }
 }
 </script>

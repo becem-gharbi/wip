@@ -7,6 +7,10 @@ export default defineEventHandler((event) => {
   return event.context.prisma.issue.findMany({
     where: {
       projectId: query.projectId
-    }
+    },
+    orderBy: [
+      { column: 'asc' },
+      { updatedAt: 'desc' }
+    ]
   })
 })

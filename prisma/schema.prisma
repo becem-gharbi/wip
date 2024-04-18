@@ -69,7 +69,6 @@ model Team {
 model Issue {
   id          Int      @id @default(autoincrement())
   column      Int      @default(0)
-  order       Int      @default(0)
   summary     String
   description String?
   createdAt   DateTime @default(now())
