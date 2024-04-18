@@ -38,7 +38,7 @@ const props = defineProps<{ column: number; projectId: string }>()
 const showIssueModal = ref(false)
 const selectedIssueId = ref()
 
-function onSelectIssue (id: string) {
+function onSelectIssue (id: number) {
   selectedIssueId.value = id
   showIssueModal.value = true
 }

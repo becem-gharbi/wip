@@ -5,7 +5,7 @@ export default defineEventHandler((event) => {
   // TODO: only team members can perform
   return event.context.prisma.issue.findUniqueOrThrow({
     where: {
-      id: issueId
+      id: parseInt(issueId)
     }
   })
 })

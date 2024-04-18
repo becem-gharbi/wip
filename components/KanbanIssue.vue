@@ -5,5 +5,5 @@
 </template>
 
 <script setup lang="ts">
-defineProps<{ issueId: string; summary: string; }>()
+defineProps<{ issueId: number; summary: string; }>()
 </script>

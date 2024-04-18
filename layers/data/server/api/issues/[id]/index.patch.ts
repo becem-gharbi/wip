@@ -7,7 +7,7 @@ export default defineEventHandler(async (event) => {
   // TODO: only owner can perform
   return event.context.prisma.issue.update({
     where: {
-      id: issueId
+      id: parseInt(issueId)
     },
     data: {
       summary: body.summary

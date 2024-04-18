@@ -5,7 +5,7 @@ export default defineEventHandler((event) => {
   // TODO: only owner can perform
   return event.context.prisma.issue.delete({
     where: {
-      id: issueId
+      id: parseInt(issueId)
     }
   })
 })

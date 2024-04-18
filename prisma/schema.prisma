@@ -67,7 +67,7 @@ model Team {
 }
 
 model Issue {
-  id          String   @id @default(cuid())
+  id          Int      @id @default(autoincrement())
   column      Int      @default(0)
   order       Int      @default(0)
   summary     String
