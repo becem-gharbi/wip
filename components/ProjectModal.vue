@@ -20,6 +20,10 @@
           <n-input v-model:value="model.icon" />
         </n-form-item>
 
+        <n-form-item label="Description" path="description">
+          <n-input v-model:value="model.description" type="textarea" autosize />
+        </n-form-item>
+
         <div class="flex gap-2">
           <n-button
             attr-type="reset"
@@ -60,7 +64,8 @@ const project = await useProject().findUnique(props.projectId)
 
 const model = ref({
   name: project.value.name,
-  icon: project.value.icon
+  icon: project.value.icon,
+  description: project.value.description
 })
 
 const { edited, pending, onSubmit, reset, rules, formRef } =
@@ -82,7 +87,7 @@ async function deleteProject () {
 }
 
 async function updateProject () {
-  await useProject().update(props.projectId, { name: model.value.name, icon: model.value.icon })
+  await useProject().update(props.projectId, model.value)
   emits('update:show', false)
 }
 </script>
