@@ -15,7 +15,7 @@ export function useEntity (entityKey: string, _fetch = $fetch) {
   const f = () => $fetch(`/api/${entityKey}/:id`)
   type EntityType = Awaited<ReturnType<typeof f>>;
 
-  const _useState = (id: string, init?: any) =>
+  const _useState = (id: string, init?: () => EntityType) =>
     useState<EntityType>(`${entityKey}-${id}`, init)
 
   async function findMany () {
@@ -35,7 +35,7 @@ export function useEntity (entityKey: string, _fetch = $fetch) {
     return _useState(entity.id, () => entity).value
   }
 
-  async function remove (id: string) {
+  async function remove (id: EntityType['id']) {
     await _fetch(`/api/${entityKey}/${id}`, {
       method: 'delete'
     })
@@ -43,7 +43,7 @@ export function useEntity (entityKey: string, _fetch = $fetch) {
     delete useNuxtApp().payload.state[`$s${entityKey}-${id}`]
   }
 
-  async function update (id: string, data: Partial<EntityType>) {
+  async function update (id: EntityType['id'], data: Partial<EntityType>) {
     await _fetch(`/api/${entityKey}/${id}`, {
       method: 'patch',
       body: data
@@ -51,7 +51,7 @@ export function useEntity (entityKey: string, _fetch = $fetch) {
     _useState(id).value = defu({}, data, _useState(id).value)
   }
 
-  async function findUnique (id: string) {
+  async function findUnique (id: EntityType['id']) {
     await callOnce(`${entityKey}-${id}`, async () => {
       const entity = await _fetch(`/api/${entityKey}/${id}`)
       _useState(id).value = entity
