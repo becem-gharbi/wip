@@ -32,11 +32,13 @@
 </template>
 
 <script setup lang="ts">
-const props = defineProps<{ show: boolean; id: string; name: string }>()
+const props = defineProps<{ show: boolean; id: string;}>()
 const emits = defineEmits(['update:show', 'update:name'])
 
+const project = await useProject().findUnique(props.id)
+
 const model = ref({
-  name: props.name
+  name: project.value.name
 })
 
 const { edited, pending, onSubmit, reset, rules, formRef } = useNaiveForm(model)
@@ -49,13 +51,12 @@ rules.value = {
 }
 
 async function deleteProject () {
+  await navigateTo('/')
   await useProject().remove(props.id)
-  return navigateTo('/')
 }
 
 async function updateProject () {
-  await useProject().update(props.id, model.value.name)
-  emits('update:name', model.value.name)
+  await useProject().update(props.id, { name: model.value.name })
   emits('update:show', false)
 }
 </script>

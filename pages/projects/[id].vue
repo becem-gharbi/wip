@@ -31,7 +31,6 @@
     <project-modal
       :id="project!.id"
       v-model:show="showProjectModal"
-      v-model:name="project!.name"
     />
     <chat-modal v-model:show="showChatModal" />
   </n-page-header>
