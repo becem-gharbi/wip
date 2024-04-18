@@ -16,13 +16,6 @@
         </template>
       </n-thing>
     </template>
-
-    <n-progress
-      type="line"
-      :percentage="60"
-      indicator-placement="outside"
-      :height="6"
-    />
   </n-card>
 </template>
 

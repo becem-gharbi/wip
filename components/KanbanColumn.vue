@@ -4,7 +4,9 @@
       <div class="flex gap-2 items-end">
         <naive-icon :name="issueStatus[column].icon" size="20" />
         <n-text>{{ issueStatus[column].title }}</n-text>
-        <n-text depth="3">{{ list.length }}</n-text>
+        <n-text depth="3">
+          {{ list.length }}
+        </n-text>
       </div>
     </template>
 
@@ -44,7 +46,12 @@ function onSelectIssue (id: number) {
   showIssueModal.value = true
 }
 
-const { issueStatus } = useIssue()
+const issueStatus: Array<{ title: string, icon: string }> = [
+  { title: 'Backlog', icon: 'ph:lightbulb' },
+  { title: 'Todo', icon: 'ph:fire' },
+  { title: 'In progress', icon: 'ph:activity' },
+  { title: 'Done', icon: 'ph:check' }
+]
 
 const issues = await useIssue().findMany({ projectId: props.projectId })
 
@@ -62,3 +69,18 @@ async function onReoder (c: any) {
   }
 }
 </script>
+
+<style>
+/* Hide scrollbar for Chrome, Safari and Opera */
+*::-webkit-scrollbar {
+    display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+* {
+    -ms-overflow-style: none;
+    /* IE and Edge */
+    scrollbar-width: none;
+    /* Firefox */
+}
+</style>

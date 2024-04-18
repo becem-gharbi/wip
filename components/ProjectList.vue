@@ -12,17 +12,16 @@
       </n-button>
     </template>
 
-    <n-scrollbar x-scrollable>
-      <div class="flex gap-4 pb-4">
-        <nuxt-link
-          v-for="project of projects"
-          :key="project.id"
-          :to="`/projects/${project.id}`"
-        >
-          <project-card :name="project.name" :updated-at="project.updatedAt" :icon="project.icon" />
-        </nuxt-link>
-      </div>
-    </n-scrollbar>
+    <div class="flex gap-4 flex-wrap">
+      <nuxt-link
+        v-for="project of projects"
+        :key="project.id"
+        class="w-full sm:w-auto"
+        :to="`/projects/${project.id}`"
+      >
+        <project-card :name="project.name" :updated-at="project.updatedAt" :icon="project.icon" />
+      </nuxt-link>
+    </div>
   </n-page-header>
 </template>
 
