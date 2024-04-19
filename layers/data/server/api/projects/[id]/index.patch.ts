@@ -16,5 +16,5 @@ export default defineEventHandler(async (event) => {
       icon: body.icon,
       description: body.description
     }
-  })
+  }).catch((err) => { throw createPrismaError(err) })
 })

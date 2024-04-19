@@ -22,5 +22,5 @@ export default defineEventHandler((event) => {
       { column: 'asc' },
       { updatedAt: 'desc' }
     ]
-  })
+  }).catch((err) => { throw createPrismaError(err) })
 })

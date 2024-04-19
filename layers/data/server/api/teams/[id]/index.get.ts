@@ -23,5 +23,5 @@ export default defineEventHandler((event) => {
         }
       }
     }
-  })
+  }).catch((err) => { throw createPrismaError(err) })
 })

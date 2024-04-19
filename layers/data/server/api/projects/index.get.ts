@@ -16,5 +16,5 @@ export default defineEventHandler((event) => {
     orderBy: {
       updatedAt: 'desc'
     }
-  })
+  }).catch((err) => { throw createPrismaError(err) })
 })
