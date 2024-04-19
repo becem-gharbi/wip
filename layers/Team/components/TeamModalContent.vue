@@ -63,7 +63,6 @@
 
 <script setup lang="ts">
 const props = defineProps<{ teamId: string; projectId: string }>()
-const emits = defineEmits(['hide'])
 
 const team = await useTeam().findUnique(props.teamId)
 const project = await useProject().findUnique(props.projectId)
@@ -83,11 +82,9 @@ rules.value = {
 
 async function addUser () {
   await useTeam().addUser(props.teamId, model.value)
-  emits('hide')
 }
 
 async function removeUser (email: string) {
   await useTeam().removeUser(props.teamId, { email })
-  emits('hide')
 }
 </script>

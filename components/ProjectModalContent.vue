@@ -88,6 +88,5 @@ async function deleteProject () {
 
 async function updateProject () {
   await useProject().update(props.projectId, model.value)
-  emits('hide')
 }
 </script>

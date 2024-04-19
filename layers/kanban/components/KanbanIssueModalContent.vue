@@ -96,6 +96,5 @@ async function updateIssue () {
     ...model.value,
     labels: model.value.labels?.join(';')
   })
-  emits('hide', false)
 }
 </script>

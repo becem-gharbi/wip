@@ -4,7 +4,6 @@
       :team-id="teamId"
       class="sm:max-w-lg max-w-md"
       :project-id="projectId"
-      @hide="$emit('update:show', false)"
     />
   </n-modal>
 </template>
