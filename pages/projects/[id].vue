@@ -17,24 +17,24 @@
           Edit
         </n-button>
 
-        <n-button text @click="showChatModal = true">
+        <n-button text @click="showTeamModal = true">
           <template #icon>
-            <naive-icon name="ph:chat-circle-dots" />
+            <naive-icon name="ph:users" />
           </template>
-          Chat
+          Team
         </n-button>
       </div>
     </template>
 
     <kanban-board :project-id="project!.id" />
     <project-modal v-model:show="showProjectModal" :project-id="project!.id" />
-    <chat-modal v-model:show="showChatModal" />
+    <team-modal v-model:show="showTeamModal" :team-id="project!.team.id" />
   </n-page-header>
 </template>
 
 <script setup lang="ts">
 const showProjectModal = ref(false)
-const showChatModal = ref(false)
+const showTeamModal = ref(false)
 
 const projectId = useRoute().params.id as string
 

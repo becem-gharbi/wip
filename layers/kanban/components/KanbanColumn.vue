@@ -31,9 +31,8 @@
     </draggable>
 
     <kanban-issue-modal
-      v-if="selectedIssueId"
       v-model:show="showIssueModal"
-      v-model:issue-id="selectedIssueId"
+      :issue-id="selectedIssueId"
     />
   </n-card>
 </template>
