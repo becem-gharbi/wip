@@ -1,10 +1,10 @@
 <template>
   <n-card hoverable class="cursor-pointer" size="small">
-    {{ summary }}
+    {{ issue.summary }}
 
     <template #footer>
-      <div v-if="labels" class="flex gap-2 flex-wrap">
-        <n-tag v-for="label of labels.split(';')" :key="label" :bordered="false" size="small">
+      <div v-if="issue.labels" class="flex gap-2 flex-wrap">
+        <n-tag v-for="label of issue.labels.split(';')" :key="label" :bordered="false" size="small">
           {{ label }}
         </n-tag>
       </div>
@@ -13,5 +13,5 @@
 </template>
 
 <script setup lang="ts">
-defineProps<{ issueId: number; summary: string; labels: string | null; }>()
+defineProps<{ issue: Issue; }>()
 </script>

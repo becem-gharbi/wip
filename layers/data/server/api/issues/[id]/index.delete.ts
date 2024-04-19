@@ -1,11 +1,13 @@
 export default defineEventHandler((event) => {
-  checkAuth(event)
-  const issueId = event.context.params!.id
+  const { userId } = checkAuth(event)
+  const issueId = parseInt(event.context.params!.id)
 
-  // TODO: only owner can perform
   return event.context.prisma.issue.delete({
     where: {
-      id: parseInt(issueId)
+      id: issueId,
+      project: {
+        ownerId: userId
+      }
     }
-  })
+  }).catch((err) => { throw createPrismaError(err) })
 })

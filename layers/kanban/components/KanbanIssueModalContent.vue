@@ -11,7 +11,18 @@
       @submit.prevent="onSubmit(updateIssue)"
     >
       <n-form-item label="Summary" path="summary">
-        <n-input v-model:value="model.summary" maxlength="50" show-count />
+        <n-input v-model:value="model.summary" maxlength="50" show-count :readonly="!isOwner" />
+      </n-form-item>
+
+      <n-form-item label="Description" path="description">
+        <n-input
+          v-model:value="model.description"
+          type="textarea"
+          autosize
+          maxlength="100"
+          show-count
+          :readonly="!isOwner"
+        />
       </n-form-item>
 
       <n-form-item label="Labels" path="labels">
@@ -23,14 +34,11 @@
           placeholder="Input, press enter to create label"
           :show-arrow="false"
           :show="false"
+          :disabled="!isOwner"
         />
       </n-form-item>
 
-      <n-form-item label="Description" path="description">
-        <n-input v-model:value="model.description" type="textarea" autosize maxlength="100" show-count />
-      </n-form-item>
-
-      <div class="flex gap-2">
+      <div v-if="isOwner" class="flex gap-2">
         <n-button
           attr-type="reset"
           :disabled="pending || !edited"
@@ -50,7 +58,7 @@
       </div>
     </n-form>
 
-    <template #footer>
+    <template v-if="isOwner" #footer>
       <n-collapse arrow-placement="right">
         <n-collapse-item title="Delete Issue">
           <p>Once you delete an issue, there is no going back. Please be certain.</p>
@@ -65,10 +73,12 @@
 </template>
 
 <script setup lang="ts">
-const props = defineProps<{ issueId: number }>()
+const props = defineProps<{ issueId: Issue['id'] }>()
 const emits = defineEmits(['hide'])
 
 const issue = await useIssue().findUnique(props.issueId)
+
+const isOwner = await useIssue().isOwner(issue.value)
 
 const model = ref({
   summary: issue.value.summary,
@@ -96,6 +106,5 @@ async function updateIssue () {
     ...model.value,
     labels: model.value.labels?.join(';')
   })
-  emits('hide', false)
 }
 </script>

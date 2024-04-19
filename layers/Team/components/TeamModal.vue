@@ -1,13 +1,13 @@
 <template>
   <n-modal :show="show" @mask-click="$emit('update:show', false)">
-    <project-modal-content
+    <TeamModalContent
+      :team-id="teamId"
       class="sm:max-w-lg max-w-md"
-      :project-id="projectId"
     />
   </n-modal>
 </template>
 
 <script setup lang="ts">
-defineProps<{ show: boolean; projectId: Project['id'] }>()
+defineProps<{ show: boolean; teamId: Team['id']; }>()
 defineEmits(['update:show'])
 </script>

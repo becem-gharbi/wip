@@ -10,6 +10,6 @@
 </template>
 
 <script setup lang="ts">
-defineProps<{ show: boolean; issueId?: number }>()
+defineProps<{ show: boolean; issueId?: Issue['id'] }>()
 defineEmits(['update:show'])
 </script>

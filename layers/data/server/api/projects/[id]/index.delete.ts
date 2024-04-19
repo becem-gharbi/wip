@@ -7,5 +7,5 @@ export default defineEventHandler((event) => {
       id: projectId,
       ownerId: userId
     }
-  })
+  }).catch((err) => { throw createPrismaError(err) })
 })

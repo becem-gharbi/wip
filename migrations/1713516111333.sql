@@ -39,7 +39,7 @@ CREATE TABLE "Project" (
 
 -- CreateTable
 CREATE TABLE "Team" (
-    "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+    "id" TEXT NOT NULL PRIMARY KEY,
     "channel" TEXT NOT NULL,
     "projectId" TEXT NOT NULL,
     CONSTRAINT "Team_projectId_fkey" FOREIGN KEY ("projectId") REFERENCES "Project" ("id") ON DELETE CASCADE ON UPDATE CASCADE
@@ -51,6 +51,7 @@ CREATE TABLE "Issue" (
     "column" INTEGER NOT NULL DEFAULT 0,
     "summary" TEXT NOT NULL,
     "description" TEXT,
+    "labels" TEXT,
     "createdAt" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" DATETIME NOT NULL,
     "projectId" TEXT NOT NULL,
@@ -62,7 +63,7 @@ CREATE TABLE "Message" (
     "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
     "content" TEXT NOT NULL,
     "createdAt" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    "teamId" INTEGER NOT NULL,
+    "teamId" TEXT NOT NULL,
     "authorId" TEXT NOT NULL,
     CONSTRAINT "Message_authorId_fkey" FOREIGN KEY ("authorId") REFERENCES "User" ("id") ON DELETE CASCADE ON UPDATE CASCADE,
     CONSTRAINT "Message_teamId_fkey" FOREIGN KEY ("teamId") REFERENCES "Team" ("id") ON DELETE CASCADE ON UPDATE CASCADE
@@ -70,7 +71,7 @@ CREATE TABLE "Message" (
 
 -- CreateTable
 CREATE TABLE "_TeamToUser" (
-    "A" INTEGER NOT NULL,
+    "A" TEXT NOT NULL,
     "B" TEXT NOT NULL,
     CONSTRAINT "_TeamToUser_A_fkey" FOREIGN KEY ("A") REFERENCES "Team" ("id") ON DELETE CASCADE ON UPDATE CASCADE,
     CONSTRAINT "_TeamToUser_B_fkey" FOREIGN KEY ("B") REFERENCES "User" ("id") ON DELETE CASCADE ON UPDATE CASCADE

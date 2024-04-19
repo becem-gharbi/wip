@@ -11,18 +11,25 @@
       @submit.prevent="onSubmit(updateProject)"
     >
       <n-form-item label="Name" path="name">
-        <n-input v-model:value="model.name" maxlength="30" show-count />
+        <n-input v-model:value="model.name" maxlength="30" show-count :readonly="!isOwner" />
       </n-form-item>
 
       <n-form-item label="Icon" path="icon">
-        <n-input v-model:value="model.icon" />
+        <n-input v-model:value="model.icon" :readonly="!isOwner" />
       </n-form-item>
 
       <n-form-item label="Description" path="description">
-        <n-input v-model:value="model.description" type="textarea" autosize maxlength="100" show-count />
+        <n-input
+          v-model:value="model.description"
+          type="textarea"
+          autosize
+          maxlength="100"
+          show-count
+          :readonly="!isOwner"
+        />
       </n-form-item>
 
-      <div class="flex gap-2">
+      <div v-if="isOwner" class="flex gap-2">
         <n-button
           attr-type="reset"
           :disabled="pending || !edited"
@@ -42,7 +49,7 @@
       </div>
     </n-form>
 
-    <template #footer>
+    <template v-if="isOwner" #footer>
       <n-collapse arrow-placement="right">
         <n-collapse-item title="Delete Project">
           <p>Once you delete a project, there is no going back. Please be certain.</p>
@@ -57,10 +64,11 @@
 </template>
 
 <script setup lang="ts">
-const props = defineProps<{ projectId: string }>()
-const emits = defineEmits(['hide'])
+const props = defineProps<{ projectId: Project['id'] }>()
 
 const project = await useProject().findUnique(props.projectId)
+
+const isOwner = await useProject().isOwner(project.value)
 
 const model = ref({
   name: project.value.name,
@@ -88,6 +96,5 @@ async function deleteProject () {
 
 async function updateProject () {
   await useProject().update(props.projectId, model.value)
-  emits('hide')
 }
 </script>
