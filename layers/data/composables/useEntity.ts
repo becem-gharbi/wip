@@ -5,7 +5,7 @@ import { defu } from 'defu'
  * A smart fetch composable for CRUD operations with state management
  * @param entityKey should be a root directory name on `/server/api`
  * @param _fetch ofetch instance, defaults to `$fetch`
- * @returns `findMany` Find many entities on [GET] /api/_entityKey_, returns reactive array of entities
+ * @returns `findMany` Find all entities on [GET] /api/_entityKey_, returns reactive array of entities
  * @returns `findUnique` Find an entity by `id` on [GET] /api/_entityKey_/:id, returns reactive entity
  * @returns `create` Create a new entity on [POST] /api/_entityKey_, returns non-reactive entity
  * @returns `remove` Remove an entity by `id` on [DELETE] /api/_entityKey_/:id, returns void
@@ -21,7 +21,7 @@ export function useEntity<EntityType> (entityKey: string, _fetch = $fetch) {
   )
 
   async function findMany (query?: object) {
-    await callOnce(entityKey, async () => {
+    await callOnce(`${entityKey}-${JSON.stringify(query)}`, async () => {
       const entities = await _fetch(`/api/${entityKey}`, { query })
       entities.forEach(entity => _useState(entity.id, () => entity))
     })

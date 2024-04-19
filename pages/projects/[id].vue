@@ -27,11 +27,7 @@
     </template>
 
     <kanban-board :project-id="project!.id" />
-
-    <project-modal
-      v-model:show="showProjectModal"
-      :project-id="project!.id"
-    />
+    <project-modal v-model:show="showProjectModal" :project-id="project!.id" />
     <chat-modal v-model:show="showChatModal" />
   </n-page-header>
 </template>

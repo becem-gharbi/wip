@@ -1,5 +1,5 @@
 <template>
-  <n-card class="h-96 min-w-72" segmented size="small" content-class="overflow-auto">
+  <n-card class="h-96 min-w-72" segmented size="small" content-class="overflow-auto scroller">
     <template #header>
       <div class="flex gap-2 items-end">
         <naive-icon :name="issueStatus[column].icon" size="20" />
@@ -30,7 +30,11 @@
       </template>
     </draggable>
 
-    <issue-modal v-if="selectedIssueId" v-model:show="showIssueModal" v-model:issue-id="selectedIssueId" />
+    <kanban-issue-modal
+      v-if="selectedIssueId"
+      v-model:show="showIssueModal"
+      v-model:issue-id="selectedIssueId"
+    />
   </n-card>
 </template>
 
@@ -56,7 +60,9 @@ const issueStatus: Array<{ title: string, icon: string }> = [
 
 const issues = await useIssue().findMany({ projectId: props.projectId })
 
-const list = computed(() => issues.value.filter(i => i.column === props.column)
+const list = computed(() => issues.value
+  .filter(i => i.projectId === props.projectId)
+  .filter(i => i.column === props.column)
   .sort((a, b) => new Date(b.updatedAt).getTime() - new Date(a.updatedAt).getTime()))
 
 async function createIssue () {
@@ -72,16 +78,11 @@ async function onReoder (c: any) {
 </script>
 
 <style>
-/* Hide scrollbar for Chrome, Safari and Opera */
-*::-webkit-scrollbar {
+.scroller::-webkit-scrollbar {
     display: none;
 }
-
-/* Hide scrollbar for IE, Edge and Firefox */
-* {
+.scroller {
     -ms-overflow-style: none;
-    /* IE and Edge */
-    scrollbar-width: none;
-    /* Firefox */
+     scrollbar-width: none;
 }
 </style>

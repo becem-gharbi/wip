@@ -22,7 +22,7 @@
             filterable
             multiple
             tag
-            placeholder="Input, press enter to create tag"
+            placeholder="Input, press enter to create label"
             :show-arrow="false"
             :show="false"
           />
@@ -55,7 +55,7 @@
       <n-divider />
 
       <n-h4>Delete Issue</n-h4>
-      <p>Once you delete a issue, there is no going back. Please be certain.</p>
+      <p>Once you delete an issue, there is no going back. Please be certain.</p>
       <br>
       <n-button type="error" secondary @click="deleteIssue">
         Delete issue
