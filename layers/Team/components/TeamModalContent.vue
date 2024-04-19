@@ -33,7 +33,7 @@
 
     <template v-if="isOwner" #footer>
       <n-collapse arrow-placement="right">
-        <n-collapse-item title="Add new user to team">
+        <n-collapse-item title="Add new member">
           <n-form
             ref="formRef"
             :rules="rules"
@@ -41,7 +41,7 @@
             @submit.prevent="onSubmit(addUser)"
           >
             <n-form-item label="Email" path="email">
-              <n-input v-model:value="model.email" />
+              <n-input v-model:value="model.email" placeholder="Email of new team member" />
             </n-form-item>
 
             <div class="flex gap-2">

@@ -17,11 +17,17 @@
       @submit.prevent="onSubmit(updateProject)"
     >
       <n-form-item label="Name" path="name">
-        <n-input v-model:value="model.name" maxlength="30" show-count :readonly="!isOwner" />
+        <n-input
+          v-model:value="model.name"
+          maxlength="30"
+          show-count
+          :readonly="!isOwner"
+          placeholder="Unique name"
+        />
       </n-form-item>
 
       <n-form-item label="Icon" path="icon">
-        <n-input v-model:value="model.icon" :readonly="!isOwner" />
+        <n-input v-model:value="model.icon" :readonly="!isOwner" placeholder="Icon URL" />
       </n-form-item>
 
       <n-form-item label="Description" path="description">
@@ -32,6 +38,7 @@
           maxlength="100"
           show-count
           :readonly="!isOwner"
+          placeholder="Description"
         />
       </n-form-item>
 
@@ -83,14 +90,24 @@ const model = ref({
   description: project.value.description
 })
 
-const { edited, pending, onSubmit, reset, rules, formRef } =
+const { edited, pending, onSubmit, reset, rules, formRef, apiErrors } =
   useNaiveForm(model)
 
+apiErrors.value = {
+  nameAlreadyUsed: false
+}
+
 rules.value = {
-  name: {
-    required: true,
-    trigger: 'input'
-  },
+  name: [
+    {
+      required: true,
+      trigger: 'input'
+    },
+    {
+      message: 'Name already used',
+      validator: () => !apiErrors.value.nameAlreadyUsed
+    }
+  ],
   icon: {
     type: 'url'
   }
@@ -103,5 +120,6 @@ async function deleteProject () {
 
 async function updateProject () {
   await useProject().update(props.projectId, model.value)
+    .catch(() => { apiErrors.value.nameAlreadyUsed = true })
 }
 </script>

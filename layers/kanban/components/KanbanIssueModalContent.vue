@@ -17,7 +17,13 @@
       @submit.prevent="onSubmit(updateIssue)"
     >
       <n-form-item label="Summary" path="summary">
-        <n-input v-model:value="model.summary" maxlength="50" show-count :readonly="!isOwner" />
+        <n-input
+          v-model:value="model.summary"
+          maxlength="50"
+          show-count
+          :readonly="!isOwner"
+          placeholder="Short summary"
+        />
       </n-form-item>
 
       <n-form-item label="Description" path="description">
@@ -28,6 +34,7 @@
           maxlength="100"
           show-count
           :readonly="!isOwner"
+          placeholder="Description"
         />
       </n-form-item>
 
