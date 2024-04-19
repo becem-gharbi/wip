@@ -1,35 +1,24 @@
 <template>
-  <n-page-header title="All Projects">
-    <template #avatar>
-      <naive-icon name="ph:stack" size="24" />
-    </template>
-    <template #extra>
-      <n-button text @click="createProject">
-        <template #icon>
-          <naive-icon name="ph:plus" />
-        </template>
-        Create
-      </n-button>
-    </template>
+  <div v-if="projects.length" class="grid lg:grid-cols-4 md:grid-cols-3 grid-cols-1 gap-4">
+    <nuxt-link
+      v-for="project of projects"
+      :key="project.id"
+      class="w-full sm:w-auto"
+      :to="`/projects/${project.id}`"
+    >
+      <project-card
+        :name="project.name"
+        :updated-at="project.updatedAt"
+        :icon="project.icon"
+      />
+    </nuxt-link>
+  </div>
 
-    <div class="flex gap-4 flex-wrap">
-      <nuxt-link
-        v-for="project of projects"
-        :key="project.id"
-        class="w-full sm:w-auto"
-        :to="`/projects/${project.id}`"
-      >
-        <project-card :name="project.name" :updated-at="project.updatedAt" :icon="project.icon" />
-      </nuxt-link>
-    </div>
-  </n-page-header>
+  <n-empty v-else description="No projects are found" />
 </template>
 
 <script setup lang="ts">
-const projects = await useProject().findMany()
-
-async function createProject () {
-  const project = await useProject().create()
-  return navigateTo(`/projects/${project.id}`)
-}
+defineProps<{
+    projects: { id: string; name: string; updatedAt: string | Date; icon: string | null }[];
+}>()
 </script>

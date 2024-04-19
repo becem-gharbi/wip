@@ -4,9 +4,7 @@
       <div class="flex gap-2 items-end">
         <naive-icon :name="issueStatus[column].icon" size="20" />
         <n-text>{{ issueStatus[column].title }}</n-text>
-        <n-text depth="3">
-          {{ list.length }}
-        </n-text>
+        <n-badge :value="list.length" color="gray" />
       </div>
     </template>
 

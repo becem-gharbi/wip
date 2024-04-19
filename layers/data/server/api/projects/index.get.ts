@@ -3,7 +3,13 @@ export default defineEventHandler((event) => {
 
   return event.context.prisma.project.findMany({
     where: {
-      ownerId: userId
+      team: {
+        users: {
+          every: {
+            id: userId
+          }
+        }
+      }
     },
     orderBy: {
       updatedAt: 'desc'

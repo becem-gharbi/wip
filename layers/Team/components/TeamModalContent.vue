@@ -1,6 +1,6 @@
 <template>
   <n-card title="Team" segmented>
-    <div class="flex flex-col gap-2">
+    <div v-if="team.users.length" class="flex flex-col gap-2">
       <div
         v-for="user of team.users"
         :key="user.id"
@@ -22,6 +22,8 @@
         </n-button>
       </div>
     </div>
+
+    <n-empty v-else description="No users are found" />
 
     <template #footer>
       <n-collapse arrow-placement="right">

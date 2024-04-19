@@ -1,5 +1,5 @@
 <template>
-  <n-card class="cursor-pointer min-w-72" hoverable size="small">
+  <n-card class="cursor-pointer" hoverable size="small">
     <template #header>
       <n-thing :title="name" description="3 days ago">
         <template #avatar>
