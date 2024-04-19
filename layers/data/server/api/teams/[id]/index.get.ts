@@ -1,11 +1,17 @@
 export default defineEventHandler((event) => {
-  checkAuth(event)
+  const { userId } = checkAuth(event)
   const teamId = event.context.params!.id
 
-  // TODO: limit to team members
   return event.context.prisma.team.findUniqueOrThrow({
     where: {
-      id: teamId
+      id: teamId,
+      users: {
+        some: {
+          id: {
+            equals: userId
+          }
+        }
+      }
     },
     include: {
       users: {

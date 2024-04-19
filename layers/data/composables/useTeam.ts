@@ -14,7 +14,7 @@ export function useTeam () {
     const res = await _fetch(`/api/teams/${id}/users`, {
       method: 'post',
       body: data
-    })
+    }).catch(() => ({ users: [] }))
 
     if (res.users.length) {
       _useState(id).value.users.push(res.users[0])
