@@ -4,7 +4,7 @@ import { auth, naiveui, tailwindcss } from './config'
 export default defineNuxtConfig({
   ssr: false,
 
-  extends: ['../data', '../kanban', '../team'],
+  extends: ['../data', '../kanban', '../team', '../chat'],
 
   nitro: {
     modules: [nitroCloudflareBindings],
