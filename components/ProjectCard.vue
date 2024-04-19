@@ -25,7 +25,7 @@
 </template>
 
 <script setup lang="ts">
-const props = defineProps<{ project: ProjectExtended }>()
+const props = defineProps<{ project: Project }>()
 
 const isOwner = await useProject().isOwner(props.project)
 </script>

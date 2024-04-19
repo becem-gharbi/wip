@@ -64,7 +64,7 @@
 </template>
 
 <script setup lang="ts">
-const props = defineProps<{ projectId: string }>()
+const props = defineProps<{ projectId: Project['id'] }>()
 
 const project = await useProject().findUnique(props.projectId)
 

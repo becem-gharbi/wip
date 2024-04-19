@@ -20,9 +20,7 @@
       <template #item="{ element }">
         <kanban-issue
           class="mb-4"
-          :issue-id="element.id"
-          :summary="element.summary"
-          :labels="element.labels"
+          :issue="element"
           @dblclick="onSelectIssue(element.id)"
         />
       </template>
@@ -38,14 +36,14 @@
 <script setup lang="ts">
 import Draggable from 'vuedraggable'
 
-const props = defineProps<{ column: number; projectId: string }>()
+const props = defineProps<{ column: Issue['column']; projectId: Project['id'] }>()
 
 const isOwner = await useProject().isOwner(props.projectId)
 
 const showIssueModal = ref(false)
 const selectedIssueId = ref()
 
-function onSelectIssue (id: number) {
+function onSelectIssue (id: Issue['id']) {
   selectedIssueId.value = id
   showIssueModal.value = true
 }
@@ -70,7 +68,7 @@ async function createIssue () {
 }
 
 async function onReoder (c: any) {
-  if (c.added) {
+  if (isOwner && c.added) {
     await useIssue().update(c.added.element.id, { column: props.column })
   }
 }

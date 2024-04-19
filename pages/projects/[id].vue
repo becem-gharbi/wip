@@ -12,7 +12,7 @@
       <div class="flex gap-4">
         <n-button text @click="showProjectModal = true">
           <template #icon>
-            <naive-icon name="ph:dots-three" />
+            <naive-icon name="ph:plus-circle" />
           </template>
           More
         </n-button>
@@ -28,7 +28,7 @@
 
     <kanban-board :project-id="project.id" />
     <project-modal v-model:show="showProjectModal" :project-id="project.id" />
-    <team-modal v-model:show="showTeamModal" :team-id="project.team.id" />
+    <team-modal v-if="project.team" v-model:show="showTeamModal" :team-id="project.team.id" />
   </n-page-header>
 </template>
 

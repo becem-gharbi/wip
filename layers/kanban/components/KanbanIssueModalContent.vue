@@ -73,7 +73,7 @@
 </template>
 
 <script setup lang="ts">
-const props = defineProps<{ issueId: number }>()
+const props = defineProps<{ issueId: Issue['id'] }>()
 const emits = defineEmits(['hide'])
 
 const issue = await useIssue().findUnique(props.issueId)

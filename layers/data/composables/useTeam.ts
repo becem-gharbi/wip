@@ -1,15 +1,12 @@
-import type { Team, User } from '@prisma/client'
-
-interface TeamExtended extends Team {
-  users: Partial<User>[]
-}
+const f = () => $fetch('/api/teams/:id')
+export type Team = Awaited<ReturnType<typeof f>>
 
 export function useTeam () {
   const _fetch = useNuxtApp().$auth.fetch
 
-  const { _useState, findUnique } = useEntity<TeamExtended>('teams', _fetch)
+  const { _useState, findUnique } = useEntity<Team>('teams', _fetch)
 
-  async function addUser (id: Team['id'], data: { email: User['email'] }) {
+  async function addUser (id: Team['id'], data: { email: string }) {
     const userIndex = _useState(id).value.users.findIndex(u => u.email === data.email)
 
     if (userIndex >= 0) { return }
@@ -24,7 +21,7 @@ export function useTeam () {
     }
   }
 
-  async function removeUser (id: Team['id'], data: { email: User['email'] }) {
+  async function removeUser (id: Team['id'], data: { email: string }) {
     const userIndex = _useState(id).value.users.findIndex(u => u.email === data.email)
 
     if (userIndex < 0) { return }
@@ -37,14 +34,12 @@ export function useTeam () {
     _useState(id).value.users.splice(userIndex, 1)
   }
 
-  async function isOwner (team: TeamExtended | TeamExtended['id']) {
+  async function isOwner (team: Team | Team['id']) {
     if (typeof team === 'string') {
       const _team = await findUnique(team)
-      const project = await useProject().findUnique(_team.value.projectId)
-      return useAuthSession().user.value?.id === project.value.ownerId
+      return useProject().isOwner(_team.value.projectId)
     }
-    const project = await useProject().findUnique(team.projectId)
-    return useAuthSession().user.value?.id === project.value.ownerId
+    return useProject().isOwner(team.projectId)
   }
 
   return { findUnique, addUser, removeUser, isOwner }

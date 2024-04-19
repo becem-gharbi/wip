@@ -8,6 +8,6 @@
 </template>
 
 <script setup lang="ts">
-defineProps<{ show: boolean; teamId: string; }>()
+defineProps<{ show: boolean; teamId: Team['id']; }>()
 defineEmits(['update:show'])
 </script>

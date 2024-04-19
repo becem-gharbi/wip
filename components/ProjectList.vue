@@ -17,5 +17,5 @@
 </template>
 
 <script setup lang="ts">
-defineProps<{ projects: ProjectExtended[] }>()
+defineProps<{ projects: Project[] }>()
 </script>

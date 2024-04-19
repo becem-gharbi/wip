@@ -64,7 +64,7 @@
 </template>
 
 <script setup lang="ts">
-const props = defineProps<{ teamId: string; }>()
+const props = defineProps<{ teamId: Team['id']; }>()
 
 const team = await useTeam().findUnique(props.teamId)
 const project = await useProject().findUnique(team.value.projectId)
