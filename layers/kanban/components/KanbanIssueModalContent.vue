@@ -4,6 +4,12 @@
     :title="issue.summary"
     segmented
   >
+    <template #header-extra>
+      <n-button size="small" tertiary @click="$emit('hide')">
+        <naive-icon name="ph:x" />
+      </n-button>
+    </template>
+
     <n-form
       ref="formRef"
       :rules="rules"

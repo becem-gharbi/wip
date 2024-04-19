@@ -4,6 +4,12 @@
     :title="project.name"
     segmented
   >
+    <template #header-extra>
+      <n-button size="small" tertiary @click="$emit('hide')">
+        <naive-icon name="ph:x" />
+      </n-button>
+    </template>
+
     <n-form
       ref="formRef"
       :rules="rules"
@@ -65,6 +71,7 @@
 
 <script setup lang="ts">
 const props = defineProps<{ projectId: Project['id'] }>()
+defineEmits(['hide'])
 
 const project = await useProject().findUnique(props.projectId)
 

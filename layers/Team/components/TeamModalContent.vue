@@ -1,5 +1,11 @@
 <template>
   <n-card title="Members" segmented>
+    <template #header-extra>
+      <n-button size="small" tertiary @click="$emit('hide')">
+        <naive-icon name="ph:x" />
+      </n-button>
+    </template>
+
     <div v-if="team.users.length" class="flex flex-col gap-4">
       <div
         v-for="user of team.users"
@@ -65,6 +71,7 @@
 
 <script setup lang="ts">
 const props = defineProps<{ teamId: Team['id']; }>()
+defineEmits(['hide'])
 
 const team = await useTeam().findUnique(props.teamId)
 const project = await useProject().findUnique(team.value.projectId)

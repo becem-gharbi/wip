@@ -3,6 +3,7 @@
     <TeamModalContent
       :team-id="teamId"
       class="sm:max-w-lg max-w-md"
+      @hide="$emit('update:show', false)"
     />
   </n-modal>
 </template>
