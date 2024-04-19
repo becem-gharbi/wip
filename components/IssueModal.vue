@@ -16,6 +16,10 @@
           <n-input v-model:value="model.summary" />
         </n-form-item>
 
+        <n-form-item label="Description" path="description">
+          <n-input v-model:value="model.description" type="textarea" autosize />
+        </n-form-item>
+
         <div class="flex gap-2">
           <n-button
             attr-type="reset"
@@ -55,7 +59,8 @@ const emits = defineEmits(['update:show', 'update:issueId'])
 const issue = await useIssue().findUnique(props.issueId)
 
 const model = ref({
-  summary: issue.value.summary
+  summary: issue.value.summary,
+  description: issue.value.description
 })
 
 const { edited, pending, onSubmit, reset, rules, formRef } =
@@ -75,7 +80,7 @@ async function deleteIssue () {
 }
 
 async function updateIssue () {
-  await useIssue().update(issue.value.id, { summary: model.value.summary })
+  await useIssue().update(issue.value.id, model.value)
   emits('update:issueId', undefined)
   emits('update:show', false)
 }
