@@ -24,6 +24,7 @@
           class="mb-4"
           :issue-id="element.id"
           :summary="element.summary"
+          :labels="element.labels"
           @dblclick="onSelectIssue(element.id)"
         />
       </template>

@@ -16,6 +16,18 @@
           <n-input v-model:value="model.summary" />
         </n-form-item>
 
+        <n-form-item label="Labels" path="labels">
+          <n-select
+            v-model:value="model.labels"
+            filterable
+            multiple
+            tag
+            placeholder="Input, press enter to create tag"
+            :show-arrow="false"
+            :show="false"
+          />
+        </n-form-item>
+
         <n-form-item label="Description" path="description">
           <n-input v-model:value="model.description" type="textarea" autosize />
         </n-form-item>
@@ -60,7 +72,8 @@ const issue = await useIssue().findUnique(props.issueId)
 
 const model = ref({
   summary: issue.value.summary,
-  description: issue.value.description
+  description: issue.value.description,
+  labels: issue.value.labels?.split(';')
 })
 
 const { edited, pending, onSubmit, reset, rules, formRef } =
@@ -80,7 +93,10 @@ async function deleteIssue () {
 }
 
 async function updateIssue () {
-  await useIssue().update(issue.value.id, model.value)
+  await useIssue().update(issue.value.id, {
+    ...model.value,
+    labels: model.value.labels?.join(';')
+  })
   emits('update:issueId', undefined)
   emits('update:show', false)
 }

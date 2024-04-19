@@ -46,6 +46,7 @@ The platform can be self-hosted for data privacy supporting serverless deploymen
 - Issue
   - column
   - summary
+  - labels
   - description
   - createdAt
   - updatedAt
