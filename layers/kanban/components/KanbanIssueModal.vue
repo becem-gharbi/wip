@@ -13,7 +13,7 @@
         @submit.prevent="onSubmit(updateIssue)"
       >
         <n-form-item label="Summary" path="summary">
-          <n-input v-model:value="model.summary" />
+          <n-input v-model:value="model.summary" maxlength="50" show-count />
         </n-form-item>
 
         <n-form-item label="Labels" path="labels">
@@ -29,7 +29,7 @@
         </n-form-item>
 
         <n-form-item label="Description" path="description">
-          <n-input v-model:value="model.description" type="textarea" autosize />
+          <n-input v-model:value="model.description" type="textarea" autosize maxlength="100" show-count />
         </n-form-item>
 
         <div class="flex gap-2">
