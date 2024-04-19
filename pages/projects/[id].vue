@@ -5,16 +5,16 @@
     </template>
 
     <template #avatar>
-      <img :src="project.icon ?? '/images/project-icon.svg'" width="24" alt="project_icon">
+      <img :src="project.icon || '/images/project-icon.svg'" width="24" alt="project_icon">
     </template>
 
     <template #extra>
       <div class="flex gap-4">
         <n-button text @click="showProjectModal = true">
           <template #icon>
-            <naive-icon name="ph:pen" />
+            <naive-icon name="ph:dots-three" />
           </template>
-          Edit
+          More
         </n-button>
 
         <n-button text @click="showTeamModal = true">
@@ -28,7 +28,7 @@
 
     <kanban-board :project-id="project.id" />
     <project-modal v-model:show="showProjectModal" :project-id="project.id" />
-    <team-modal v-model:show="showTeamModal" :team-id="project.team.id" :project-id="project.id" />
+    <team-modal v-model:show="showTeamModal" :team-id="project.team.id" />
   </n-page-header>
 </template>
 

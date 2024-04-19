@@ -8,7 +8,7 @@
       </div>
     </template>
 
-    <template #header-extra>
+    <template v-if="isOwner" #header-extra>
       <n-button size="small" text @click="createIssue">
         <template #icon>
           <naive-icon name="ph:plus" size="16" />
@@ -39,6 +39,8 @@
 import Draggable from 'vuedraggable'
 
 const props = defineProps<{ column: number; projectId: string }>()
+
+const isOwner = await useProject().isOwner(props.projectId)
 
 const showIssueModal = ref(false)
 const selectedIssueId = ref()

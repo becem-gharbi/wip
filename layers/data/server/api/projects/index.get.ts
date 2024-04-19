@@ -5,8 +5,10 @@ export default defineEventHandler((event) => {
     where: {
       team: {
         users: {
-          every: {
-            id: userId
+          some: {
+            id: {
+              equals: userId
+            }
           }
         }
       }

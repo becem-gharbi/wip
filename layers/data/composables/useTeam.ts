@@ -37,5 +37,15 @@ export function useTeam () {
     _useState(id).value.users.splice(userIndex, 1)
   }
 
-  return { findUnique, addUser, removeUser }
+  async function isOwner (team: TeamExtended | TeamExtended['id']) {
+    if (typeof team === 'string') {
+      const _team = await findUnique(team)
+      const project = await useProject().findUnique(_team.value.projectId)
+      return useAuthSession().user.value?.id === project.value.ownerId
+    }
+    const project = await useProject().findUnique(team.projectId)
+    return useAuthSession().user.value?.id === project.value.ownerId
+  }
+
+  return { findUnique, addUser, removeUser, isOwner }
 }

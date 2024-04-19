@@ -1,6 +1,6 @@
 <template>
-  <n-card title="Team" segmented>
-    <div v-if="team.users.length" class="flex flex-col gap-2">
+  <n-card title="Members" segmented>
+    <div v-if="team.users.length" class="flex flex-col gap-4">
       <div
         v-for="user of team.users"
         :key="user.id"
@@ -10,14 +10,14 @@
         <div class="flex flex-col justify-between">
           <n-text>
             {{ user.name }}
-            {{ user.id === project.ownerId ? "(lead)" : "(viewer)" }}
+            {{ user.id === project.ownerId ? "(owner)" : "(viewer)" }}
           </n-text>
           <n-text depth="3">
             {{ user.email }}
           </n-text>
         </div>
 
-        <n-button class="ml-auto" @click="removeUser(user.email!)">
+        <n-button v-if="isOwner" class="ml-auto" @click="removeUser(user.email!)">
           Remove
         </n-button>
       </div>
@@ -25,7 +25,7 @@
 
     <n-empty v-else description="No users are found" />
 
-    <template #footer>
+    <template v-if="isOwner" #footer>
       <n-collapse arrow-placement="right">
         <n-collapse-item title="Add new user to team">
           <n-form
@@ -64,10 +64,12 @@
 </template>
 
 <script setup lang="ts">
-const props = defineProps<{ teamId: string; projectId: string }>()
+const props = defineProps<{ teamId: string; }>()
 
 const team = await useTeam().findUnique(props.teamId)
-const project = await useProject().findUnique(props.projectId)
+const project = await useProject().findUnique(team.value.projectId)
+
+const isOwner = await useTeam().isOwner(team.value)
 
 const model = ref({
   email: ''

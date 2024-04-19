@@ -1,16 +1,15 @@
 <template>
-  <div v-if="projects.length" class="grid lg:grid-cols-4 md:grid-cols-3 grid-cols-1 gap-4">
+  <div
+    v-if="projects.length"
+    class="grid lg:grid-cols-4 md:grid-cols-3 grid-cols-1 gap-4"
+  >
     <nuxt-link
       v-for="project of projects"
       :key="project.id"
       class="w-full sm:w-auto"
       :to="`/projects/${project.id}`"
     >
-      <project-card
-        :name="project.name"
-        :updated-at="project.updatedAt"
-        :icon="project.icon"
-      />
+      <project-card :project="project" />
     </nuxt-link>
   </div>
 
@@ -18,7 +17,5 @@
 </template>
 
 <script setup lang="ts">
-defineProps<{
-    projects: { id: string; name: string; updatedAt: string | Date; icon: string | null }[];
-}>()
+defineProps<{ projects: ProjectExtended[] }>()
 </script>
