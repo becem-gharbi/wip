@@ -1,6 +1,57 @@
 # Changelog
 
 
+## v0.0.1
+
+
+### 🚀 Enhancements
+
+- Implement basic UI ([#1](https://github.com/becem-gharbi/wip/pull/1))
+- **data:** Implement Project CRUD ([265d8dc](https://github.com/becem-gharbi/wip/commit/265d8dc))
+- Create `useEntity` for smart data fetching and state management ([6398637](https://github.com/becem-gharbi/wip/commit/6398637))
+- **data:** Implement Issue CRUD ([7a41736](https://github.com/becem-gharbi/wip/commit/7a41736))
+- **kanban:** Implement moving by column ([cb80627](https://github.com/becem-gharbi/wip/commit/cb80627))
+- Add project icon input ([9aa1dd1](https://github.com/becem-gharbi/wip/commit/9aa1dd1))
+- Add project description input ([1cba73e](https://github.com/becem-gharbi/wip/commit/1cba73e))
+- Add Issue description input ([d530220](https://github.com/becem-gharbi/wip/commit/d530220))
+- Add Issue labels ([8589d7e](https://github.com/becem-gharbi/wip/commit/8589d7e))
+
+### 🔥 Performance
+
+- **schema:** Replace `uuid` with `cuid` ([2767f20](https://github.com/becem-gharbi/wip/commit/2767f20))
+- Improve useEntity ([45950c4](https://github.com/becem-gharbi/wip/commit/45950c4))
+- Change Issue id type to number ([d07c346](https://github.com/becem-gharbi/wip/commit/d07c346))
+
+### 🩹 Fixes
+
+- **base:** Validate name of profile update ([659bba0](https://github.com/becem-gharbi/wip/commit/659bba0))
+
+### 💅 Refactors
+
+- **kanban:** Display column size ([c1047bd](https://github.com/becem-gharbi/wip/commit/c1047bd))
+- Create Kanban layer ([d1e5391](https://github.com/becem-gharbi/wip/commit/d1e5391))
+- Limit text input length ([a27bbf8](https://github.com/becem-gharbi/wip/commit/a27bbf8))
+- Collapse delete section by default ([cb19560](https://github.com/becem-gharbi/wip/commit/cb19560))
+
+### 📖 Documentation
+
+- Add features and requirements ([2c0fac0](https://github.com/becem-gharbi/wip/commit/2c0fac0))
+
+### 🌊 Types
+
+- **useEntity:** Infer all types ([d0e1368](https://github.com/becem-gharbi/wip/commit/d0e1368))
+
+### 🏡 Chore
+
+- Prepare project ([12bffe0](https://github.com/becem-gharbi/wip/commit/12bffe0))
+- **schema:** Define data models ([cab40e0](https://github.com/becem-gharbi/wip/commit/cab40e0))
+- **schema:** Allow cascade delete ([9c82a9b](https://github.com/becem-gharbi/wip/commit/9c82a9b))
+
+### ❤️ Contributors
+
+- Becem-gharbi <becem.gharbi@live.com>
+- Becem <becem.gharbi@live.com>
+
 ## v0.1.3
 
 [compare changes](https://github.com/becem-gharbi/prisma-cloudflare/compare/v0.1.2...v0.1.3)
