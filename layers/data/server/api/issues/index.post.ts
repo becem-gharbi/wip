@@ -1,14 +1,18 @@
 export default defineEventHandler(async (event) => {
-  checkAuth(event)
+  const { userId } = checkAuth(event)
 
-  const body = await readBody<{ projectId: string; column: string }>(event)
+  const body = await readBody<{ projectId: string; column: number }>(event)
 
-  // TODO: only owner can perform
   return event.context.prisma.issue.create({
     data: {
-      projectId: body.projectId,
       summary: `Issue ${new Date().getTime()}`,
-      column: parseInt(body.column)
+      column: body.column,
+      project: {
+        connect: {
+          id: body.projectId,
+          ownerId: userId
+        }
+      }
     }
-  })
+  }).catch((err) => { throw createPrismaError(err) })
 })

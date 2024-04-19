@@ -4,13 +4,11 @@
       <div class="flex gap-2 items-end">
         <naive-icon :name="issueStatus[column].icon" size="20" />
         <n-text>{{ issueStatus[column].title }}</n-text>
-        <n-text depth="3">
-          {{ list.length }}
-        </n-text>
+        <n-badge :value="list.length" color="gray" />
       </div>
     </template>
 
-    <template #header-extra>
+    <template v-if="isOwner" #header-extra>
       <n-button size="small" text @click="createIssue">
         <template #icon>
           <naive-icon name="ph:plus" size="16" />
@@ -22,18 +20,15 @@
       <template #item="{ element }">
         <kanban-issue
           class="mb-4"
-          :issue-id="element.id"
-          :summary="element.summary"
-          :labels="element.labels"
+          :issue="element"
           @dblclick="onSelectIssue(element.id)"
         />
       </template>
     </draggable>
 
     <kanban-issue-modal
-      v-if="selectedIssueId"
       v-model:show="showIssueModal"
-      v-model:issue-id="selectedIssueId"
+      :issue-id="selectedIssueId"
     />
   </n-card>
 </template>
@@ -41,12 +36,14 @@
 <script setup lang="ts">
 import Draggable from 'vuedraggable'
 
-const props = defineProps<{ column: number; projectId: string }>()
+const props = defineProps<{ column: Issue['column']; projectId: Project['id'] }>()
+
+const isOwner = await useProject().isOwner(props.projectId)
 
 const showIssueModal = ref(false)
 const selectedIssueId = ref()
 
-function onSelectIssue (id: number) {
+function onSelectIssue (id: Issue['id']) {
   selectedIssueId.value = id
   showIssueModal.value = true
 }
@@ -71,7 +68,7 @@ async function createIssue () {
 }
 
 async function onReoder (c: any) {
-  if (c.added) {
+  if (isOwner && c.added) {
     await useIssue().update(c.added.element.id, { column: props.column })
   }
 }

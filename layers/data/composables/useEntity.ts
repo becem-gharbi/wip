@@ -64,5 +64,5 @@ export function useEntity<EntityType> (entityKey: string, _fetch = $fetch) {
     return _useState(id)
   }
 
-  return { findMany, create, findUnique, remove, update }
+  return { findMany, create, findUnique, remove, update, _useState }
 }

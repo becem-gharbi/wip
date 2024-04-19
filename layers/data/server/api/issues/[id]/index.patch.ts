@@ -1,18 +1,17 @@
+import type { Issue } from '@prisma/client'
+
 export default defineEventHandler(async (event) => {
-  checkAuth(event)
-  const issueId = event.context.params!.id
+  const { userId } = checkAuth(event)
+  const issueId = parseInt(event.context.params!.id)
 
-  const body = await readBody<{
-    summary?: string;
-    column?: number;
-    description?: string;
-    labels?: string;
-  }>(event)
+  const body = await readBody<Partial<Issue>>(event)
 
-  // TODO: only owner can perform
   return event.context.prisma.issue.update({
     where: {
-      id: parseInt(issueId)
+      id: issueId,
+      project: {
+        ownerId: userId
+      }
     },
     data: {
       summary: body.summary,
@@ -20,5 +19,5 @@ export default defineEventHandler(async (event) => {
       description: body.description,
       labels: body.labels
     }
-  })
+  }).catch((err) => { throw createPrismaError(err) })
 })

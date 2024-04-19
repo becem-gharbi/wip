@@ -6,3 +6,7 @@ export function checkAuth (event: H3Event) {
   }
   return event.context.auth
 }
+
+export function createPrismaError (_:any) {
+  return createError({ statusCode: 400, message: 'something is wrong' })
+}

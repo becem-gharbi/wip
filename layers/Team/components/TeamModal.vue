@@ -1,17 +1,13 @@
 <template>
   <n-modal :show="show" @mask-click="$emit('update:show', false)">
-    <n-card
+    <TeamModalContent
+      :team-id="teamId"
       class="sm:max-w-lg max-w-md"
-      title="Chat"
-      role="dialog"
-      aria-modal="true"
-    >
-      Content
-    </n-card>
+    />
   </n-modal>
 </template>
 
 <script setup lang="ts">
-defineProps<{ show: boolean }>()
+defineProps<{ show: boolean; teamId: Team['id']; }>()
 defineEmits(['update:show'])
 </script>

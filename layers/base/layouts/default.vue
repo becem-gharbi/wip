@@ -17,7 +17,7 @@
         >
           <img
             :src="user?.picture"
-            class="w-8 h-8 object-cover rounded-full ring-2 cursor-pointer"
+            class="w-8 h-8 object-cover rounded-full cursor-pointer"
             alt="avatar"
             loading="lazy"
           >

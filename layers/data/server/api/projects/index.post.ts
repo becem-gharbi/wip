@@ -4,7 +4,16 @@ export default defineEventHandler((event) => {
   return event.context.prisma.project.create({
     data: {
       name: `Project ${new Date().getTime()}`,
-      ownerId: userId
+      ownerId: userId,
+      team: {
+        create: {
+          users: {
+            connect: {
+              id: userId
+            }
+          }
+        }
+      }
     }
-  })
+  }).catch((err) => { throw createPrismaError(err) })
 })

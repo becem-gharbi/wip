@@ -1,107 +1,15 @@
 <template>
   <n-modal :show="show" @mask-click="$emit('update:show', false)">
-    <n-card
+    <kanban-issue-modal-content
+      v-if="issueId"
       class="sm:max-w-lg max-w-md"
-      :title="issue.summary"
-      role="dialog"
-      aria-modal="true"
-      segmented
-    >
-      <n-form
-        ref="formRef"
-        :rules="rules"
-        :model="model"
-        @submit.prevent="onSubmit(updateIssue)"
-      >
-        <n-form-item label="Summary" path="summary">
-          <n-input v-model:value="model.summary" maxlength="50" show-count />
-        </n-form-item>
-
-        <n-form-item label="Labels" path="labels">
-          <n-select
-            v-model:value="model.labels"
-            filterable
-            multiple
-            tag
-            placeholder="Input, press enter to create label"
-            :show-arrow="false"
-            :show="false"
-          />
-        </n-form-item>
-
-        <n-form-item label="Description" path="description">
-          <n-input v-model:value="model.description" type="textarea" autosize maxlength="100" show-count />
-        </n-form-item>
-
-        <div class="flex gap-2">
-          <n-button
-            attr-type="reset"
-            :disabled="pending || !edited"
-            @click="reset"
-          >
-            Reset
-          </n-button>
-
-          <n-button
-            attr-type="submit"
-            :loading="pending"
-            :disabled="pending || !edited"
-            type="primary"
-          >
-            Update
-          </n-button>
-        </div>
-      </n-form>
-
-      <template #footer>
-        <n-collapse arrow-placement="right">
-          <n-collapse-item title="Delete Issue">
-            <p>Once you delete an issue, there is no going back. Please be certain.</p>
-            <br>
-            <n-button type="error" secondary @click="deleteIssue">
-              Delete issue
-            </n-button>
-          </n-collapse-item>
-        </n-collapse>
-      </template>
-    </n-card>
+      :issue-id="issueId"
+      @hide="$emit('update:show', false)"
+    />
   </n-modal>
 </template>
 
 <script setup lang="ts">
-const props = defineProps<{ show: boolean; issueId: number }>()
-const emits = defineEmits(['update:show', 'update:issueId'])
-
-const issue = await useIssue().findUnique(props.issueId)
-
-const model = ref({
-  summary: issue.value.summary,
-  description: issue.value.description,
-  labels: issue.value.labels?.split(';')
-})
-
-const { edited, pending, onSubmit, reset, rules, formRef } =
-  useNaiveForm(model)
-
-rules.value = {
-  summary: {
-    required: true,
-    trigger: 'input'
-  }
-}
-
-async function deleteIssue () {
-  emits('update:show', false)
-  emits('update:issueId', undefined)
-  await useIssue().remove(issue.value.id)
-}
-
-async function updateIssue () {
-  await useIssue().update(issue.value.id, {
-    ...model.value,
-    labels: model.value.labels?.join(';')
-  })
-  emits('update:issueId', undefined)
-  emits('update:show', false)
-}
+defineProps<{ show: boolean; issueId?: Issue['id'] }>()
+defineEmits(['update:show'])
 </script>
