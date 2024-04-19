@@ -16,17 +16,21 @@
             {{ user.email }}
           </n-text>
         </div>
+
+        <n-button class="ml-auto" @click="removeUser(user.email!)">
+          Remove
+        </n-button>
       </div>
     </div>
 
     <template #footer>
       <n-collapse arrow-placement="right">
-        <n-collapse-item title="Invite new user">
+        <n-collapse-item title="Add new user to team">
           <n-form
             ref="formRef"
             :rules="rules"
             :model="model"
-            @submit.prevent="onSubmit(inviteUser)"
+            @submit.prevent="onSubmit(addUser)"
           >
             <n-form-item label="Email" path="email">
               <n-input v-model:value="model.email" />
@@ -47,7 +51,7 @@
                 :disabled="pending || !edited"
                 type="primary"
               >
-                Invite
+                Add
               </n-button>
             </div>
           </n-form>
@@ -77,7 +81,13 @@ rules.value = {
   }
 }
 
-async function inviteUser () {
+async function addUser () {
+  await useTeam().addUser(props.teamId, model.value)
+  emits('hide')
+}
+
+async function removeUser (email: string) {
+  await useTeam().removeUser(props.teamId, { email })
   emits('hide')
 }
 </script>
