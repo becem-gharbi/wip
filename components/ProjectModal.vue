@@ -2,9 +2,10 @@
   <n-modal :show="show" @mask-click="$emit('update:show', false)">
     <n-card
       class="sm:max-w-lg max-w-md"
-      title="Project name"
+      :title="project.name"
       role="dialog"
       aria-modal="true"
+      segmented
     >
       <n-form
         ref="formRef"
@@ -44,14 +45,17 @@
         </div>
       </n-form>
 
-      <n-divider />
-
-      <n-h4>Delete Project</n-h4>
-      <p>Once you delete a project, there is no going back. Please be certain.</p>
-      <br>
-      <n-button type="error" secondary @click="deleteProject">
-        Delete project
-      </n-button>
+      <template #footer>
+        <n-collapse arrow-placement="right">
+          <n-collapse-item title="Delete Project">
+            <p>Once you delete a project, there is no going back. Please be certain.</p>
+            <br>
+            <n-button type="error" secondary @click="deleteProject">
+              Delete project
+            </n-button>
+          </n-collapse-item>
+        </n-collapse>
+      </template>
     </n-card>
   </n-modal>
 </template>

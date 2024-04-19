@@ -5,6 +5,7 @@
       :title="issue.summary"
       role="dialog"
       aria-modal="true"
+      segmented
     >
       <n-form
         ref="formRef"
@@ -52,14 +53,17 @@
         </div>
       </n-form>
 
-      <n-divider />
-
-      <n-h4>Delete Issue</n-h4>
-      <p>Once you delete an issue, there is no going back. Please be certain.</p>
-      <br>
-      <n-button type="error" secondary @click="deleteIssue">
-        Delete issue
-      </n-button>
+      <template #footer>
+        <n-collapse arrow-placement="right">
+          <n-collapse-item title="Delete Issue">
+            <p>Once you delete an issue, there is no going back. Please be certain.</p>
+            <br>
+            <n-button type="error" secondary @click="deleteIssue">
+              Delete issue
+            </n-button>
+          </n-collapse-item>
+        </n-collapse>
+      </template>
     </n-card>
   </n-modal>
 </template>
