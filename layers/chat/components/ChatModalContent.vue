@@ -26,21 +26,38 @@ import type { ScrollbarInst } from 'naive-ui'
 const props = defineProps<{ teamId: Team['id'] }>()
 defineEmits(['hide'])
 
+const me = useAuthSession().user.value
+const team = await useTeam().findUnique(props.teamId)
+const other = team.value.users.find(u => u.id !== me!.id)
+
+const { sendData, dataReceived } = useChatPeer(me!.id, other!.id)
+
 const scrollbarRef = ref<ScrollbarInst>()
 
 function scrollToBottom () {
-  setTimeout(() => scrollbarRef.value?.scrollTo({ top: Number.MAX_SAFE_INTEGER }), 500)
+  setTimeout(
+    () => scrollbarRef.value?.scrollTo({ top: Number.MAX_SAFE_INTEGER }),
+    500
+  )
 }
 
-onMounted(() => { scrollToBottom() })
+onMounted(() => {
+  scrollToBottom()
+})
 
 const messages = await useChat().findMany({ teamId: props.teamId })
 
-async function sendMessage (message: string) {
-  await useChat().create({
+async function sendMessage (content: string) {
+  const message = await useChat().create({
     teamId: props.teamId,
-    content: message
+    content
   })
   scrollToBottom()
+  sendData(message)
 }
+
+watch(dataReceived, (message: Message) => {
+  useChat().pushMessage(message)
+  scrollToBottom()
+})
 </script>
