@@ -24,24 +24,27 @@ import type { Peer, MediaConnection } from 'peerjs'
 const props = defineProps<{ peer: Peer; userId: string }>()
 
 let rmMediaConnection: MediaConnection | null = null
-const rmVideoRef = ref()
+let lcMediaStream: MediaStream | null = null
+
+const rmVideoRef = ref<HTMLVideoElement>()
 const calling = ref(false)
 const streaming = ref(false)
 
 async function call () {
-  const mediaStream = await navigator.mediaDevices.getUserMedia({
+  lcMediaStream = await navigator.mediaDevices.getUserMedia({
     video: {
       facingMode: 'user'
     },
     audio: true
   })
 
-  const call = props.peer.call(props.userId, mediaStream)
+  const call = props.peer.call(props.userId, lcMediaStream)
 
   call.on('stream', (stream) => {
     streaming.value = true
-    rmVideoRef.value.srcObject = stream
+    rmVideoRef.value!.srcObject = stream
   })
+
   call.on('close', () => {
     streaming.value = false
   })
@@ -49,25 +52,35 @@ async function call () {
 
 async function answer () {
   calling.value = false
-  const mediaStream = await navigator.mediaDevices.getUserMedia({
+  lcMediaStream = await navigator.mediaDevices.getUserMedia({
     video: {
       facingMode: 'user'
     },
     audio: true
   })
-  rmMediaConnection?.answer(mediaStream)
+  rmMediaConnection?.answer(lcMediaStream)
 }
 
 props.peer.on('call', function (call) {
   // TODO: play ringtone when calling
   calling.value = true
   rmMediaConnection = call
+
   call.on('stream', (stream) => {
     streaming.value = true
-    rmVideoRef.value.srcObject = stream
+    rmVideoRef.value!.srcObject = stream
   })
+
   call.on('close', () => {
     streaming.value = false
+  })
+})
+
+onUnmounted(() => {
+  lcMediaStream?.getTracks().forEach((track) => {
+    if (track.readyState === 'live') {
+      track.stop()
+    }
   })
 })
 </script>

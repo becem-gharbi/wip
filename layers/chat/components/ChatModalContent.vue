@@ -1,5 +1,5 @@
 <template>
-  <n-card title="Latest messages" segmented size="small">
+  <n-card title="Chat" segmented size="small">
     <template #header-extra>
       <n-button size="small" tertiary @click="$emit('hide')">
         <naive-icon name="ph:x" />
