@@ -40,7 +40,6 @@ CREATE TABLE "Project" (
 -- CreateTable
 CREATE TABLE "Team" (
     "id" TEXT NOT NULL PRIMARY KEY,
-    "channel" TEXT NOT NULL,
     "projectId" TEXT NOT NULL,
     CONSTRAINT "Team_projectId_fkey" FOREIGN KEY ("projectId") REFERENCES "Project" ("id") ON DELETE CASCADE ON UPDATE CASCADE
 );
@@ -85,9 +84,6 @@ CREATE INDEX "RefreshToken_userId_idx" ON "RefreshToken"("userId");
 
 -- CreateIndex
 CREATE UNIQUE INDEX "Project_ownerId_name_key" ON "Project"("ownerId", "name");
-
--- CreateIndex
-CREATE UNIQUE INDEX "Team_channel_key" ON "Team"("channel");
 
 -- CreateIndex
 CREATE UNIQUE INDEX "Team_projectId_key" ON "Team"("projectId");
