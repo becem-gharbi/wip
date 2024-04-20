@@ -6,11 +6,13 @@
       </n-button>
     </template>
 
-    <chat-message-list ref="messageListRef" :team-id="teamId" :user-id="userId" />
-
-    <template #footer>
-      <chat-message-form @submit="sendMessage" />
-    </template>
+    <n-tabs type="segment" size="small">
+      <n-tab-pane name="Text">
+        <chat-message-list class="pb-8" :team-id="teamId" :user-id="userId" />
+        <chat-message-form @submit="sendMessage" />
+      </n-tab-pane>
+      <n-tab-pane name="Media" />
+    </n-tabs>
   </n-card>
 </template>
 
@@ -18,7 +20,13 @@
 const props = defineProps<{ teamId: Team['id']; userId: string }>()
 defineEmits(['hide'])
 
-const messageListRef = ref()
+const myId = useAuthSession().user.value!.id
+
+const { sendData, dataReceived } = useChatPeer(myId, props.userId)
+
+watch(dataReceived, (message: Message) => {
+  useChat().pushMessage(message)
+})
 
 async function sendMessage (content: string) {
   const message = await useChat().create({
@@ -26,6 +34,6 @@ async function sendMessage (content: string) {
     content
   })
 
-  messageListRef.value.sendData(message)
+  sendData(message)
 }
 </script>

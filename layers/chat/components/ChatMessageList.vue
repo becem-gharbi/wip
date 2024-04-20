@@ -15,12 +15,6 @@ const props = defineProps<{ teamId: Team['id'], userId: string }>()
 
 const scrollbarRef = ref<ScrollbarInst>()
 
-const myId = useAuthSession().user.value!.id
-
-const { sendData, dataReceived } = useChatPeer(myId, props.userId)
-
-defineExpose({ sendData })
-
 // NOTE: need to always re-fetch messages
 const messages = await useChat().findMany({
   teamId: props.teamId,
@@ -34,10 +28,6 @@ function scrollToBottom () {
 
 onMounted(() => {
   scrollToBottom()
-})
-
-watch(dataReceived, (message: Message) => {
-  useChat().pushMessage(message)
 })
 
 watch(messages, () => {
