@@ -1,0 +1,73 @@
+<template>
+  <div class="flex items-center justify-center">
+    <div class="rounded overflow-hidden">
+      <video v-show="streaming" ref="rmVideoRef" autoplay muted />
+    </div>
+    <n-button v-if="calling" block type="success" @click="answer">
+      Answer
+      <template #icon>
+        <naive-icon name="ph:phone-incoming" />
+      </template>
+    </n-button>
+    <n-button v-else-if="!streaming" block type="primary" @click="call">
+      Call
+      <template #icon>
+        <naive-icon name="ph:phone-outgoing" />
+      </template>
+    </n-button>
+  </div>
+</template>
+
+<script setup lang="ts">
+import type { Peer, MediaConnection } from 'peerjs'
+
+const props = defineProps<{ peer: Peer; userId: string }>()
+
+let rmMediaConnection: MediaConnection | null = null
+const rmVideoRef = ref()
+const calling = ref(false)
+const streaming = ref(false)
+
+async function call () {
+  const mediaStream = await navigator.mediaDevices.getUserMedia({
+    video: {
+      facingMode: 'user'
+    },
+    audio: true
+  })
+
+  const call = props.peer.call(props.userId, mediaStream)
+
+  call.on('stream', (stream) => {
+    streaming.value = true
+    rmVideoRef.value.srcObject = stream
+  })
+  call.on('close', () => {
+    streaming.value = false
+  })
+}
+
+async function answer () {
+  calling.value = false
+  const mediaStream = await navigator.mediaDevices.getUserMedia({
+    video: {
+      facingMode: 'user'
+    },
+    audio: true
+  })
+  rmMediaConnection?.answer(mediaStream)
+}
+
+props.peer.on('call', function (call) {
+  // TODO: play ringtone when calling
+  calling.value = true
+  rmMediaConnection = call
+  call.on('stream', (stream) => {
+    streaming.value = true
+    rmVideoRef.value.srcObject = stream
+  })
+  call.on('close', () => {
+    streaming.value = false
+  })
+})
+</script>

@@ -7,11 +7,13 @@
     </template>
 
     <n-tabs type="segment" size="small">
+      <n-tab-pane name="Media">
+        <chat-media class="mt-2" :user-id="userId" :peer="peer" />
+      </n-tab-pane>
       <n-tab-pane name="Text">
-        <chat-message-list class="pb-8" :team-id="teamId" :user-id="userId" />
+        <chat-message-list class="mt-2 mb-4" :team-id="teamId" :user-id="userId" />
         <chat-message-form @submit="sendMessage" />
       </n-tab-pane>
-      <n-tab-pane name="Media" />
     </n-tabs>
   </n-card>
 </template>
@@ -22,7 +24,7 @@ defineEmits(['hide'])
 
 const myId = useAuthSession().user.value!.id
 
-const { sendData, dataReceived } = useChatPeer(myId, props.userId)
+const { sendData, dataReceived, peer } = useChatPeer(myId, props.userId)
 
 watch(dataReceived, (message: Message) => {
   useChat().pushMessage(message)

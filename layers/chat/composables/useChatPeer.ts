@@ -45,5 +45,5 @@ export function useChatPeer (lcPeerId: string, rmPeerId: string) {
     lcDataConnection?.send(data)
   }
 
-  return { sendData, dataReceived }
+  return { sendData, dataReceived, peer }
 }
