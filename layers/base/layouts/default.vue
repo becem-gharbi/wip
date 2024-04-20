@@ -26,7 +26,7 @@
     </template>
 
     <template #drawer-header>
-      <AccountInfo class="mx-2" />
+      <AccountInfo class="mx-2" :user="user!" />
     </template>
 
     <template #drawer-footer>
@@ -67,7 +67,7 @@ const dropdownOptions: DropdownOption[] = [
   {
     key: 'header',
     type: 'render',
-    render: () => h(AccountInfo)
+    render: () => h(AccountInfo, { user: user.value! })
   },
   {
     key: 'divider',

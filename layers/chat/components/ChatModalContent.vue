@@ -6,7 +6,7 @@
       </n-button>
     </template>
 
-    <chat-message-list ref="messageListRef" :team-id="teamId" :user-id="other!.id" />
+    <chat-message-list ref="messageListRef" :team-id="teamId" :user-id="userId" />
 
     <template #footer>
       <chat-message-form @submit="sendMessage" />
@@ -15,14 +15,10 @@
 </template>
 
 <script setup lang="ts">
-const props = defineProps<{ teamId: Team['id'] }>()
+const props = defineProps<{ teamId: Team['id']; userId: string }>()
 defineEmits(['hide'])
 
 const messageListRef = ref()
-
-const me = useAuthSession().user.value
-const team = await useTeam().findUnique(props.teamId)
-const other = team.value.users.find(u => u.id !== me!.id)
 
 async function sendMessage (content: string) {
   const message = await useChat().create({
