@@ -1,6 +1,33 @@
 # Changelog
 
 
+## v0.0.2
+
+[compare changes](https://github.com/becem-gharbi/wip/compare/v0.0.1...v0.0.2)
+
+### 🚀 Enhancements
+
+- Implement teams for project sharing ([#2](https://github.com/becem-gharbi/wip/pull/2))
+- Implement chat for realtime text messaging ([#3](https://github.com/becem-gharbi/wip/pull/3))
+- **chat:** Implement media messaging ([18eb508](https://github.com/becem-gharbi/wip/commit/18eb508))
+
+### 🩹 Fixes
+
+- Close media stream on unmount ([55ce0e9](https://github.com/becem-gharbi/wip/commit/55ce0e9))
+
+### 💅 Refactors
+
+- Create separate components for modal content ([ac64349](https://github.com/becem-gharbi/wip/commit/ac64349))
+- Add close button to modals ([f767775](https://github.com/becem-gharbi/wip/commit/f767775))
+- Add placeholders for inputs ([ca0c933](https://github.com/becem-gharbi/wip/commit/ca0c933))
+- **chat:** Create Media tab ([0136dd6](https://github.com/becem-gharbi/wip/commit/0136dd6))
+- Allow using custom peerjs server ([47b84b6](https://github.com/becem-gharbi/wip/commit/47b84b6))
+
+### ❤️ Contributors
+
+- Becem-gharbi <becem.gharbi@live.com>
+- Becem <becem.gharbi@live.com>
+
 ## v0.0.1
 
 
