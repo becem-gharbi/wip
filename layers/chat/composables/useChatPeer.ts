@@ -5,7 +5,13 @@ export function useChatPeer (lcPeerId: string, rmPeerId: string) {
   let lcDataConnection: DataConnection | null = null
   let interval: NodeJS.Timeout | null = null
 
-  const peer = new Peer(lcPeerId)
+  const config = useRuntimeConfig()
+
+  const peer = new Peer(lcPeerId, {
+    host: config.public.chat.peer.host,
+    port: config.public.chat.peer.port,
+    path: config.public.chat.peer.path
+  })
 
   const connectedToServer = ref(false)
   const rmPeerConnected = ref(false)
