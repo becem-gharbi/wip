@@ -41,7 +41,6 @@ The platform can be self-hosted for data privacy supporting serverless deploymen
 - Team
   - project
   - users
-  - channel
   - messages
 - Issue
   - column

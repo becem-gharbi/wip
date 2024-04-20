@@ -12,18 +12,9 @@
         :key="user.id"
         class="flex gap-4 items-center"
       >
-        <n-avatar :src="user.picture" />
-        <div class="flex flex-col justify-between">
-          <n-text>
-            {{ user.name }}
-            {{ user.id === project.ownerId ? "(owner)" : "(viewer)" }}
-          </n-text>
-          <n-text depth="3">
-            {{ user.email }}
-          </n-text>
-        </div>
+        <account-info :user="user" />
 
-        <n-button v-if="isOwner" class="ml-auto" @click="removeUser(user.email!)">
+        <n-button v-if="isOwner" class="ml-auto" @click="removeUser(user.email)">
           Remove
         </n-button>
       </div>
@@ -74,7 +65,6 @@ const props = defineProps<{ teamId: Team['id']; }>()
 defineEmits(['hide'])
 
 const team = await useTeam().findUnique(props.teamId)
-const project = await useProject().findUnique(team.value.projectId)
 
 const isOwner = await useTeam().isOwner(team.value)
 
