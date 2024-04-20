@@ -1,5 +1,6 @@
 <template>
   <n-dropdown
+    v-if="otherUsers.length"
     trigger="click"
     :options="options"
     :style="{ padding: '8px', minWidth: '240px' }"
@@ -11,7 +12,6 @@
   </n-dropdown>
 
   <chat-modal
-    v-if="otherUsers.length"
     v-model:show="showChatModal"
     :team-id="teamId"
     :user-id="selectedUserId"

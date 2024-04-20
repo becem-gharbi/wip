@@ -1,7 +1,7 @@
 <template>
   <n-card
     v-if="project"
-    :title="project.name"
+    title="Details"
     segmented
   >
     <template #header-extra>
@@ -19,7 +19,7 @@
       <n-form-item label="Name" path="name">
         <n-input
           v-model:value="model.name"
-          maxlength="30"
+          maxlength="20"
           show-count
           :readonly="!isOwner"
           placeholder="Unique name"
@@ -27,7 +27,13 @@
       </n-form-item>
 
       <n-form-item label="Icon" path="icon">
-        <n-input v-model:value="model.icon" :readonly="!isOwner" placeholder="Icon URL" />
+        <n-input
+          v-model:value="model.icon"
+          :readonly="!isOwner"
+          placeholder="Icon URL"
+          show-count
+          maxlength="80"
+        />
       </n-form-item>
 
       <n-form-item label="Description" path="description">

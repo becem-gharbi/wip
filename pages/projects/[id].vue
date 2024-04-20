@@ -5,7 +5,7 @@
     </template>
 
     <template #avatar>
-      <img :src="project.icon || '/images/project-icon.svg'" width="24" alt="project_icon">
+      <img :src="project.icon || '/images/project-icon.svg'" width="32" alt="project_icon">
     </template>
 
     <template #extra>
@@ -19,9 +19,9 @@
 
         <n-button text @click="showProjectModal = true">
           <template #icon>
-            <naive-icon name="ph:plus-circle" />
+            <naive-icon name="ph:info" />
           </template>
-          More
+          Details
         </n-button>
       </div>
     </template>

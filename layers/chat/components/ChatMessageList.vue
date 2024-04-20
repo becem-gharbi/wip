@@ -1,11 +1,13 @@
 <template>
-  <n-scrollbar ref="scrollbarRef" class="pr-4 h-80">
+  <n-scrollbar v-if="teamMessages.length" ref="scrollbarRef" class="pr-4 h-80">
     <chat-message-item
-      v-for="message of messages"
+      v-for="message of teamMessages"
       :key="message.id"
       :message="message"
     />
   </n-scrollbar>
+
+  <n-empty v-else description="No messages are found" />
 </template>
 
 <script setup lang="ts">
@@ -22,6 +24,8 @@ const messages = await useChat().findMany({
   timestamp: new Date().getTime()
 })
 
+const teamMessages = computed(() => messages.value.filter(m => m.teamId === props.teamId))
+
 function scrollToBottom () {
   setTimeout(() => scrollbarRef.value?.scrollTo({ top: Number.MAX_SAFE_INTEGER }), 500)
 }
@@ -30,7 +34,7 @@ onMounted(() => {
   scrollToBottom()
 })
 
-watch(messages, () => {
+watch(teamMessages, () => {
   scrollToBottom()
 })
 </script>

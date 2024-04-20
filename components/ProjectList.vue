@@ -1,7 +1,7 @@
 <template>
   <div
     v-if="projects.length"
-    class="grid lg:grid-cols-4 md:grid-cols-3 grid-cols-1 gap-4"
+    class="grid lg:grid-cols-4 md:grid-cols-3 grid-cols-1 gap-6"
   >
     <nuxt-link
       v-for="project of projects"

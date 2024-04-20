@@ -14,7 +14,8 @@ export default defineNuxtConfig({
       meta: [
         { name: 'description', content: 'A platform to share work progress and more' },
         { name: 'theme-color', content: '#18181B' }
-      ]
+      ],
+      link: [{ rel: 'icon', href: '/images/favicon.svg' }]
     }
   }
 })

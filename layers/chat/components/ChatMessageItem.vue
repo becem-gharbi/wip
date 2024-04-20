@@ -1,17 +1,17 @@
 <template>
   <div>
-    <n-divider :style="{margin:'8px'}" />
+    <n-divider :style="{ margin: 0 }" />
     <div
-      class="flex gap-3 items-center"
+      class="flex gap-3 items-end mb-2 p-2"
       :style="{ flexDirection: isMyMessage ? 'row-reverse' : 'row' }"
     >
-      <div :style="{width:'32px'}">
-        <img :src="author!.picture" alt="avatar" class="rounded-full">
+      <div :style="{ width: '32px' }">
+        <img :src="author!.picture" alt="avatar" class="rounded">
       </div>
       <div class="flex-grow text-wrap">
         {{ props.message.content }}
       </div>
-      <div :style="{width:'32px'}" />
+      <div :style="{ width: '32px' }" />
     </div>
   </div>
 </template>

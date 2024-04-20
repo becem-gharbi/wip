@@ -1,17 +1,18 @@
 <template>
-  <n-card class="cursor-pointer" hoverable size="small">
+  <n-card class="cursor-pointer h-full" hoverable size="small">
     <template #header>
       <n-thing :title="project.name" description="3 days ago">
         <template #avatar>
           <img
             :src="project.icon || '/images/project-icon.svg'"
-            width="24"
+            width="32"
             alt="project_icon"
           >
         </template>
 
         <template #description>
           <n-text depth="3">
+            Updated
             <n-time type="relative" :time="new Date(project.updatedAt)" />
           </n-text>
         </template>
