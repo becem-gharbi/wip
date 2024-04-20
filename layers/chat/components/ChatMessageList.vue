@@ -21,7 +21,12 @@ const { sendData, dataReceived } = useChatPeer(myId, props.userId)
 
 defineExpose({ sendData })
 
-const messages = await useChat().findMany({ teamId: props.teamId, userId: props.userId })
+// NOTE: need to always re-fetch messages
+const messages = await useChat().findMany({
+  teamId: props.teamId,
+  userId: props.userId,
+  timestamp: new Date().getTime()
+})
 
 function scrollToBottom () {
   setTimeout(() => scrollbarRef.value?.scrollTo({ top: Number.MAX_SAFE_INTEGER }), 500)

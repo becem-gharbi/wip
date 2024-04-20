@@ -13,6 +13,6 @@ export default defineEventHandler((event) => {
     orderBy: {
       createdAt: 'asc'
     },
-    take: 50
+    take: 10
   }).catch((err) => { throw createPrismaError(err) })
 })
