@@ -8,7 +8,7 @@ The platform can be self-hosted supporting serverless deployment on Cloudflare. 
 
 - Kanban board to visualize project progress.
 - Share progress with a team of users.
-- Realtime messaging between team members.
+- Realtime messaging via WebRTC thanks to [PeerJS](https://github.com/peers).
 
 ## Development
 
