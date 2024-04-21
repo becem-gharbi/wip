@@ -9,10 +9,10 @@
       <n-input v-model:value="model.email" placeholder="Email of new team member" />
     </n-form-item>
 
-    <div class="flex gap-2">
+    <div v-if="edited" class="flex gap-2">
       <n-button
         attr-type="reset"
-        :disabled="pending || !edited"
+        :disabled="pending"
         @click="reset"
       >
         Reset
@@ -21,7 +21,7 @@
       <n-button
         attr-type="submit"
         :loading="pending"
-        :disabled="pending || !edited"
+        :disabled="pending"
         type="primary"
       >
         Add

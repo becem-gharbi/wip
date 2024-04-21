@@ -39,10 +39,10 @@
           />
         </n-form-item>
 
-        <div v-if="isOwner" class="flex gap-2">
+        <div v-if="isOwner && edited" class="flex gap-2">
           <n-button
             attr-type="reset"
-            :disabled="pending || !edited"
+            :disabled="pending"
             @click="reset"
           >
             Reset
@@ -51,7 +51,7 @@
           <n-button
             attr-type="submit"
             :loading="pending"
-            :disabled="pending || !edited"
+            :disabled="pending"
             type="primary"
           >
             Update

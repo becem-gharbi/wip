@@ -2,7 +2,7 @@
   <n-form @submit.prevent="onSubmit">
     <div class="flex gap-4">
       <n-input v-model:value="message" />
-      <n-button type="primary" :attr-type="'submit'">
+      <n-button type="primary" :attr-type="'submit'" :disabled="!message">
         <template #icon>
           <naive-icon name="ph:paper-plane-right" />
         </template>
