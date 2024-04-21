@@ -1,7 +1,7 @@
 <template>
   <naive-layout-navbar :routes="routes" :drawer-routes="drawerRoutes">
     <template #start>
-      <nuxt-link to="/" class="flex items-center gap-3">
+      <nuxt-link to="/home" class="flex items-center gap-3">
         <basic-logo />
       </nuxt-link>
     </template>

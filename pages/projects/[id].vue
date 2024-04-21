@@ -41,6 +41,6 @@ const projectId = useRoute().params.id as string
 
 const project = await useProject().findUnique(projectId)
   .catch(async () => {
-    await navigateTo('/')
+    await navigateTo('/home')
   })
 </script>
