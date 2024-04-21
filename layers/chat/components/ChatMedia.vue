@@ -1,7 +1,7 @@
 <template>
   <div class="flex items-center justify-center">
     <div class="rounded overflow-hidden">
-      <video v-show="streaming" ref="rmVideoRef" autoplay height="600" />
+      <video v-show="streaming" ref="rmVideoRef" autoplay />
     </div>
     <n-button v-if="calling" block type="success" @click="answer">
       Answer
@@ -34,8 +34,8 @@ async function call () {
   lcMediaStream = await navigator.mediaDevices.getUserMedia({
     video: {
       facingMode: 'user',
-      height: {
-        max: 600
+      width: {
+        ideal: window.innerWidth
       }
     },
     audio: {
@@ -61,8 +61,8 @@ async function answer () {
   lcMediaStream = await navigator.mediaDevices.getUserMedia({
     video: {
       facingMode: 'user',
-      height: {
-        max: 600
+      width: {
+        ideal: window.innerWidth
       }
     },
     audio: {
