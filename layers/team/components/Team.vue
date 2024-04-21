@@ -10,7 +10,7 @@
             tertiary
             @click="removeUser(user.email)"
           >
-            Remove
+            <naive-icon name="ph:sign-out" />
           </n-button>
 
           <n-button

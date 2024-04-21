@@ -1,7 +1,7 @@
 <template>
   <div class="flex items-center justify-center">
     <div class="rounded overflow-hidden">
-      <video v-show="streaming" ref="rmVideoRef" autoplay muted />
+      <video v-show="streaming" ref="rmVideoRef" autoplay muted height="400" />
     </div>
     <n-button v-if="calling" block type="success" @click="answer">
       Answer
