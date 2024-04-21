@@ -33,8 +33,6 @@
         <team :team-id="project.team.id" class="mt-2" />
       </n-tab-pane>
     </n-tabs>
-
-    <chat-button v-if="project.team" :team-id="project.team.id" />
   </n-page-header>
 </template>
 
