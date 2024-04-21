@@ -5,7 +5,7 @@
     </template>
 
     <template #extra>
-      <n-button text @click="createProject">
+      <n-button quaternary @click="createProject">
         <template #icon>
           <naive-icon name="ph:plus" />
         </template>
