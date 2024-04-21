@@ -1,6 +1,39 @@
 # Changelog
 
 
+## v0.1.1
+
+[compare changes](https://github.com/becem-gharbi/wip/compare/v0.0.2...v0.1.1)
+
+### 🚀 Enhancements
+
+- Improve ux ([#4](https://github.com/becem-gharbi/wip/pull/4))
+- Add basic landing page ([978aa04](https://github.com/becem-gharbi/wip/commit/978aa04))
+
+### 🩹 Fixes
+
+- **chat:** Remove video mute ([bf83500](https://github.com/becem-gharbi/wip/commit/bf83500))
+
+### 💅 Refactors
+
+- Minor ui refactoring ([16ba8b0](https://github.com/becem-gharbi/wip/commit/16ba8b0))
+- **chat:** Specify video heigth ([3ff1458](https://github.com/becem-gharbi/wip/commit/3ff1458))
+- **chat:** Remove video height ([35e7076](https://github.com/becem-gharbi/wip/commit/35e7076))
+
+### 📖 Documentation
+
+- Add credit to Peerjs ([a7dfe26](https://github.com/becem-gharbi/wip/commit/a7dfe26))
+
+### 🏡 Chore
+
+- Prepapre readme ([39cdba1](https://github.com/becem-gharbi/wip/commit/39cdba1))
+- Bump version to 0.1 ([dc873e9](https://github.com/becem-gharbi/wip/commit/dc873e9))
+
+### ❤️ Contributors
+
+- Becem-gharbi <becem.gharbi@live.com>
+- Becem <becem.gharbi@live.com>
+
 ## v0.0.2
 
 [compare changes](https://github.com/becem-gharbi/wip/compare/v0.0.1...v0.0.2)
