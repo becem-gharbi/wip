@@ -1,6 +1,7 @@
 <template>
   <n-card
     v-if="issue"
+    size="small"
     :title="issue.summary"
     segmented
   >
@@ -51,10 +52,10 @@
         />
       </n-form-item>
 
-      <div v-if="isOwner" class="flex gap-2">
+      <div v-if="isOwner && edited" class="flex gap-2">
         <n-button
           attr-type="reset"
-          :disabled="pending || !edited"
+          :disabled="pending"
           @click="reset"
         >
           Reset
@@ -63,7 +64,7 @@
         <n-button
           attr-type="submit"
           :loading="pending"
-          :disabled="pending || !edited"
+          :disabled="pending"
           type="primary"
         >
           Update
@@ -76,7 +77,7 @@
         <n-collapse-item title="Delete Issue">
           <p>Once you delete an issue, there is no going back. Please be certain.</p>
           <br>
-          <n-button type="error" secondary @click="deleteIssue">
+          <n-button type="error" @click="deleteIssue">
             Delete issue
           </n-button>
         </n-collapse-item>

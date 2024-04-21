@@ -1,5 +1,5 @@
 <template>
-  <n-card class="h-96 min-w-72" segmented size="small" content-class="overflow-auto scroller">
+  <n-card class="min-w-72" segmented size="small">
     <template #header>
       <div class="flex gap-2 items-end">
         <naive-icon :name="issueStatus[column].icon" size="20" />
@@ -16,15 +16,17 @@
       </n-button>
     </template>
 
-    <draggable :list="list" group="kanban" item-key="id" @change="onReoder">
-      <template #item="{ element }">
-        <kanban-issue
-          class="mb-4"
-          :issue="element"
-          @dblclick="onSelectIssue(element.id)"
-        />
-      </template>
-    </draggable>
+    <n-scrollbar class="h-80 pr-4">
+      <draggable :list="list" group="kanban" item-key="id" @change="onReoder">
+        <template #item="{ element }">
+          <kanban-issue
+            class="mb-4"
+            :issue="element"
+            @dblclick="onSelectIssue(element.id)"
+          />
+        </template>
+      </draggable>
+    </n-scrollbar>
 
     <kanban-issue-modal
       v-model:show="showIssueModal"
@@ -73,13 +75,3 @@ async function onReoder (c: any) {
   }
 }
 </script>
-
-<style>
-.scroller::-webkit-scrollbar {
-    display: none;
-}
-.scroller {
-    -ms-overflow-style: none;
-     scrollbar-width: none;
-}
-</style>

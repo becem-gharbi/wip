@@ -5,38 +5,38 @@
     </template>
 
     <template #avatar>
-      <img :src="project.icon || '/images/project-icon.svg'" width="32" alt="project_icon">
+      <img :src="project.icon || '/images/project-icon.svg'" width="22" alt="project">
     </template>
 
-    <template #extra>
-      <div class="flex gap-4">
-        <n-button text @click="showTeamModal = true">
-          <template #icon>
-            <naive-icon name="ph:users" />
-          </template>
-          Team
-        </n-button>
+    <n-tabs type="line" animated>
+      <n-tab-pane name="board" tab="Board">
+        <template #tab>
+          <naive-icon name="ph:cards" class="mr-1" />
+          Board
+        </template>
+        <kanban-board :project-id="project.id" class="mt-2" />
+      </n-tab-pane>
 
-        <n-button text @click="showProjectModal = true">
-          <template #icon>
-            <naive-icon name="ph:info" />
-          </template>
+      <n-tab-pane v-if="project.team" name="details" tab="Details">
+        <template #tab>
+          <naive-icon name="ph:info" class="mr-1" />
           Details
-        </n-button>
-      </div>
-    </template>
+        </template>
+        <project-details :project-id="project.id" class="mt-2" />
+      </n-tab-pane>
 
-    <kanban-board :project-id="project.id" />
-    <project-modal v-model:show="showProjectModal" :project-id="project.id" />
-    <team-modal v-if="project.team" v-model:show="showTeamModal" :team-id="project.team.id" />
-    <chat-button v-if="project.team" :team-id="project.team.id" />
+      <n-tab-pane v-if="project.team" name="team" tab="Team">
+        <template #tab>
+          <naive-icon name="ph:users" class="mr-1" />
+          Team
+        </template>
+        <team :team-id="project.team.id" class="mt-2" />
+      </n-tab-pane>
+    </n-tabs>
   </n-page-header>
 </template>
 
 <script setup lang="ts">
-const showProjectModal = ref(false)
-const showTeamModal = ref(false)
-
 const projectId = useRoute().params.id as string
 
 const project = await useProject().findUnique(projectId)

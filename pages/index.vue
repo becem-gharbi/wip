@@ -1,11 +1,11 @@
 <template>
   <n-page-header title="Projects">
     <template #avatar>
-      <naive-icon name="ph:stack" size="24" />
+      <img src="/images/project-icon.svg" width="22" alt="project">
     </template>
 
     <template #extra>
-      <n-button text @click="createProject">
+      <n-button quaternary @click="createProject">
         <template #icon>
           <naive-icon name="ph:plus" />
         </template>

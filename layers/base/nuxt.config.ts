@@ -6,6 +6,10 @@ export default defineNuxtConfig({
 
   extends: ['../data', '../kanban', '../team', '../chat'],
 
+  app: {
+    pageTransition: { name: 'page', mode: 'out-in' }
+  },
+
   nitro: {
     modules: [nitroCloudflareBindings],
     experimental: {

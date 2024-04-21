@@ -4,25 +4,30 @@
       <n-input v-model:value="model.name" />
     </n-form-item>
 
-    <div class="flex gap-2">
-      <n-button attr-type="reset" :disabled="pending || !edited" @click="reset">
+    <div v-if="edited" class="flex gap-2">
+      <n-button attr-type="reset" :disabled="pending" @click="reset">
         Reset
       </n-button>
 
-      <n-button attr-type="submit" :loading="pending" :disabled="pending || !edited" type="primary">
+      <n-button attr-type="submit" :loading="pending" :disabled="pending" type="primary">
         Update
-      </n-button>
-
-      <n-button class="ml-auto" attr-type="button" type="error" tertiary @click="deleteAccount">
-        Delete
       </n-button>
     </div>
   </n-form>
+
+  <n-collapse>
+    <n-collapse-item title="Delete account">
+      <p>Once your ccount, there is no going back. Please be certain.</p>
+      <br>
+      <n-button type="error" @click="deleteAccount">
+        Delete account
+      </n-button>
+    </n-collapse-item>
+  </n-collapse>
 </template>
 
 <script setup lang="ts">
 const { user } = useAuthSession()
-const dialog = useDialog()
 
 const model = ref({
   name: user.value!.name,
@@ -50,17 +55,11 @@ async function updateAccount () {
   await useAuth().fetchUser()
 }
 
-function deleteAccount () {
-  dialog.warning({
-    title: 'Delete account',
-    content: 'Do you want to permanently delete your account?',
-    negativeText: 'No',
-    positiveText: 'Yes',
-    onPositiveClick: () =>
-      useNuxtApp().$auth.fetch('/api/user', {
-        method: 'delete',
-        credentials: 'include'
-      }).then(() => location.reload())
+async function deleteAccount () {
+  await useNuxtApp().$auth.fetch('/api/user', {
+    method: 'delete',
+    credentials: 'include'
   })
+  location.reload()
 }
 </script>
