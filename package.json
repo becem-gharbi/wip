@@ -1,9 +1,13 @@
 {
   "name": "wip",
-  "version": "0.0.2",
+  "version": "0.1.0",
   "private": true,
   "repository": "https://github.com/becem-gharbi/wip.git",
-  "homepage": "https://github.com/becem-gharbi/wip",
+  "homepage": "https://wip.bg.tn",
+  "author": {
+    "name": "Becem Gharbi",
+    "email": "becem.gharbi@live.com"
+  },
   "scripts": {
     "build": "nuxt build",
     "dev": "nuxt dev",
