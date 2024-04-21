@@ -5,7 +5,7 @@
     </template>
 
     <template #avatar>
-      <img :src="project.icon || '/images/project-icon.svg'" width="32" alt="project">
+      <img :src="project.icon || '/images/project-icon.svg'" width="22" alt="project">
     </template>
 
     <n-tabs type="line" animated>

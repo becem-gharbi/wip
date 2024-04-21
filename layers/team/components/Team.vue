@@ -3,11 +3,10 @@
     <n-list v-if="team.users.length" hoverable>
       <n-list-item v-for="user of team.users" :key="user.id">
         <div class="flex gap-4">
-          <account-info :user="user" />
+          <account-info class="mr-auto" :user="user" />
 
           <n-button
             v-if="isOwner && user.id !== project.ownerId"
-            class="ml-auto"
             tertiary
             @click="removeUser(user.email)"
           >
@@ -15,11 +14,11 @@
           </n-button>
 
           <n-button
-            v-if="user.id !== project.ownerId"
+            v-if="user.id !== myUserId"
             tertiary
             @click="messageUser(user.id)"
           >
-            Chat
+            <naive-icon name="ph:chat-circle-dots" />
           </n-button>
         </div>
       </n-list-item>
@@ -50,6 +49,8 @@ const team = await useTeam().findUnique(props.teamId)
 const project = await useProject().findUnique(team.value.projectId)
 
 const isOwner = await useTeam().isOwner(team.value)
+
+const myUserId = useAuthSession().user.value!.id
 
 async function removeUser (email: string) {
   await useTeam().removeUser(props.teamId, { email })

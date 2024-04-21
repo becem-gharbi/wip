@@ -1,7 +1,7 @@
 <template>
   <n-page-header title="Projects">
     <template #avatar>
-      <naive-icon name="ph:stack" size="24" />
+      <img src="/images/project-icon.svg" width="22" alt="project">
     </template>
 
     <template #extra>

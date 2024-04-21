@@ -1,12 +1,12 @@
 <template>
   <n-card class="cursor-pointer h-full" hoverable size="small">
     <template #header>
-      <n-thing :title="project.name" description="3 days ago">
+      <n-thing :title="project.name">
         <template #avatar>
           <img
             :src="project.icon || '/images/project-icon.svg'"
-            width="32"
-            alt="project_icon"
+            width="22"
+            alt="project"
           >
         </template>
 
