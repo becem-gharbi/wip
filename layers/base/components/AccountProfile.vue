@@ -14,6 +14,16 @@
       </n-button>
     </div>
   </n-form>
+
+  <n-collapse>
+    <n-collapse-item title="Delete account">
+      <p>Once your ccount, there is no going back. Please be certain.</p>
+      <br>
+      <n-button type="error" @click="deleteAccount">
+        Delete account
+      </n-button>
+    </n-collapse-item>
+  </n-collapse>
 </template>
 
 <script setup lang="ts">
@@ -43,5 +53,13 @@ async function updateAccount () {
   })
 
   await useAuth().fetchUser()
+}
+
+async function deleteAccount () {
+  await useNuxtApp().$auth.fetch('/api/user', {
+    method: 'delete',
+    credentials: 'include'
+  })
+  location.reload()
 }
 </script>
