@@ -5,7 +5,7 @@
     </template>
 
     <template #avatar>
-      <img :src="project.icon || '/images/project-icon.svg'" width="32" alt="project_icon">
+      <img :src="project.icon || '/images/project-icon.svg'" width="32" alt="project">
     </template>
 
     <n-tabs type="line" animated>
@@ -37,7 +37,6 @@
 </template>
 
 <script setup lang="ts">
-
 const projectId = useRoute().params.id as string
 
 const project = await useProject().findUnique(projectId)
