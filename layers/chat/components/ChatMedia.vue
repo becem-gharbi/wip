@@ -1,7 +1,7 @@
 <template>
   <div class="flex items-center justify-center">
     <div class="rounded overflow-hidden">
-      <video v-show="streaming" ref="rmVideoRef" autoplay muted height="400" />
+      <video v-show="streaming" ref="rmVideoRef" autoplay height="600" />
     </div>
     <n-button v-if="calling" block type="success" @click="answer">
       Answer
@@ -33,9 +33,15 @@ const streaming = ref(false)
 async function call () {
   lcMediaStream = await navigator.mediaDevices.getUserMedia({
     video: {
-      facingMode: 'user'
+      facingMode: 'user',
+      height: {
+        max: 600
+      }
     },
-    audio: true
+    audio: {
+      echoCancellation: true,
+      noiseSuppression: true
+    }
   })
 
   const call = props.peer.call(props.userId, lcMediaStream)
@@ -54,9 +60,15 @@ async function answer () {
   calling.value = false
   lcMediaStream = await navigator.mediaDevices.getUserMedia({
     video: {
-      facingMode: 'user'
+      facingMode: 'user',
+      height: {
+        max: 600
+      }
     },
-    audio: true
+    audio: {
+      echoCancellation: true,
+      noiseSuppression: true
+    }
   })
   rmMediaConnection?.answer(lcMediaStream)
 }
