@@ -16,7 +16,7 @@
       </n-button>
     </template>
 
-    <n-scrollbar class="h-80 pr-4">
+    <div class="h-80 pr-4 overflow-auto scroller">
       <draggable :list="list" group="kanban" item-key="id" @change="onReoder">
         <template #item="{ element }">
           <kanban-issue
@@ -26,7 +26,7 @@
           />
         </template>
       </draggable>
-    </n-scrollbar>
+    </div>
 
     <kanban-issue-modal
       v-model:show="showIssueModal"
@@ -75,3 +75,13 @@ async function onReoder (c: any) {
   }
 }
 </script>
+
+<style>
+.scroller::-webkit-scrollbar {
+    display: none;
+}
+.scroller {
+    -ms-overflow-style: none;
+     scrollbar-width: none;
+}
+</style>

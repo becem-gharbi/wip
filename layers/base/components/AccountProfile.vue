@@ -17,7 +17,7 @@
 
   <n-collapse>
     <n-collapse-item title="Delete account">
-      <p>Once your ccount, there is no going back. Please be certain.</p>
+      <p>Once your account, there is no going back. Please be certain.</p>
       <br>
       <n-button type="error" @click="deleteAccount">
         Delete account
