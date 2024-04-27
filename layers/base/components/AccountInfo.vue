@@ -3,12 +3,12 @@
     <img :src="user.picture " class="w-9 h-9 object-cover rounded" alt="avatar">
 
     <div class="flex flex-col text-sm">
-      <NText strong>
+      <n-text strong>
         {{ user.name }}
-      </NText>
-      <NText :depth="3">
+      </n-text>
+      <n-text :depth="3">
         {{ user.email }}
-      </NText>
+      </n-text>
     </div>
   </div>
 </template>
