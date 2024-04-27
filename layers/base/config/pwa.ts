@@ -1,14 +1,8 @@
 import type { ModuleOptions } from '@vite-pwa/nuxt'
 
-const scope = '/'
-
 export const pwa: ModuleOptions = {
   registerType: 'autoUpdate',
-  scope,
-  base: scope,
   manifest: {
-    id: scope,
-    scope,
     name: 'Work in progress',
     short_name: 'WIP',
     description: 'A platform to share work progress',
@@ -33,15 +27,15 @@ export const pwa: ModuleOptions = {
     ]
   },
   workbox: {
-    globPatterns: ['**/*.{js,css,html,txt,png,ico,svg}'],
-    navigateFallbackDenylist: [/^\/api\//],
-    navigateFallback: '/',
-    cleanupOutdatedCaches: true
+    navigateFallback: null,
+    globPatterns: ['**/*.{js,css,html,png,svg,ico}']
+  },
+  client: {
+    installPrompt: true
   },
   registerWebManifestInRouteRules: true,
   writePlugin: true,
   devOptions: {
-    enabled: process.env.VITE_PLUGIN_PWA === 'true',
-    navigateFallback: scope
+    enabled: process.env.VITE_PLUGIN_PWA === 'true'
   }
 }
