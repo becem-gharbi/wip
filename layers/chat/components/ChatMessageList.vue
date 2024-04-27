@@ -19,9 +19,11 @@ const scrollbarRef = ref<ScrollbarInst>()
 
 // NOTE: need to always re-fetch messages
 const messages = await useChat().findMany({
-  teamId: props.teamId,
-  userId: props.userId,
-  timestamp: new Date().getTime()
+  refetch: true,
+  query: {
+    teamId: props.teamId,
+    userId: props.userId
+  }
 })
 
 const teamMessages = computed(() => messages.value.filter(m => m.teamId === props.teamId))

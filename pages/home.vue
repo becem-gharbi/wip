@@ -13,13 +13,11 @@
       </n-button>
     </template>
 
-    <project-list :projects="projects" />
+    <project-list />
   </n-page-header>
 </template>
 
 <script setup lang="ts">
-const projects = await useProject().findMany()
-
 async function createProject () {
   const project = await useProject().create()
   return navigateTo(`/projects/${project.id}`)
