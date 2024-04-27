@@ -1,7 +1,15 @@
+import { z } from 'zod'
+
 export default defineEventHandler((event) => {
   const { userId } = checkAuth(event)
 
   const query = getQuery<{ projectId: string }>(event)
+
+  const schema = z.object({
+    projectId: z.string().min(1)
+  })
+
+  schema.parse(query)
 
   return event.context.prisma.issue.findMany({
     where: {

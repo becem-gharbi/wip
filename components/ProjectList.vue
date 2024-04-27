@@ -17,5 +17,5 @@
 </template>
 
 <script setup lang="ts">
-defineProps<{ projects: Project[] }>()
+const projects = await useProject().findMany()
 </script>

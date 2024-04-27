@@ -4,10 +4,10 @@ export type Team = Awaited<ReturnType<typeof f>>
 export function useTeam () {
   const _fetch = useNuxtApp().$auth.fetch
 
-  const { _useState, findUnique } = useEntity<Team>('teams', _fetch)
+  const { useItem, findUnique } = useEntity<Team>('teams', _fetch)
 
   async function addUser (id: Team['id'], data: { email: string }) {
-    const userIndex = _useState(id).value.users.findIndex(u => u.email === data.email)
+    const userIndex = useItem(id).value.users.findIndex(u => u.email === data.email)
 
     if (userIndex >= 0) { return }
 
@@ -17,12 +17,12 @@ export function useTeam () {
     }).catch(() => ({ users: [] }))
 
     if (res.users.length) {
-      _useState(id).value.users.push(res.users[0])
+      useItem(id).value.users.push(res.users[0])
     }
   }
 
   async function removeUser (id: Team['id'], data: { email: string }) {
-    const userIndex = _useState(id).value.users.findIndex(u => u.email === data.email)
+    const userIndex = useItem(id).value.users.findIndex(u => u.email === data.email)
 
     if (userIndex < 0) { return }
 
@@ -31,7 +31,7 @@ export function useTeam () {
       body: data
     })
 
-    _useState(id).value.users.splice(userIndex, 1)
+    useItem(id).value.users.splice(userIndex, 1)
   }
 
   async function isOwner (team: Team | Team['id']) {

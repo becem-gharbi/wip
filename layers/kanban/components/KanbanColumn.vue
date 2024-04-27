@@ -57,7 +57,7 @@ const issueStatus: Array<{ title: string, icon: string }> = [
   { title: 'Done', icon: 'ph:check' }
 ]
 
-const issues = await useIssue().findMany({ projectId: props.projectId })
+const issues = await useIssue().findMany({ query: { projectId: props.projectId } })
 
 const list = computed(() => issues.value
   .filter(i => i.projectId === props.projectId)

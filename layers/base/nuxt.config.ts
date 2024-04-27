@@ -1,5 +1,5 @@
 import nitroCloudflareBindings from 'nitro-cloudflare-dev'
-import { auth, naiveui, tailwindcss } from './config'
+import { auth, naiveui, tailwindcss, pwa } from './config'
 
 export default defineNuxtConfig({
   ssr: false,
@@ -21,10 +21,12 @@ export default defineNuxtConfig({
   modules: [
     '@bg-dev/nuxt-auth',
     '@bg-dev/nuxt-naiveui',
-    '@nuxtjs/tailwindcss'
+    '@nuxtjs/tailwindcss',
+    '@vite-pwa/nuxt'
   ],
 
   auth,
   naiveui,
-  tailwindcss
+  tailwindcss,
+  pwa
 })
