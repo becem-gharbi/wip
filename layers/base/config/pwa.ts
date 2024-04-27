@@ -7,6 +7,7 @@ export const pwa: ModuleOptions = {
     short_name: 'WIP',
     description: 'A platform to share work progress',
     theme_color: '#ffffff',
+    background_color: '#FFFFFF',
     icons: [
       {
         src: 'pwa-192x192.png',
@@ -34,8 +35,10 @@ export const pwa: ModuleOptions = {
     installPrompt: true
   },
   registerWebManifestInRouteRules: true,
-  writePlugin: true,
   devOptions: {
-    enabled: process.env.VITE_PLUGIN_PWA === 'true'
+    enabled: process.env.VITE_PLUGIN_PWA === 'true',
+    suppressWarnings: true,
+    navigateFallbackAllowlist: [/^\/$/],
+    type: 'module'
   }
 }
