@@ -1,6 +1,28 @@
 # Changelog
 
 
+## v0.1.2
+
+[compare changes](https://github.com/becem-gharbi/wip/compare/v0.1.1...v0.1.2)
+
+### 🚀 Enhancements
+
+- PWA support ([#5](https://github.com/becem-gharbi/wip/pull/5))
+
+### 🩹 Fixes
+
+- Add server-side input validation ([84bf162](https://github.com/becem-gharbi/wip/commit/84bf162))
+- Add cors origin policy ([dc0551f](https://github.com/becem-gharbi/wip/commit/dc0551f))
+
+### 💅 Refactors
+
+- Switch routes of home and index pages ([776ab88](https://github.com/becem-gharbi/wip/commit/776ab88))
+
+### ❤️ Contributors
+
+- Becem-gharbi <becem.gharbi@live.com>
+- Becem <becem.gharbi@live.com>
+
 ## v0.1.1
 
 [compare changes](https://github.com/becem-gharbi/wip/compare/v0.0.2...v0.1.1)
