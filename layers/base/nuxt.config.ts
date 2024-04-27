@@ -4,6 +4,10 @@ import { auth, naiveui, tailwindcss, pwa } from './config'
 export default defineNuxtConfig({
   ssr: false,
 
+  experimental: {
+    typedPages: true
+  },
+
   extends: ['../data', '../kanban', '../team', '../chat'],
 
   app: {

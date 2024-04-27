@@ -23,9 +23,6 @@ export default defineAppConfig({
           primaryColor: '#3b82f6',
           primaryColorHover: '#60a5fa',
           primaryColorPressed: '#4b5563'
-        },
-        Tabs: {
-          tabColorSegment: '#232326'
         }
       }
     }
