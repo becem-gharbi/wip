@@ -27,9 +27,9 @@ export const auth: Partial<ModuleOptions> = {
   },
 
   redirect: {
-    login: '/auth/login',
+    login: '/home',
     logout: '/auth/login',
-    home: '/home',
+    home: '/',
     callback: '/auth/callback',
     emailVerify: '/auth/verify-email',
     passwordReset: '/auth/reset-password'

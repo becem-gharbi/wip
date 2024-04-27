@@ -1,6 +1,6 @@
 <template>
   <div class="page justify-center items-center p-7">
-    <NuxtLink to="/" class="mr-auto sm:mr-0">
+    <NuxtLink to="/home" class="mr-auto sm:mr-0">
       <basic-logo class="text-lg" />
     </NuxtLink>
 
