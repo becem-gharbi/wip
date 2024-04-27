@@ -1,11 +1,11 @@
 <template>
-  <NaiveConfig>
-    <VitePwaManifest />
-    <NuxtLoadingIndicator color="#2563eb" :height="3" />
-    <NuxtLayout>
-      <NuxtPage />
-    </NuxtLayout>
-  </NaiveConfig>
+  <naive-config>
+    <vite-pwa-manifest />
+    <nuxt-loading-indicator color="#2563eb" :height="3" />
+    <nuxt-layout>
+      <nuxt-page />
+    </nuxt-layout>
+  </naive-config>
 </template>
 
 <style>
