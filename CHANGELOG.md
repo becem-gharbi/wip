@@ -1,6 +1,27 @@
 # Changelog
 
 
+## v0.1.3
+
+[compare changes](https://github.com/becem-gharbi/wip/compare/v0.1.2...v0.1.3)
+
+### 🚀 Enhancements
+
+- **chat:** Use `nuxt-peerjs` module ([4c7ec12](https://github.com/becem-gharbi/wip/commit/4c7ec12))
+
+### 💅 Refactors
+
+- Change font family to Rubik ([9db2e7f](https://github.com/becem-gharbi/wip/commit/9db2e7f))
+- Optimize landing page ([28a6059](https://github.com/becem-gharbi/wip/commit/28a6059))
+
+### 🏡 Chore
+
+- Update nuxt-naiveui to 1.13.1 ([d542486](https://github.com/becem-gharbi/wip/commit/d542486))
+
+### ❤️ Contributors
+
+- Becem-gharbi <becem.gharbi@live.com>
+
 ## v0.1.2
 
 [compare changes](https://github.com/becem-gharbi/wip/compare/v0.1.1...v0.1.2)
