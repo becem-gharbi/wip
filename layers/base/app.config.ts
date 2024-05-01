@@ -3,6 +3,7 @@ export default defineAppConfig({
     themeConfig: {
       shared: {
         common: {
+          fontFamily: 'Rubik',
           borderRadius: '4px'
         },
         Result: {
