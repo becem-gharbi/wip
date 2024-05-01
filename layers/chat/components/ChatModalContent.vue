@@ -8,7 +8,7 @@
 
     <n-tabs type="segment" size="small">
       <n-tab-pane name="Media">
-        <chat-media class="mt-2" :user-id="userId" :peer="peer" />
+        <chat-media class="mt-2" :user-id="userId" />
       </n-tab-pane>
       <n-tab-pane name="Text">
         <chat-message-list class="mt-2 mb-4" :team-id="teamId" :user-id="userId" />
@@ -22,9 +22,9 @@
 const props = defineProps<{ teamId: Team['id']; userId: string }>()
 defineEmits(['hide'])
 
-const myId = useAuthSession().user.value!.id
+const { send, dataReceived, connect } = usePeerjsData(props.teamId)
 
-const { sendData, dataReceived, peer } = useChatPeer(myId, props.userId)
+connect(props.userId)
 
 watch(dataReceived, (message: Message) => {
   useChat().pushMessage(message)
@@ -36,6 +36,6 @@ async function sendMessage (content: string) {
     content
   })
 
-  sendData(message)
+  await send(message)
 }
 </script>

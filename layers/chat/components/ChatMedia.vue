@@ -1,15 +1,24 @@
 <template>
-  <div class="flex items-center justify-center">
+  <div class="flex flex-col gap-4">
     <div class="rounded overflow-hidden">
-      <video v-show="streaming" ref="rmVideoRef" autoplay />
+      <video v-show="streaming" id="stream" autoplay width="100%" />
     </div>
-    <n-button v-if="calling" block type="success" @click="answer">
+
+    <n-button v-if="calling || streaming" type="error" @click="end()">
+      Hang
+      <template #icon>
+        <naive-icon name="ph:phone-disconnect" />
+      </template>
+    </n-button>
+
+    <n-button v-if="calling && !isCaller" type="success" @click="answer()">
       Answer
       <template #icon>
         <naive-icon name="ph:phone-incoming" />
       </template>
     </n-button>
-    <n-button v-else-if="!streaming" block type="primary" @click="call">
+
+    <n-button v-if="!streaming && !calling" type="primary" @click="handleCall()">
       Call
       <template #icon>
         <naive-icon name="ph:phone-outgoing" />
@@ -19,80 +28,20 @@
 </template>
 
 <script setup lang="ts">
-import type { Peer, MediaConnection } from 'peerjs'
+const props = defineProps<{ userId: string }>()
 
-const props = defineProps<{ peer: Peer; userId: string }>()
+const { answer, call, calling, streaming, end } = usePeerjsMedia('stream')
 
-let rmMediaConnection: MediaConnection | null = null
-let lcMediaStream: MediaStream | null = null
+const isCaller = ref(false)
 
-const rmVideoRef = ref<HTMLVideoElement>()
-const calling = ref(false)
-const streaming = ref(false)
-
-async function call () {
-  lcMediaStream = await navigator.mediaDevices.getUserMedia({
-    video: {
-      facingMode: 'user',
-      width: {
-        ideal: window.innerWidth
-      }
-    },
-    audio: {
-      echoCancellation: true,
-      noiseSuppression: true
-    }
-  })
-
-  const call = props.peer.call(props.userId, lcMediaStream)
-
-  call.on('stream', (stream) => {
-    streaming.value = true
-    rmVideoRef.value!.srcObject = stream
-  })
-
-  call.on('close', () => {
-    streaming.value = false
-  })
+function handleCall () {
+  isCaller.value = true
+  call(props.userId)
 }
 
-async function answer () {
-  calling.value = false
-  lcMediaStream = await navigator.mediaDevices.getUserMedia({
-    video: {
-      facingMode: 'user',
-      width: {
-        ideal: window.innerWidth
-      }
-    },
-    audio: {
-      echoCancellation: true,
-      noiseSuppression: true
-    }
-  })
-  rmMediaConnection?.answer(lcMediaStream)
-}
-
-props.peer.on('call', function (call) {
-  // TODO: play ringtone when calling
-  calling.value = true
-  rmMediaConnection = call
-
-  call.on('stream', (stream) => {
-    streaming.value = true
-    rmVideoRef.value!.srcObject = stream
-  })
-
-  call.on('close', () => {
-    streaming.value = false
-  })
-})
-
-onUnmounted(() => {
-  lcMediaStream?.getTracks().forEach((track) => {
-    if (track.readyState === 'live') {
-      track.stop()
-    }
-  })
+watch(calling, (value) => {
+  if (!value) {
+    isCaller.value = false
+  }
 })
 </script>
