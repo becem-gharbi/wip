@@ -18,63 +18,13 @@
       </div>
 
       <div class="grid grid-cols-1 mt-10 text-center sm:mt-16 sm:grid-cols-2 sm:gap-x-12 gap-y-12 md:grid-cols-3 md:gap-0 xl:mt-24">
-        <div class="md:p-8 lg:p-14">
-          <img src="/images/kanban-icon.svg" alt="kanban" width="64" class="mx-auto">
-          <h3 class="mt-12 text-xl font-bold text-gray-900 font-pj">
-            Kanban
+        <div v-for="feat of features" :key="feat.name" class="md:p-8 lg:p-14">
+          <img :src="feat.image" :alt="feat.name" width="64" height="56" class="mx-auto">
+          <h3 class="mt-5 text-xl font-bold text-gray-900 font-pj">
+            {{ feat.name }}
           </h3>
           <p class="mt-5 text-base text-gray-600 font-pj">
-            Create and organize tasks by status
-          </p>
-        </div>
-
-        <div class="md:p-8 lg:p-14">
-          <img src="/images/team-icon.svg" alt="team" width="64" class="mx-auto">
-          <h3 class="mt-12 text-xl font-bold text-gray-900 font-pj">
-            Team
-          </h3>
-          <p class="mt-5 text-base text-gray-600 font-pj">
-            Add team members and share work progress
-          </p>
-        </div>
-
-        <div class="md:p-8 lg:p-14">
-          <img src="/images/chat-icon.svg" alt="chat" width="64" class="mx-auto">
-          <h3 class="mt-12 text-xl font-bold text-gray-900 font-pj">
-            Realtime chat
-          </h3>
-          <p class="mt-5 text-base text-gray-600 font-pj">
-            Text and media messaging with team members
-          </p>
-        </div>
-
-        <div class="md:p-8 lg:p-14">
-          <img src="/images/open-source-icon.svg" alt="open-source" width="64" class="mx-auto">
-          <h3 class="mt-12 text-xl font-bold text-gray-900 font-pj">
-            Open source
-          </h3>
-          <p class="mt-5 text-base text-gray-600 font-pj">
-            Find it on <a target="_blank" href="https://github.com/becem-gharbi/wip" class="underline">GitHub</a>
-          </p>
-        </div>
-
-        <div class="md:p-8 lg:p-14">
-          <img src="/images/serverless-icon.svg" alt="serverless" width="64" class="mx-auto">
-          <h3 class="mt-12 text-xl font-bold text-gray-900 font-pj">
-            Serverless
-          </h3>
-          <p class="mt-5 text-base text-gray-600 font-pj">
-            Deploy on Cloudflare
-          </p>
-        </div>
-
-        <div class="md:p-8 lg:p-14">
-          <img src="/images/extendable-icon.svg" alt="serverless" width="64" class="mx-auto">
-          <h3 class="mt-12 text-xl font-bold text-gray-900 font-pj">
-            Modular
-          </h3>
-          <p class="mt-5 text-base text-gray-600 font-pj">
-            Easily extendable
+            {{ feat.description }}
           </p>
         </div>
       </div>
@@ -89,4 +39,28 @@ definePageMeta({
   auth: false,
   layout: false
 })
+
+interface Feature {
+  name: string;
+  description: string;
+  image: string;
+}
+
+const features: Feature[] = [
+  {
+    name: 'Kanban',
+    description: 'Create and organize tasks by status',
+    image: '/images/kanban-icon.svg'
+  },
+  {
+    name: 'Team',
+    description: 'Add team members and share work progress',
+    image: '/images/team-icon.svg'
+  },
+  {
+    name: 'Realtime chat',
+    description: 'Text and media messaging with team members',
+    image: '/images/chat-icon.svg'
+  }
+]
 </script>
