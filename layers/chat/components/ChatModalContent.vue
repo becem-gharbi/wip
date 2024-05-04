@@ -22,13 +22,9 @@
 const props = defineProps<{ teamId: Team['id']; userId: string }>()
 defineEmits(['hide'])
 
-const { send, dataReceived, connect } = usePeerjsData(props.teamId)
+const { $peerjs } = useNuxtApp()
 
-connect(props.userId)
-
-watch(dataReceived, (message: Message) => {
-  useChat().pushMessage(message)
-})
+const peerData = $peerjs.addPeerData(props.userId)
 
 async function sendMessage (content: string) {
   const message = await useChat().create({
@@ -36,6 +32,6 @@ async function sendMessage (content: string) {
     content
   })
 
-  await send(message)
+  await peerData.sendData(message)
 }
 </script>

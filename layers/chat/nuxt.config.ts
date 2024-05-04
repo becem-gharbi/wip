@@ -1,3 +1,17 @@
 export default defineNuxtConfig({
-  modules: ['@bg-dev/nuxt-peerjs']
+  runtimeConfig: {
+    public: {
+      peerjs: {
+        host: '0.peerjs.com',
+        path: '/',
+        port: 443,
+        rmVideoElId: 'peerjs-rm-video'
+      }
+    }
+  },
+  vite: {
+    optimizeDeps: {
+      include: ['sdp']
+    }
+  }
 })
