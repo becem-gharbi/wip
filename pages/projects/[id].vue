@@ -37,7 +37,7 @@
 </template>
 
 <script setup lang="ts">
-const projectId = useRoute().params.id as string
+const { id: projectId } = useRoute().params as {id:string}
 
 const project = await useProject().findUnique(projectId)
   .catch(async () => {
