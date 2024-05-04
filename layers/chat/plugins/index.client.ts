@@ -1,14 +1,27 @@
+import { SimplePeer } from '@bg-dev/simpler-peerjs'
+
 export default defineNuxtPlugin({
-  dependsOn: ['peerjs:init'],
   enforce: 'pre',
-  hooks: {
-    'auth:loggedIn': (loggedIn) => {
-      const { $peerjs } = useNuxtApp()
+
+  setup (nuxtApp) {
+    const peerjs = new SimplePeer(nuxtApp.$config.public.peerjs)
+
+    nuxtApp.hook('auth:loggedIn', (loggedIn) => {
       if (loggedIn) {
-        const { user } = useAuthSession()
-        $peerjs.init(user.value!.id)
+        const userId = useAuthSession().user.value!.id
+        peerjs.init(userId)
       } else {
-        $peerjs.end()
+        peerjs.end()
+      }
+    })
+
+    peerjs.hooks.hook('data:received', (_, data) => {
+      useChat().pushMessage(data as Message)
+    })
+
+    return {
+      provide: {
+        peerjs
       }
     }
   }

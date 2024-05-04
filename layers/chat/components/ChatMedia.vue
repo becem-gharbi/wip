@@ -1,24 +1,24 @@
 <template>
   <div class="flex flex-col gap-4">
     <div class="rounded overflow-hidden">
-      <video v-show="streaming" id="stream" autoplay width="100%" />
+      <video v-show="status === 'active'" id="peerjs-rm-video" autoplay width="100%" />
     </div>
 
-    <n-button v-if="calling || streaming" type="error" @click="end()">
+    <n-button v-if="status !== 'inactive'" type="error" @click="$peerjs.peerMedia?.endCall()">
       Hang
       <template #icon>
         <naive-icon name="ph:phone-disconnect" />
       </template>
     </n-button>
 
-    <n-button v-if="calling && !isCaller" type="success" @click="answer()">
+    <n-button v-if="status === 'calling'" type="success" @click="$peerjs.peerMedia?.acceptCall()">
       Answer
       <template #icon>
         <naive-icon name="ph:phone-incoming" />
       </template>
     </n-button>
 
-    <n-button v-if="!streaming && !calling" type="primary" @click="handleCall()">
+    <n-button v-if="status === 'inactive'" type="primary" @click="$peerjs.peerMedia?.startCall(userId)">
       Call
       <template #icon>
         <naive-icon name="ph:phone-outgoing" />
@@ -28,20 +28,13 @@
 </template>
 
 <script setup lang="ts">
-const props = defineProps<{ userId: string }>()
+defineProps<{ userId: string }>()
 
-const { answer, call, calling, streaming, end } = usePeerjsMedia('stream')
+const { $peerjs } = useNuxtApp()
 
-const isCaller = ref(false)
+const status = ref($peerjs.peerMedia!.status)
 
-function handleCall () {
-  isCaller.value = true
-  call(props.userId)
-}
-
-watch(calling, (value) => {
-  if (!value) {
-    isCaller.value = false
-  }
+$peerjs.hooks.hook('media:status', (_status) => {
+  status.value = _status
 })
 </script>

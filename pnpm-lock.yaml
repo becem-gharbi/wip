@@ -5,6 +5,9 @@ settings:
   excludeLinksFromLockfile: false
 
 dependencies:
+  '@bg-dev/simpler-peerjs':
+    specifier: ^0.1.2
+    version: 0.1.2
   '@prisma/adapter-d1':
     specifier: ^5.12.1
     version: 5.12.1
@@ -28,9 +31,6 @@ devDependencies:
   '@bg-dev/nuxt-naiveui':
     specifier: 1.13.1
     version: 1.13.1(rollup@2.79.1)(vue@3.4.21)
-  '@bg-dev/nuxt-peerjs':
-    specifier: ^0.0.4
-    version: 0.0.4(rollup@2.79.1)
   '@nuxt/devtools':
     specifier: ^1.1.5
     version: 1.1.5(@unocss/reset@0.58.7)(floating-vue@5.2.2)(nuxt@3.11.1)(rollup@2.79.1)(unocss@0.58.7)(vite@5.2.6)(vue@3.4.21)
@@ -1522,23 +1522,20 @@ packages:
       - vue
     dev: true
 
-  /@bg-dev/nuxt-peerjs@0.0.4(rollup@2.79.1):
-    resolution: {integrity: sha512-Z3tvHnMGzhgIP6JAS0ismbm4wpgihDnOJaGPvpaXo5jRsxPe/YRQyAAzP2P16kQO7lOuOoVEwkVc4fAg4q2M2g==}
+  /@bg-dev/simpler-peerjs@0.1.2:
+    resolution: {integrity: sha512-po6h5OAGTmQu8TF/nWk0ztUt+ESLf/zVXCxBMzvfjQF9bpJdWmAxtpHTJcWHt2+mIy55nZ6ScY6K6t/fshTUGg==}
     dependencies:
-      '@nuxt/kit': 3.11.2(rollup@2.79.1)
       defu: 6.1.4
+      hookable: 5.5.3
       peerjs: 1.5.2
-    transitivePeerDependencies:
-      - rollup
-      - supports-color
-    dev: true
+    dev: false
 
   /@cbor-extract/cbor-extract-darwin-arm64@2.2.0:
     resolution: {integrity: sha512-P7swiOAdF7aSi0H+tHtHtr6zrpF3aAq/W9FXx5HektRvLTM2O89xCyXF3pk7pLc7QpaY7AoaE8UowVf9QBdh3w==}
     cpu: [arm64]
     os: [darwin]
     requiresBuild: true
-    dev: true
+    dev: false
     optional: true
 
   /@cbor-extract/cbor-extract-darwin-x64@2.2.0:
@@ -1546,7 +1543,7 @@ packages:
     cpu: [x64]
     os: [darwin]
     requiresBuild: true
-    dev: true
+    dev: false
     optional: true
 
   /@cbor-extract/cbor-extract-linux-arm64@2.2.0:
@@ -1554,7 +1551,7 @@ packages:
     cpu: [arm64]
     os: [linux]
     requiresBuild: true
-    dev: true
+    dev: false
     optional: true
 
   /@cbor-extract/cbor-extract-linux-arm@2.2.0:
@@ -1562,7 +1559,7 @@ packages:
     cpu: [arm]
     os: [linux]
     requiresBuild: true
-    dev: true
+    dev: false
     optional: true
 
   /@cbor-extract/cbor-extract-linux-x64@2.2.0:
@@ -1570,7 +1567,7 @@ packages:
     cpu: [x64]
     os: [linux]
     requiresBuild: true
-    dev: true
+    dev: false
     optional: true
 
   /@cbor-extract/cbor-extract-win32-x64@2.2.0:
@@ -1578,7 +1575,7 @@ packages:
     cpu: [x64]
     os: [win32]
     requiresBuild: true
-    dev: true
+    dev: false
     optional: true
 
   /@cloudflare/kv-asset-handler@0.3.1:
@@ -2329,7 +2326,7 @@ packages:
   /@msgpack/msgpack@2.8.0:
     resolution: {integrity: sha512-h9u4u/jiIRKbq25PM+zymTyW6bhTzELvOoUd+AvYriWOAKpLGnIamaET3pnHYoI5iYphAHBI4ayx0MehR+VVPQ==}
     engines: {node: '>= 10'}
-    dev: true
+    dev: false
 
   /@netlify/functions@2.6.0:
     resolution: {integrity: sha512-vU20tij0fb4nRGACqb+5SQvKd50JYyTyEhQetCMHdakcJFzjLDivvRR16u1G2Oy4A7xNAtGJF1uz8reeOtTVcQ==}
@@ -5002,14 +4999,14 @@ packages:
       '@cbor-extract/cbor-extract-linux-arm64': 2.2.0
       '@cbor-extract/cbor-extract-linux-x64': 2.2.0
       '@cbor-extract/cbor-extract-win32-x64': 2.2.0
-    dev: true
+    dev: false
     optional: true
 
   /cbor-x@1.5.4:
     resolution: {integrity: sha512-PVKILDn+Rf6MRhhcyzGXi5eizn1i0i3F8Fe6UMMxXBnWkalq9+C5+VTmlIjAYM4iF2IYF2N+zToqAfYOp+3rfw==}
     optionalDependencies:
       cbor-extract: 2.2.0
-    dev: true
+    dev: false
 
   /chalk@2.4.2:
     resolution: {integrity: sha512-Mti+f9lpJNcwF4tWV8/OrTTtF1gZi+f8FqlyAdouralcFWFQWF2+NgCHShjkCb+IFBLq9buZwE1xckQU4peSuQ==}
@@ -5667,7 +5664,6 @@ packages:
   /detect-libc@2.0.3:
     resolution: {integrity: sha512-bwy0MGW55bG41VqxxypOsdSdGqLwXPI/focwgTYCFMbdUiBAxLg9CFzG08sz2aqzknwiX7Hkl0bQENjg8iLByw==}
     engines: {node: '>=8'}
-    dev: true
 
   /devalue@4.3.2:
     resolution: {integrity: sha512-KqFl6pOgOW+Y6wJgu80rHpo2/3H07vr8ntR9rkkFIRETewbf5GaYYcakYfiKz89K+sLsuPkQIZaXDMjUObZwWg==}
@@ -6355,7 +6351,7 @@ packages:
 
   /eventemitter3@4.0.7:
     resolution: {integrity: sha512-8guHBZCwKnFhYdHr2ysuRWErTwhoN2X8XELRlrRwpmfeY2jjuUN4taQMsULKUVo1K4DvZl+0pgfyoysHxvmvEw==}
-    dev: true
+    dev: false
 
   /events@3.3.0:
     resolution: {integrity: sha512-mQw+2fkQbALzQ7V0MY0IqdnXNOeTtP4r0lN9z7AAawCXgqea7bDii20AYrIBrFd/Hx0M2Ocz6S111CaFkUcb0Q==}
@@ -8329,7 +8325,7 @@ packages:
     requiresBuild: true
     dependencies:
       detect-libc: 2.0.3
-    dev: true
+    dev: false
     optional: true
 
   /node-gyp-build@4.8.0:
@@ -8977,7 +8973,7 @@ packages:
   /peerjs-js-binarypack@2.1.0:
     resolution: {integrity: sha512-YIwCC+pTzp3Bi8jPI9UFKO0t0SLo6xALnHkiNt/iUFmUUZG0fEEmEyFKvjsDKweiFitzHRyhuh6NvyJZ4nNxMg==}
     engines: {node: '>= 14.0.0'}
-    dev: true
+    dev: false
 
   /peerjs@1.5.2:
     resolution: {integrity: sha512-pPrtNwPyWJHRPxy2y+rHcdlrG8UwUBB1nl+3Yj6r7FLwcbBpcB2NvGNvLvcrxAVGGGX9fsdA5VT5zBKTZcm1DQ==}
@@ -8988,7 +8984,7 @@ packages:
       eventemitter3: 4.0.7
       peerjs-js-binarypack: 2.1.0
       webrtc-adapter: 8.2.3
-    dev: true
+    dev: false
 
   /perfect-debounce@1.0.0:
     resolution: {integrity: sha512-xCy9V055GLEqoFaHoC1SoLIaLmWctgCUaBaWxDZ7/Zx4CTyX7cJQLJOok/orfjZAh9kEYpjJa4d0KcJmCbctZA==}
@@ -9914,7 +9910,7 @@ packages:
 
   /sdp@3.2.0:
     resolution: {integrity: sha512-d7wDPgDV3DDiqulJjKiV2865wKsJ34YI+NDREbm+FySq6WuKOikwyNQcm+doLAZ1O6ltdO0SeKle2xMpN3Brgw==}
-    dev: true
+    dev: false
 
   /seemly@0.3.8:
     resolution: {integrity: sha512-MW8Qs6vbzo0pHmDpFSYPna+lwpZ6Zk1ancbajw/7E8TKtHdV+1DfZZD+kKJEhG/cAoB/i+LiT+5msZOqj0DwRA==}
@@ -11526,7 +11522,7 @@ packages:
     engines: {node: '>=6.0.0', npm: '>=3.10.0'}
     dependencies:
       sdp: 3.2.0
-    dev: true
+    dev: false
 
   /whatwg-url@5.0.0:
     resolution: {integrity: sha512-saE57nupxk6v3HY35+jzBwYa0rKSy0XR8JSxZPwgLr7ys0IBzhGviA1/TUGJLmSVqs8pb9AnvICXEuOHLprYTw==}
