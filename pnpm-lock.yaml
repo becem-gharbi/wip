@@ -5,9 +5,9 @@ settings:
   excludeLinksFromLockfile: false
 
 dependencies:
-  '@bg-dev/simpler-peerjs':
-    specifier: ^0.1.2
-    version: 0.1.2
+  '@bg-dev/simple-peerjs':
+    specifier: ^0.2.0
+    version: 0.2.0
   '@prisma/adapter-d1':
     specifier: ^5.12.1
     version: 5.12.1
@@ -1522,8 +1522,8 @@ packages:
       - vue
     dev: true
 
-  /@bg-dev/simpler-peerjs@0.1.2:
-    resolution: {integrity: sha512-po6h5OAGTmQu8TF/nWk0ztUt+ESLf/zVXCxBMzvfjQF9bpJdWmAxtpHTJcWHt2+mIy55nZ6ScY6K6t/fshTUGg==}
+  /@bg-dev/simple-peerjs@0.2.0:
+    resolution: {integrity: sha512-lrs6Df6fReyg90ExN6//hxL+c+Ncj4jqBJjlsoWOsUnStHDAMGh+6nQMLdpU8jS2BVBKDqG7uZwTpAqWwc0B+Q==}
     dependencies:
       defu: 6.1.4
       hookable: 5.5.3

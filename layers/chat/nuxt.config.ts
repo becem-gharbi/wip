@@ -5,7 +5,8 @@ export default defineNuxtConfig({
         host: '0.peerjs.com',
         path: '/',
         port: 443,
-        rmVideoElId: 'peerjs-rm-video'
+        rmVideoElId: 'peerjs-rm-video',
+        connectIntervalMs: 7000
       }
     }
   },

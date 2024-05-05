@@ -1,4 +1,4 @@
-import { SimplePeer } from '@bg-dev/simpler-peerjs'
+import { SimplePeer } from '@bg-dev/simple-peerjs'
 
 export default defineNuxtPlugin({
   enforce: 'pre',

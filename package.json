@@ -39,7 +39,7 @@
     "wrangler": "^3.48.0"
   },
   "dependencies": {
-    "@bg-dev/simpler-peerjs": "^0.1.2",
+    "@bg-dev/simple-peerjs": "^0.2.0",
     "@prisma/adapter-d1": "^5.12.1",
     "@prisma/client": "5.12.1",
     "@vite-pwa/nuxt": "^0.6.0",
