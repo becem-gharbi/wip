@@ -11,7 +11,7 @@
   "scripts": {
     "build": "nuxt build",
     "dev": "nuxt dev",
-    "peer": "node peer/index.mjs",
+    "peer": "node ./layers/chat/peer/index.mjs",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare",

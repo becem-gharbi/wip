@@ -1,4 +1,6 @@
 export default defineNuxtConfig({
+  ssr: false,
+
   runtimeConfig: {
     public: {
       peerjs: {
@@ -10,6 +12,7 @@ export default defineNuxtConfig({
       }
     }
   },
+
   vite: {
     optimizeDeps: {
       include: ['sdp']

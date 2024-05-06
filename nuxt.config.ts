@@ -1,8 +1,12 @@
 export default defineNuxtConfig({
-  extends: ['./layers/base'],
+  extends: ['./layers/base', './layers/chat', './layers/project', './layers/team'],
 
   devtools: {
     enabled: false
+  },
+
+  experimental: {
+    typedPages: true
   },
 
   app: {
@@ -21,6 +25,10 @@ export default defineNuxtConfig({
         { rel: 'preconnect', href: 'https://fonts.gstatic.com', crossorigin: 'anonymous' },
         { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css2?family=Rubik&display=swap' }
       ]
+    },
+    pageTransition: {
+      name: 'page',
+      mode: 'out-in'
     }
   }
 })
