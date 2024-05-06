@@ -1,6 +1,31 @@
 # Changelog
 
 
+## v0.1.4
+
+[compare changes](https://github.com/becem-gharbi/wip/compare/v0.1.3...v0.1.4)
+
+### 🚀 Enhancements
+
+- Migrate to simpler-peerjs ([#6](https://github.com/becem-gharbi/wip/pull/6))
+
+### 🩹 Fixes
+
+- **chat:** Reorder messages by latest ([d570690](https://github.com/becem-gharbi/wip/commit/d570690))
+
+### 💅 Refactors
+
+- Change code structure ([719aee7](https://github.com/becem-gharbi/wip/commit/719aee7))
+
+### 🏡 Chore
+
+- Replace peerjs pkg ([2c3c59c](https://github.com/becem-gharbi/wip/commit/2c3c59c))
+
+### ❤️ Contributors
+
+- Becem-gharbi <becem.gharbi@live.com>
+- Becem <becem.gharbi@live.com>
+
 ## v0.1.3
 
 [compare changes](https://github.com/becem-gharbi/wip/compare/v0.1.2...v0.1.3)
