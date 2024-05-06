@@ -20,8 +20,10 @@ export default defineEventHandler((event) => {
       teamId: query.teamId
     },
     orderBy: {
-      createdAt: 'asc'
+      createdAt: 'desc'
     },
     take: 10
-  }).catch((err) => { throw createPrismaError(err) })
+  })
+    .then(res => res.reverse())
+    .catch((err) => { throw createPrismaError(err) })
 })
