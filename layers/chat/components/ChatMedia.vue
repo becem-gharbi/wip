@@ -1,7 +1,13 @@
 <template>
   <div class="flex flex-col gap-4">
     <div class="rounded overflow-hidden">
-      <video v-show="status === 'active'" id="peerjs-rm-video" autoplay width="100%" />
+      <video
+        v-show="status === 'active'"
+        id="peerjs-rm-video"
+        autoplay
+        width="100%"
+        class="aspect-video"
+      />
     </div>
 
     <n-button v-if="status !== 'inactive'" type="error" @click="$peerjs.peerMedia?.endCall()">
