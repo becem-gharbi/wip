@@ -8,7 +8,7 @@
       <img :src="project.icon || '/images/project-icon.svg'" width="22" alt="project">
     </template>
 
-    <n-tabs type="line" animated>
+    <n-tabs type="line">
       <n-tab-pane name="board" tab="Board">
         <template #tab>
           <naive-icon name="ph:cards" class="mr-1" />
