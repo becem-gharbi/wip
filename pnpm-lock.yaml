@@ -6,8 +6,8 @@ settings:
 
 dependencies:
   '@bg-dev/simple-peerjs':
-    specifier: ^0.2.0
-    version: 0.2.0
+    specifier: ^0.2.1
+    version: 0.2.1
   '@prisma/adapter-d1':
     specifier: ^5.12.1
     version: 5.12.1
@@ -29,8 +29,8 @@ devDependencies:
     specifier: 2.6.0
     version: 2.6.0(prisma@5.12.1)(rollup@2.79.1)
   '@bg-dev/nuxt-naiveui':
-    specifier: 1.13.1
-    version: 1.13.1(rollup@2.79.1)(vue@3.4.21)
+    specifier: 1.13.3
+    version: 1.13.3(rollup@2.79.1)(vue@3.4.21)
   '@nuxt/devtools':
     specifier: ^1.1.5
     version: 1.1.5(@unocss/reset@0.58.7)(floating-vue@5.2.2)(nuxt@3.11.1)(rollup@2.79.1)(unocss@0.58.7)(vite@5.2.6)(vue@3.4.21)
@@ -1507,23 +1507,23 @@ packages:
       - supports-color
     dev: true
 
-  /@bg-dev/nuxt-naiveui@1.13.1(rollup@2.79.1)(vue@3.4.21):
-    resolution: {integrity: sha512-/9pb2xSbpTHxLpLDe1ZQRLpwBD8wgE1VvFs7aVZnhGKsiF7PVnfvEaD91dUWaHy7g4KYJ2ood0bmBdKkB3mOJQ==}
+  /@bg-dev/nuxt-naiveui@1.13.3(rollup@2.79.1)(vue@3.4.21):
+    resolution: {integrity: sha512-IHeifDjt2PcTYYRGpNFpDC+YEGxgs24GoMFgSr2YREGOKCtP8vJKQYUk739fjMjCE2B2E/wN8qMfrEJLkFuaxA==}
     dependencies:
       '@ant-design/colors': 7.0.2
       '@iconify/vue': 4.1.1(vue@3.4.21)
-      '@nuxt/kit': 3.11.1(rollup@2.79.1)
+      '@nuxt/kit': 3.11.2(rollup@2.79.1)
       defu: 6.1.4
       js-cookie: 3.0.5
-      naive-ui: 2.38.1(vue@3.4.21)
+      naive-ui: 2.38.2(vue@3.4.21)
     transitivePeerDependencies:
       - rollup
       - supports-color
       - vue
     dev: true
 
-  /@bg-dev/simple-peerjs@0.2.0:
-    resolution: {integrity: sha512-lrs6Df6fReyg90ExN6//hxL+c+Ncj4jqBJjlsoWOsUnStHDAMGh+6nQMLdpU8jS2BVBKDqG7uZwTpAqWwc0B+Q==}
+  /@bg-dev/simple-peerjs@0.2.1:
+    resolution: {integrity: sha512-eiVrGBmJ1WwFMUUMF2o5y2EfvY6lx76HAKQOtTd/4/sV9quxCa+HEdtJVXxHFcvzOJgQpXklOU+/88rZqA8/dw==}
     dependencies:
       defu: 6.1.4
       hookable: 5.5.3
@@ -8123,8 +8123,8 @@ packages:
       thenify-all: 1.6.0
     dev: true
 
-  /naive-ui@2.38.1(vue@3.4.21):
-    resolution: {integrity: sha512-AnU1FQ7K/CbhguAX++V4kCFjk7h7RvWt4nvZPRjORMpq+fUIlzD+EcQ5Cv1VqDloNF8+eMv4Akc2Ogacc9S+5A==}
+  /naive-ui@2.38.2(vue@3.4.21):
+    resolution: {integrity: sha512-WhZ+6DW61aYSmFyfH7evcSGFmd2xR68Yq1mNRrVdJwBhZsnNdAUsMN9IeNCVEPMCND/jzYZghkStoNoR5Xa09g==}
     peerDependencies:
       vue: ^3.0.0
     dependencies:
