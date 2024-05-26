@@ -13,7 +13,10 @@
     </nuxt-link>
   </div>
 
-  <n-empty v-else description="No projects are found" />
+  <n-empty
+    v-else
+    description="No projects are found"
+  />
 </template>
 
 <script setup lang="ts">

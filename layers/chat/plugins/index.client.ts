@@ -3,14 +3,15 @@ import { SimplePeer } from '@bg-dev/simple-peerjs'
 export default defineNuxtPlugin({
   enforce: 'pre',
 
-  setup (nuxtApp) {
+  setup(nuxtApp) {
     const peerjs = new SimplePeer(nuxtApp.$config.public.peerjs)
 
     nuxtApp.hook('auth:loggedIn', (loggedIn) => {
       if (loggedIn) {
         const userId = useAuthSession().user.value!.id
         peerjs.init(userId)
-      } else {
+      }
+      else {
         peerjs.end()
       }
     })
@@ -21,8 +22,8 @@ export default defineNuxtPlugin({
 
     return {
       provide: {
-        peerjs
-      }
+        peerjs,
+      },
     }
-  }
+  },
 })

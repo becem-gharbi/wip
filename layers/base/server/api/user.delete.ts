@@ -5,8 +5,8 @@ export default defineEventHandler(async (event) => {
 
   await event.context.prisma.user.delete({
     where: {
-      id: userId
-    }
+      id: userId,
+    },
   })
 
   deleteCookie(event, config.auth.refreshToken.cookieName)

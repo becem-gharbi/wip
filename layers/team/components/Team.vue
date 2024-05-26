@@ -1,9 +1,18 @@
 <template>
   <div>
-    <n-list v-if="team.users.length" hoverable>
-      <n-list-item v-for="user of team.users" :key="user.id">
+    <n-list
+      v-if="team.users.length"
+      hoverable
+    >
+      <n-list-item
+        v-for="user of team.users"
+        :key="user.id"
+      >
         <div class="flex gap-4">
-          <account-info class="mr-auto" :user="user" />
+          <account-info
+            class="mr-auto"
+            :user="user"
+          />
 
           <n-button
             v-if="isOwner && user.id !== project.ownerId"
@@ -23,10 +32,17 @@
         </div>
       </n-list-item>
 
-      <chat-modal v-model:show="showChatModal" :team-id="teamId" :user-id="selectedUserId" />
+      <chat-modal
+        v-model:show="showChatModal"
+        :team-id="teamId"
+        :user-id="selectedUserId"
+      />
     </n-list>
 
-    <n-empty v-else description="No users are found" />
+    <n-empty
+      v-else
+      description="No users are found"
+    />
 
     <br>
 
@@ -39,7 +55,7 @@
 </template>
 
 <script setup lang="ts">
-const props = defineProps<{ teamId: Team['id']; }>()
+const props = defineProps<{ teamId: Team['id'] }>()
 
 const selectedUserId = ref()
 const showChatModal = ref(false)
@@ -52,11 +68,11 @@ const isOwner = await useTeam().isOwner(team.value)
 
 const myUserId = useAuthSession().user.value!.id
 
-async function removeUser (email: string) {
+async function removeUser(email: string) {
   await useTeam().removeUser(props.teamId, { email })
 }
 
-function messageUser (id: string) {
+function messageUser(id: string) {
   selectedUserId.value = id
   showChatModal.value = true
 }

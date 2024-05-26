@@ -4,10 +4,10 @@ export default defineEventHandler(async (event) => {
   const { userId } = checkAuth(event)
   const teamId = event.context.params!.id
 
-  const body = await readBody<{ email: string; }>(event)
+  const body = await readBody<{ email: string }>(event)
 
   const schema = z.object({
-    email: z.string().email()
+    email: z.string().email(),
   })
 
   schema.parse(body)
@@ -16,15 +16,15 @@ export default defineEventHandler(async (event) => {
     where: {
       id: teamId,
       project: {
-        ownerId: userId
-      }
+        ownerId: userId,
+      },
     },
     data: {
       users: {
         connect: {
-          email: body.email
-        }
-      }
+          email: body.email,
+        },
+      },
     },
     select: {
       users: {
@@ -32,12 +32,12 @@ export default defineEventHandler(async (event) => {
           email: true,
           id: true,
           picture: true,
-          name: true
+          name: true,
         },
         where: {
-          email: body.email
-        }
-      }
-    }
+          email: body.email,
+        },
+      },
+    },
   }).catch((err) => { throw createPrismaError(err) })
 })

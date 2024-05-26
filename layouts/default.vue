@@ -1,7 +1,13 @@
 <template>
-  <naive-layout-navbar :routes="routes" :drawer-routes="drawerRoutes">
+  <naive-layout-navbar
+    :routes="routes"
+    :drawer-routes="drawerRoutes"
+  >
     <template #start>
-      <nuxt-link to="/" class="flex items-center gap-3">
+      <nuxt-link
+        to="/"
+        class="flex items-center gap-3"
+      >
         <basic-logo />
       </nuxt-link>
     </template>
@@ -26,11 +32,18 @@
     </template>
 
     <template #drawer-header>
-      <AccountInfo class="mx-2" :user="user!" />
+      <account-info
+        class="mx-2"
+        :user="user!"
+      />
     </template>
 
     <template #drawer-footer>
-      <n-button secondary block @click="logout">
+      <n-button
+        secondary
+        block
+        @click="logout"
+      >
         Logout
       </n-button>
     </template>
@@ -59,36 +72,37 @@ const drawerRoutes: MenuLinkRoute[] = [
   {
     label: 'Account',
     icon: 'ph:user',
-    to: '/account'
-  }
+    to: '/account',
+  },
 ]
 
 const dropdownOptions: DropdownOption[] = [
   {
     key: 'header',
     type: 'render',
-    render: () => h(AccountInfo, { user: user.value! })
+    render: () => h(AccountInfo, { user: user.value! }),
   },
   {
     key: 'divider',
-    type: 'divider'
+    type: 'divider',
   },
   {
     label: 'Account',
     key: 'account',
-    icon: () => h(NaiveIcon, { name: 'ph:user' })
+    icon: () => h(NaiveIcon, { name: 'ph:user' }),
   },
   {
     label: 'Logout',
     key: 'logout',
-    icon: () => h(NaiveIcon, { name: 'ph:sign-out' })
-  }
+    icon: () => h(NaiveIcon, { name: 'ph:sign-out' }),
+  },
 ]
 
-async function handleDropdownSelect (key: string) {
+async function handleDropdownSelect(key: string) {
   if (key === 'logout') {
     await logout()
-  } else if (key === 'account') {
+  }
+  else if (key === 'account') {
     await navigateTo('/account')
   }
 }

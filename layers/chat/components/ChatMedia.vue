@@ -10,21 +10,33 @@
       />
     </div>
 
-    <n-button v-if="status !== 'inactive'" type="error" @click="$peerjs.peerMedia?.endCall()">
+    <n-button
+      v-if="status !== 'inactive'"
+      type="error"
+      @click="$peerjs.peerMedia?.endCall()"
+    >
       Hang
       <template #icon>
         <naive-icon name="ph:phone-disconnect" />
       </template>
     </n-button>
 
-    <n-button v-if="status === 'calling'" type="success" @click="$peerjs.peerMedia?.acceptCall()">
+    <n-button
+      v-if="status === 'calling'"
+      type="success"
+      @click="$peerjs.peerMedia?.acceptCall()"
+    >
       Answer
       <template #icon>
         <naive-icon name="ph:phone-incoming" />
       </template>
     </n-button>
 
-    <n-button v-if="status === 'inactive'" type="primary" @click="$peerjs.peerMedia?.startCall(userId)">
+    <n-button
+      v-if="status === 'inactive'"
+      type="primary"
+      @click="$peerjs.peerMedia?.startCall(userId)"
+    >
       Call
       <template #icon>
         <naive-icon name="ph:phone-outgoing" />

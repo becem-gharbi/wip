@@ -6,7 +6,11 @@
     segmented
   >
     <template #header-extra>
-      <n-button size="small" tertiary @click="$emit('hide')">
+      <n-button
+        size="small"
+        tertiary
+        @click="$emit('hide')"
+      >
         <naive-icon name="ph:x" />
       </n-button>
     </template>
@@ -17,7 +21,10 @@
       :model="model"
       @submit.prevent="onSubmit(updateIssue)"
     >
-      <n-form-item label="Summary" path="summary">
+      <n-form-item
+        label="Summary"
+        path="summary"
+      >
         <n-input
           v-model:value="model.summary"
           maxlength="50"
@@ -27,7 +34,10 @@
         />
       </n-form-item>
 
-      <n-form-item label="Description" path="description">
+      <n-form-item
+        label="Description"
+        path="description"
+      >
         <n-input
           v-model:value="model.description"
           type="textarea"
@@ -39,7 +49,10 @@
         />
       </n-form-item>
 
-      <n-form-item label="Labels" path="labels">
+      <n-form-item
+        label="Labels"
+        path="labels"
+      >
         <n-select
           v-model:value="model.labels"
           filterable
@@ -52,7 +65,10 @@
         />
       </n-form-item>
 
-      <div v-if="isOwner && edited" class="flex gap-2">
+      <div
+        v-if="isOwner && edited"
+        class="flex gap-2"
+      >
         <n-button
           attr-type="reset"
           :disabled="pending"
@@ -72,12 +88,18 @@
       </div>
     </n-form>
 
-    <template v-if="isOwner" #footer>
+    <template
+      v-if="isOwner"
+      #footer
+    >
       <n-collapse arrow-placement="right">
         <n-collapse-item title="Delete Issue">
           <p>Once you delete an issue, there is no going back. Please be certain.</p>
           <br>
-          <n-button type="error" @click="deleteIssue">
+          <n-button
+            type="error"
+            @click="deleteIssue"
+          >
             Delete issue
           </n-button>
         </n-collapse-item>
@@ -97,28 +119,28 @@ const isOwner = await useIssue().isOwner(issue.value)
 const model = ref({
   summary: issue.value.summary,
   description: issue.value.description,
-  labels: issue.value.labels?.split(';')
+  labels: issue.value.labels?.split(';'),
 })
 
-const { edited, pending, onSubmit, reset, rules, formRef } =
-  useNaiveForm(model)
+const { edited, pending, onSubmit, reset, rules, formRef }
+  = useNaiveForm(model)
 
 rules.value = {
   summary: {
     required: true,
-    trigger: 'input'
-  }
+    trigger: 'input',
+  },
 }
 
-async function deleteIssue () {
+async function deleteIssue() {
   emits('hide', false)
   await useIssue().remove(issue.value.id)
 }
 
-async function updateIssue () {
+async function updateIssue() {
   await useIssue().update(issue.value.id, {
     ...model.value,
-    labels: model.value.labels?.join(';')
+    labels: model.value.labels?.join(';'),
   })
 }
 </script>

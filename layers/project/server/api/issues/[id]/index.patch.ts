@@ -10,14 +10,14 @@ export default defineEventHandler(async (event) => {
     where: {
       id: issueId,
       project: {
-        ownerId: userId
-      }
+        ownerId: userId,
+      },
     },
     data: {
       summary: body.summary,
       column: body.column,
       description: body.description,
-      labels: body.labels
-    }
+      labels: body.labels,
+    },
   }).catch((err) => { throw createPrismaError(err) })
 })

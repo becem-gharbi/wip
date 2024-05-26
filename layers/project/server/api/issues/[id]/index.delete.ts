@@ -6,8 +6,8 @@ export default defineEventHandler((event) => {
     where: {
       id: issueId,
       project: {
-        ownerId: userId
-      }
-    }
+        ownerId: userId,
+      },
+    },
   }).catch((err) => { throw createPrismaError(err) })
 })

@@ -9,12 +9,12 @@ export default defineEventHandler(async (event) => {
   return event.context.prisma.project.update({
     where: {
       id: projectId,
-      ownerId: userId
+      ownerId: userId,
     },
     data: {
       name: body.name,
       icon: body.icon,
-      description: body.description
-    }
+      description: body.description,
+    },
   }).catch((err) => { throw createPrismaError(err) })
 })

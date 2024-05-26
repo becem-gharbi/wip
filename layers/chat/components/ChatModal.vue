@@ -1,6 +1,9 @@
 <template>
-  <n-modal :show="show" @mask-click="$emit('update:show', false)">
-    <ChatModalContent
+  <n-modal
+    :show="show"
+    @mask-click="$emit('update:show', false)"
+  >
+    <chat-modal-content
       v-if="userId"
       :team-id="teamId"
       :user-id="userId"
@@ -11,6 +14,6 @@
 </template>
 
 <script setup lang="ts">
-defineProps<{ show: boolean; teamId: Team['id']; userId?: string }>()
+defineProps<{ show: boolean, teamId: Team['id'], userId?: string }>()
 defineEmits(['update:show'])
 </script>

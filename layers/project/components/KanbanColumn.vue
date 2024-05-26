@@ -1,23 +1,48 @@
 <template>
-  <n-card class="min-w-72" segmented size="small">
+  <n-card
+    class="min-w-72"
+    segmented
+    size="small"
+  >
     <template #header>
       <div class="flex gap-2 items-end">
-        <naive-icon :name="issueStatus[column].icon" size="20" />
+        <naive-icon
+          :name="issueStatus[column].icon"
+          size="20"
+        />
         <n-text>{{ issueStatus[column].title }}</n-text>
-        <n-badge :value="list.length" color="gray" />
+        <n-badge
+          :value="list.length"
+          color="gray"
+        />
       </div>
     </template>
 
-    <template v-if="isOwner" #header-extra>
-      <n-button size="small" text @click="createIssue">
+    <template
+      v-if="isOwner"
+      #header-extra
+    >
+      <n-button
+        size="small"
+        text
+        @click="createIssue"
+      >
         <template #icon>
-          <naive-icon name="ph:plus" size="16" />
+          <naive-icon
+            name="ph:plus"
+            size="16"
+          />
         </template>
       </n-button>
     </template>
 
     <div class="h-80 pr-4 overflow-auto scroller">
-      <draggable :list="list" group="kanban" item-key="id" @change="onReoder">
+      <draggable
+        :list="list"
+        group="kanban"
+        item-key="id"
+        @change="onReoder"
+      >
         <template #item="{ element }">
           <kanban-issue
             class="mb-4"
@@ -38,14 +63,14 @@
 <script setup lang="ts">
 import Draggable from 'vuedraggable'
 
-const props = defineProps<{ column: Issue['column']; projectId: Project['id'] }>()
+const props = defineProps<{ column: Issue['column'], projectId: Project['id'] }>()
 
 const isOwner = await useProject().isOwner(props.projectId)
 
 const showIssueModal = ref(false)
 const selectedIssueId = ref()
 
-function onSelectIssue (id: Issue['id']) {
+function onSelectIssue(id: Issue['id']) {
   selectedIssueId.value = id
   showIssueModal.value = true
 }
@@ -54,7 +79,7 @@ const issueStatus: Array<{ title: string, icon: string }> = [
   { title: 'Backlog', icon: 'ph:lightbulb' },
   { title: 'Todo', icon: 'ph:fire' },
   { title: 'In progress', icon: 'ph:activity' },
-  { title: 'Done', icon: 'ph:check' }
+  { title: 'Done', icon: 'ph:check' },
 ]
 
 const issues = await useIssue().findMany({ query: { projectId: props.projectId } })
@@ -64,12 +89,12 @@ const list = computed(() => issues.value
   .filter(i => i.column === props.column)
   .sort((a, b) => new Date(b.updatedAt).getTime() - new Date(a.updatedAt).getTime()))
 
-async function createIssue () {
+async function createIssue() {
   const issue = await useIssue().create({ projectId: props.projectId, column: props.column })
   onSelectIssue(issue.id)
 }
 
-async function onReoder (c: any) {
+async function onReoder(c: any) {
   if (isOwner && c.added) {
     await useIssue().update(c.added.element.id, { column: props.column })
   }

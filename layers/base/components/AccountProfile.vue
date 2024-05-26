@@ -1,15 +1,35 @@
 <template>
-  <n-form ref="formRef" :model="model" :rules="rules" @submit.prevent="onSubmit(updateAccount)">
-    <n-form-item label="Name" path="name">
+  <n-form
+    ref="formRef"
+    :model="model"
+    :rules="rules"
+    @submit.prevent="onSubmit(updateAccount)"
+  >
+    <n-form-item
+      label="Name"
+      path="name"
+    >
       <n-input v-model:value="model.name" />
     </n-form-item>
 
-    <div v-if="edited" class="flex gap-2">
-      <n-button attr-type="reset" :disabled="pending" @click="reset">
+    <div
+      v-if="edited"
+      class="flex gap-2"
+    >
+      <n-button
+        attr-type="reset"
+        :disabled="pending"
+        @click="reset"
+      >
         Reset
       </n-button>
 
-      <n-button attr-type="submit" :loading="pending" :disabled="pending" type="primary">
+      <n-button
+        attr-type="submit"
+        :loading="pending"
+        :disabled="pending"
+        type="primary"
+      >
         Update
       </n-button>
     </div>
@@ -19,7 +39,10 @@
     <n-collapse-item title="Delete account">
       <p>Once your account, there is no going back. Please be certain.</p>
       <br>
-      <n-button type="error" @click="deleteAccount">
+      <n-button
+        type="error"
+        @click="deleteAccount"
+      >
         Delete account
       </n-button>
     </n-collapse-item>
@@ -31,7 +54,7 @@ const { user } = useAuthSession()
 
 const model = ref({
   name: user.value!.name,
-  picture: user.value!.picture
+  picture: user.value!.picture,
 })
 
 const { edited, pending, onSubmit, reset, formRef, rules } = useNaiveForm(model)
@@ -39,26 +62,26 @@ const { edited, pending, onSubmit, reset, formRef, rules } = useNaiveForm(model)
 rules.value = {
   name: {
     required: true,
-    trigger: 'input'
-  }
+    trigger: 'input',
+  },
 }
 
-async function updateAccount () {
+async function updateAccount() {
   await useNuxtApp().$auth.fetch('/api/user', {
     method: 'patch',
     body: {
       name: model.value.name,
-      picture: model.value.picture
-    }
+      picture: model.value.picture,
+    },
   })
 
   await useAuth().fetchUser()
 }
 
-async function deleteAccount () {
+async function deleteAccount() {
   await useNuxtApp().$auth.fetch('/api/user', {
     method: 'delete',
-    credentials: 'include'
+    credentials: 'include',
   })
   location.reload()
 }

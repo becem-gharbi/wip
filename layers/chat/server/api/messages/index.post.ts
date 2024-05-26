@@ -7,7 +7,7 @@ export default defineEventHandler(async (event) => {
 
   const schema = z.object({
     teamId: z.string().min(1),
-    content: z.string().min(1)
+    content: z.string().min(1),
   })
 
   schema.parse(body)
@@ -16,7 +16,7 @@ export default defineEventHandler(async (event) => {
     data: {
       content: body.content,
       authorId: userId,
-      teamId: body.teamId
-    }
+      teamId: body.teamId,
+    },
   }).catch((err) => { throw createPrismaError(err) })
 })

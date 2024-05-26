@@ -3,11 +3,11 @@ import { z } from 'zod'
 export default defineEventHandler(async (event) => {
   const { userId } = checkAuth(event)
 
-  const body = await readBody<{ projectId: string; column: number }>(event)
+  const body = await readBody<{ projectId: string, column: number }>(event)
 
   const schema = z.object({
     projectId: z.string().min(1),
-    column: z.number()
+    column: z.number(),
   })
 
   schema.parse(body)
@@ -19,9 +19,9 @@ export default defineEventHandler(async (event) => {
       project: {
         connect: {
           id: body.projectId,
-          ownerId: userId
-        }
-      }
-    }
+          ownerId: userId,
+        },
+      },
+    },
   }).catch((err) => { throw createPrismaError(err) })
 })

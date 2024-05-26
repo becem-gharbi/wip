@@ -5,7 +5,7 @@ export default defineEventHandler((event) => {
   return event.context.prisma.project.delete({
     where: {
       id: projectId,
-      ownerId: userId
-    }
+      ownerId: userId,
+    },
   }).catch((err) => { throw createPrismaError(err) })
 })

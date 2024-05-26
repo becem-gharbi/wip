@@ -8,10 +8,10 @@ export default defineEventHandler((event) => {
       users: {
         some: {
           id: {
-            equals: userId
-          }
-        }
-      }
+            equals: userId,
+          },
+        },
+      },
     },
     include: {
       users: {
@@ -19,9 +19,9 @@ export default defineEventHandler((event) => {
           id: true,
           name: true,
           email: true,
-          picture: true
-        }
-      }
-    }
+          picture: true,
+        },
+      },
+    },
   }).catch((err) => { throw createPrismaError(err) })
 })

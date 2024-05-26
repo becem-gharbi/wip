@@ -6,7 +6,11 @@
       :style="{ flexDirection: isMyMessage ? 'row-reverse' : 'row' }"
     >
       <div :style="{ width: '32px' }">
-        <img :src="author!.picture" alt="avatar" class="rounded">
+        <img
+          :src="author!.picture"
+          alt="avatar"
+          class="rounded"
+        >
       </div>
       <div class="flex-grow text-wrap">
         {{ props.message.content }}

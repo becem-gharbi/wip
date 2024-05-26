@@ -2,7 +2,11 @@
   <n-form @submit.prevent="onSubmit">
     <div class="flex gap-4">
       <n-input v-model:value="message" />
-      <n-button type="primary" :attr-type="'submit'" :disabled="!message">
+      <n-button
+        type="primary"
+        :attr-type="'submit'"
+        :disabled="!message"
+      >
         <template #icon>
           <naive-icon name="ph:paper-plane-right" />
         </template>
@@ -16,7 +20,7 @@ const emits = defineEmits(['submit'])
 
 const message = ref('')
 
-function onSubmit () {
+function onSubmit() {
   emits('submit', message.value)
   message.value = ''
 }

@@ -9,18 +9,18 @@ export default defineEventHandler((event) => {
         users: {
           some: {
             id: {
-              equals: userId
-            }
-          }
-        }
-      }
+              equals: userId,
+            },
+          },
+        },
+      },
     },
     include: {
       team: {
         select: {
-          id: true
-        }
-      }
-    }
+          id: true,
+        },
+      },
+    },
   }).catch((err) => { throw createPrismaError(err) })
 })

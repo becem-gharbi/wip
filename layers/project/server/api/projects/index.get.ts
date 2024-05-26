@@ -7,14 +7,14 @@ export default defineEventHandler((event) => {
         users: {
           some: {
             id: {
-              equals: userId
-            }
-          }
-        }
-      }
+              equals: userId,
+            },
+          },
+        },
+      },
     },
     orderBy: {
-      updatedAt: 'desc'
-    }
+      updatedAt: 'desc',
+    },
   }).catch((err) => { throw createPrismaError(err) })
 })

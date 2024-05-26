@@ -9,14 +9,14 @@ export default defineNuxtConfig({
         port: 443,
         secure: true,
         rmVideoElId: 'peerjs-rm-video',
-        connectIntervalMs: 7000
-      }
-    }
+        connectIntervalMs: 7000,
+      },
+    },
   },
 
   vite: {
     optimizeDeps: {
-      include: ['sdp']
-    }
-  }
+      include: ['sdp'],
+    },
+  },
 })

@@ -1,10 +1,16 @@
 <template>
   <div class="page justify-center items-center p-7">
-    <NuxtLink to="/home" class="mr-auto sm:mr-0">
+    <nuxt-link
+      to="/home"
+      class="mr-auto sm:mr-0"
+    >
       <basic-logo class="text-lg" />
-    </NuxtLink>
+    </nuxt-link>
 
-    <n-text class="text-lg font-medium mt-1 mr-auto sm:mr-0" depth="3">
+    <n-text
+      class="text-lg font-medium mt-1 mr-auto sm:mr-0"
+      depth="3"
+    >
       {{ title }}
     </n-text>
 
@@ -18,24 +24,34 @@
 const route = useRoute()
 
 const title = computed(() => {
+  let title = ''
+
   switch (route.name) {
     case 'auth-login':
-      return 'Login to your account'
+      title = 'Login to your account'
+      break
 
     case 'auth-register':
-      return 'Create your account'
+      title = 'Create your account'
+      break
 
     case 'auth-request-password-reset':
-      return 'Request password reset'
+      title = 'Request password reset'
+      break
 
     case 'auth-reset-password':
-      return 'Reset your password'
+      title = 'Reset your password'
+      break
 
     case 'auth-verify-email':
-      return 'Email verification'
+      title = 'Email verification'
+      break
 
     case 'auth-callback':
-      return 'Social login'
+      title = 'Social login'
+      break
   }
+
+  return title
 })
 </script>

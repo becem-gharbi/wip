@@ -6,7 +6,7 @@ export default defineEventHandler((event) => {
   const query = getQuery<{ projectId: string }>(event)
 
   const schema = z.object({
-    projectId: z.string().min(1)
+    projectId: z.string().min(1),
   })
 
   schema.parse(query)
@@ -19,16 +19,16 @@ export default defineEventHandler((event) => {
           users: {
             some: {
               id: {
-                equals: userId
-              }
-            }
-          }
-        }
-      }
+                equals: userId,
+              },
+            },
+          },
+        },
+      },
     },
     orderBy: [
       { column: 'asc' },
-      { updatedAt: 'desc' }
-    ]
+      { updatedAt: 'desc' },
+    ],
   }).catch((err) => { throw createPrismaError(err) })
 })

@@ -1,7 +1,10 @@
 <template>
   <naive-config>
     <vite-pwa-manifest />
-    <nuxt-loading-indicator color="#2563eb" :height="3" />
+    <nuxt-loading-indicator
+      color="#2563eb"
+      :height="3"
+    />
     <nuxt-layout>
       <nuxt-page />
     </nuxt-layout>

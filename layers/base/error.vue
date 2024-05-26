@@ -8,7 +8,10 @@
         :description="error.message"
       >
         <template #footer>
-          <n-button type="primary" @click="handleError">
+          <n-button
+            type="primary"
+            @click="handleError"
+          >
             Back home
           </n-button>
         </template>
@@ -18,7 +21,7 @@
 </template>
 
 <script setup lang="ts">
-defineProps<{error:any}>()
+defineProps<{ error: any }>()
 
 const handleError = () => clearError({ redirect: '/' })
 </script>

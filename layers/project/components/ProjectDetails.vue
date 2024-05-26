@@ -7,7 +7,10 @@
         :model="model"
         @submit.prevent="onSubmit(updateProject)"
       >
-        <n-form-item label="Name" path="name">
+        <n-form-item
+          label="Name"
+          path="name"
+        >
           <n-input
             v-model:value="model.name"
             maxlength="20"
@@ -17,7 +20,10 @@
           />
         </n-form-item>
 
-        <n-form-item label="Icon" path="icon">
+        <n-form-item
+          label="Icon"
+          path="icon"
+        >
           <n-input
             v-model:value="model.icon"
             :readonly="!isOwner"
@@ -27,7 +33,10 @@
           />
         </n-form-item>
 
-        <n-form-item label="Description" path="description">
+        <n-form-item
+          label="Description"
+          path="description"
+        >
           <n-input
             v-model:value="model.description"
             type="textarea"
@@ -39,7 +48,10 @@
           />
         </n-form-item>
 
-        <div v-if="isOwner && edited" class="flex gap-2">
+        <div
+          v-if="isOwner && edited"
+          class="flex gap-2"
+        >
           <n-button
             attr-type="reset"
             :disabled="pending"
@@ -66,7 +78,10 @@
       <n-collapse-item title="Delete Project">
         <p>Once you delete a project, there is no going back. Please be certain.</p>
         <br>
-        <n-button type="error" @click="deleteProject">
+        <n-button
+          type="error"
+          @click="deleteProject"
+        >
           Delete project
         </n-button>
       </n-collapse-item>
@@ -84,38 +99,38 @@ const isOwner = await useProject().isOwner(project.value)
 const model = ref({
   name: project.value.name,
   icon: project.value.icon,
-  description: project.value.description
+  description: project.value.description,
 })
 
-const { edited, pending, onSubmit, reset, rules, formRef, apiErrors } =
-  useNaiveForm(model)
+const { edited, pending, onSubmit, reset, rules, formRef, apiErrors }
+  = useNaiveForm(model)
 
 apiErrors.value = {
-  nameAlreadyUsed: false
+  nameAlreadyUsed: false,
 }
 
 rules.value = {
   name: [
     {
       required: true,
-      trigger: 'input'
+      trigger: 'input',
     },
     {
       message: 'Name already used',
-      validator: () => !apiErrors.value.nameAlreadyUsed
-    }
+      validator: () => !apiErrors.value.nameAlreadyUsed,
+    },
   ],
   icon: {
-    type: 'url'
-  }
+    type: 'url',
+  },
 }
 
-async function deleteProject () {
+async function deleteProject() {
   await navigateTo('/')
   await useProject().remove(props.projectId)
 }
 
-async function updateProject () {
+async function updateProject() {
   await useProject().update(props.projectId, model.value)
     .catch(() => { apiErrors.value.nameAlreadyUsed = true })
 }

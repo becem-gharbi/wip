@@ -4,6 +4,6 @@ export const naiveui: Partial<ModuleOptions> = {
   colorModePreference: 'system',
   iconDownload: false,
   spaLoadingTemplate: {
-    name: 'dot-chase'
-  }
+    name: 'dot-chase',
+  },
 }

@@ -8,11 +8,11 @@ export const auth: Partial<ModuleOptions> = {
   prisma: false,
 
   accessToken: {
-    jwtSecret: process.env.NUXT_AUTH_ACCESS_TOKEN_JWT_SECRET!
+    jwtSecret: process.env.NUXT_AUTH_ACCESS_TOKEN_JWT_SECRET!,
   },
 
   refreshToken: {
-    jwtSecret: process.env.NUXT_AUTH_REFRESH_TOKEN_JWT_SECRET!
+    jwtSecret: process.env.NUXT_AUTH_REFRESH_TOKEN_JWT_SECRET!,
   },
 
   oauth: {
@@ -22,8 +22,8 @@ export const auth: Partial<ModuleOptions> = {
       scopes: 'email profile',
       authorizeUrl: 'https://accounts.google.com/o/oauth2/auth',
       tokenUrl: 'https://accounts.google.com/o/oauth2/token',
-      userUrl: 'https://www.googleapis.com/oauth2/v3/userinfo'
-    }
+      userUrl: 'https://www.googleapis.com/oauth2/v3/userinfo',
+    },
   },
 
   redirect: {
@@ -32,14 +32,14 @@ export const auth: Partial<ModuleOptions> = {
     home: '/',
     callback: '/auth/callback',
     emailVerify: '/auth/verify-email',
-    passwordReset: '/auth/reset-password'
+    passwordReset: '/auth/reset-password',
   },
 
   email: {
     from: process.env.NUXT_AUTH_EMAIL_FROM!,
     provider: {
       name: process.env.NUXT_AUTH_EMAIL_PROVIDER_NAME as any,
-      apiKey: process.env.NUXT_AUTH_EMAIL_PROVIDER_API_KEY!
-    }
-  }
+      apiKey: process.env.NUXT_AUTH_EMAIL_PROVIDER_API_KEY!,
+    },
+  },
 }

@@ -12,33 +12,33 @@ export const pwa: ModuleOptions = {
       {
         src: 'pwa-192x192.png',
         sizes: '192x192',
-        type: 'image/png'
+        type: 'image/png',
       },
       {
         src: 'pwa-512x512.png',
         sizes: '512x512',
-        type: 'image/png'
+        type: 'image/png',
       },
       {
         src: 'maskable-icon.png',
         sizes: '512x512',
         type: 'image/png',
-        purpose: 'any maskable'
-      }
-    ]
+        purpose: 'any maskable',
+      },
+    ],
   },
   workbox: {
     navigateFallback: null,
-    globPatterns: ['**/*.{js,css,html,png,svg,ico}']
+    globPatterns: ['**/*.{js,css,html,png,svg,ico}'],
   },
   client: {
-    installPrompt: true
+    installPrompt: true,
   },
   registerWebManifestInRouteRules: true,
   devOptions: {
     enabled: process.env.VITE_PLUGIN_PWA === 'true',
     suppressWarnings: true,
     navigateFallbackAllowlist: [/^\/$/],
-    type: 'module'
-  }
+    type: 'module',
+  },
 }

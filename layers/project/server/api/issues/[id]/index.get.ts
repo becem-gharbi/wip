@@ -10,12 +10,12 @@ export default defineEventHandler((event) => {
           users: {
             some: {
               id: {
-                equals: userId
-              }
-            }
-          }
-        }
-      }
-    }
+                equals: userId,
+              },
+            },
+          },
+        },
+      },
+    },
   }).catch((err) => { throw createPrismaError(err) })
 })

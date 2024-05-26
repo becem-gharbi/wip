@@ -1,3 +1,4 @@
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-nocheck
 import { defu } from 'defu'
 
@@ -12,16 +13,16 @@ import { defu } from 'defu'
  * @returns `remove` Remove an item by `id` on [DELETE] /api/_entityKey_/:id, returns void
  * @returns `update` Update an item by `id` on [PATCH] /api/_entityKey_/:id, returns void
  */
-export function useEntity<EntityType> (entityKey: string, _fetch = $fetch) {
+export function useEntity<EntityType>(entityKey: string, _fetch = $fetch) {
   const useItem = (id: string, init?: () => EntityType) =>
     useState<EntityType>(`${entityKey}-${id}`, init)
 
   const _entities = computed(() => Object.keys(useNuxtApp().payload.state)
     .filter(k => k.startsWith(`$s${entityKey}-`))
-    .map(k => useState<EntityType>(k.replace('$s', '')).value)
+    .map(k => useState<EntityType>(k.replace('$s', '')).value),
   )
 
-  async function findMany (opts?: {refetch? :boolean, query?: object}) {
+  async function findMany(opts?: { refetch?: boolean, query?: object }) {
     let fetched = false
 
     const fetchIt = async () => {
@@ -41,7 +42,7 @@ export function useEntity<EntityType> (entityKey: string, _fetch = $fetch) {
     return _entities
   }
 
-  async function findUnique (id: EntityType['id']) {
+  async function findUnique(id: EntityType['id']) {
     await callOnce(`${entityKey}-${id}`, async () => {
       const entity = await _fetch(`/api/${entityKey}/${id}`)
       useItem(id).value = entity
@@ -49,26 +50,26 @@ export function useEntity<EntityType> (entityKey: string, _fetch = $fetch) {
     return useItem(id)
   }
 
-  async function create (data?: Partial<EntityType>) {
+  async function create(data?: Partial<EntityType>) {
     const entity = await _fetch(`/api/${entityKey}`, {
       method: 'post',
-      body: data
+      body: data,
     })
     return useItem(entity.id, () => entity).value
   }
 
-  async function remove (id: EntityType['id']) {
+  async function remove(id: EntityType['id']) {
     await _fetch(`/api/${entityKey}/${id}`, {
-      method: 'delete'
+      method: 'delete',
     })
     clearNuxtState(`${entityKey}-${id}`)
     delete useNuxtApp().payload.state[`$s${entityKey}-${id}`]
   }
 
-  async function update (id: EntityType['id'], data: Partial<EntityType>) {
+  async function update(id: EntityType['id'], data: Partial<EntityType>) {
     await _fetch(`/api/${entityKey}/${id}`, {
       method: 'patch',
-      body: data
+      body: data,
     })
     useItem(id).value = defu({}, data, useItem(id).value)
   }

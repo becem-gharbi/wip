@@ -9,11 +9,11 @@ export default defineEventHandler((event) => {
         create: {
           users: {
             connect: {
-              id: userId
-            }
-          }
-        }
-      }
-    }
+              id: userId,
+            },
+          },
+        },
+      },
+    },
   }).catch((err) => { throw createPrismaError(err) })
 })
