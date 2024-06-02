@@ -1,6 +1,26 @@
 # Changelog
 
 
+## v0.1.5
+
+[compare changes](https://github.com/becem-gharbi/wip/compare/v0.1.4...v0.1.5)
+
+### 💅 Refactors
+
+- **chat:** Set video aspect ratio ([6169635](https://github.com/becem-gharbi/wip/commit/6169635))
+- Disable tabs animation ([54776ea](https://github.com/becem-gharbi/wip/commit/54776ea))
+
+### 🏡 Chore
+
+- **chat:** Add secure config option ([7dc30dd](https://github.com/becem-gharbi/wip/commit/7dc30dd))
+- Upgrade deps ([0212f92](https://github.com/becem-gharbi/wip/commit/0212f92))
+- **lint:** Migrate to `@nuxt/eslint` ([488320a](https://github.com/becem-gharbi/wip/commit/488320a))
+- Add source code btn ([706f1b0](https://github.com/becem-gharbi/wip/commit/706f1b0))
+
+### ❤️ Contributors
+
+- Becem-gharbi <becem.gharbi@live.com>
+
 ## v0.1.4
 
 [compare changes](https://github.com/becem-gharbi/wip/compare/v0.1.3...v0.1.4)
